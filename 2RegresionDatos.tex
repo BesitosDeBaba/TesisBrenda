@@ -239,6 +239,8 @@ Los datos funcionales continuos pueden ser complejos y difíciles de manejar deb
 En muchos campos científicos, los datos se recopilan a escalas de tiempo cada vez más finas, resultando en lo que se conoce como datos de alta frecuencia o \textit{High Frequency}. Estos datos capturan eventos y cambios con una resolución temporal muy detallada, permitiendo un análisis más granular y preciso de los fenómenos estudiados. Un ejemplo de la aplicación de este tipo de datos es en finanzas, donde la alta frecuencia permite comprender mejor las microestructuras del mercado. \cite{Tsay2000}
 
  En aplicaciones como el análisis de movimiento humano o la escritura a mano, los datos funcionales derivados de datos de alta frecuencia ofrecen una representación más realista y detallada, permitiendo una comprensión más profunda de los fenómenos estudiados.
+
+ 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Banda de Profundidad para Datos Funcionales}
@@ -374,25 +376,34 @@ Donde $\lambda$ es la medida de Lebesgue en $\mathcal{I}$.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%% M E J O R A C I O N  D E  L A  T B D %%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsubsection{Transformación Signo}
+\subsubsection{Transformación de Translación con Signo de Profundidad}
 
-    Para mejorar la interpretación, Emanuel, actual estudiante de doctorado, junto con la Dra. Graciela y el Dr. Emilien, propusieron una nueva metodología para calcular el orden de los datos funcionales. Esta innovación introduce la noción de la banda de profundidad transformada como se muestra en la Ecuación \eqref{TBD}. \cite{BandaEmanuel}
+    Para mejorar la interpretación, Emanuel, actual estudiante de doctorado, junto con la Dra. Graciela y el Dr. Emilien, propusieron una nueva metodología para calcular el orden de los datos funcionales denotada como \textit{Signed Translation transformed Depth} (STtD). Esta innovación introduce la noción de la banda de profundidad transformada como se muestra en la Ecuación \eqref{TBD}. \cite{BandaEmanuel} 
+    
+    \begin{defn}
 
-\begin{equation}
-    T B D^*(x)=(1-B D(x))
-\end{equation}
+        Sea  $x_(t), \dots , x_n(t)$, un conjunto de muestras funcionales independientes de variable real del proceso estocástico $X(t)$ tal que $X(t) \in \mathbb{R}$,  donde $t \in \mathcal{T}$ donde $\mathcal{T}$ es un intervalo en $\mathbb{R}$. 
 
-\begin{equation}\label{TBD}
-T B D(x)=\left(T B D^*(x)-T B D^*\left(x_{[1]}\right)\right) \operatorname{sign}\left(\int_{\mathcal{I}}\left(x(t)-x_{[1]}(t)\right) d t\right)
-\end{equation}
+    \begin{equation}\label{posicion}
+        T B D^*(x)=(1-B D(x))
+    \end{equation}
+    
+    \begin{equation}\label{TBD}
+    STtD(x)=\left(T B D^*(x)-T B D^*\left(x_{[1]}\right)\right) \operatorname{sign}\left(\int_{\mathcal{I}}\left(x(t)-x_{[1]}(t)\right) d t\right)
+    \end{equation}
+
+    La ecuación \eqref{posicion} se encarga de posicionar las curvas más profundas cerca del $0$ y las más lejanas cerca del $1$. La ecuación \eqref{TBD} se encarga de asignarles un signo.
+        
+    \end{defn}
+
 
 La banda de profundidad transformada redefine la forma en que se calcula el orden de los datos funcionales. A continuación, se destacan algunos aspectos importantes de esta nueva metodología para su futura interpretación e implementación:
 
 \begin{enumerate}
-    \item $TBD(x(t)) \in (-1, 1), \forall x(t)$
-    \item $TBD(x_{[1]}(t)) = 0$
-    \item Si $TBD(x(t)) > 0$ significa que la curva pasa más tiempo por arriba de $x_{[1]}(t)$.
-    \item Si $TBD(x(t)) < 0$ significa que la curva pasa más tiempo por abajo de $x_{[1]}(t)$.
+    \item $STtD(x(t)) \in (-1, 1), \forall x(t)$
+    \item $STtD(x_{[1]}(t)) = 0$
+    \item Si $STtD(x(t)) > 0$ significa que la curva pasa más tiempo por arriba de $x_{[1]}(t)$.
+    \item Si $STtD(x(t)) < 0$ significa que la curva pasa más tiempo por abajo de $x_{[1]}(t)$.
 \end{enumerate}
 
 Para ilustrar cómo esta transformación afecta, en la Figura \ref{fig:ComparaBandas} \footnote{Figura tomada de \cite{BandaEmanuel}}, se presentan dos histogramas obtenidos a partir de un conjunto de datos analizados por Emmanuel. En el histograma izquierdo se muestran las medidas de profundidad para dicho conjunto de datos, el cual no es interpretable en términos de la ubicación de los datos atípicos con respecto a la mediana.
@@ -400,7 +411,7 @@ Para ilustrar cómo esta transformación afecta, en la Figura \ref{fig:ComparaBa
 \begin{figure}[H]
     \centering
     \includegraphics[width = 0.7 \textwidth]{Imagenes/comparacionBandas.png}
-    \caption{Comparación visual de la banda de profundidad y la banda de profundidad transformada con Signo.}
+    \caption{Comparación visual de la banda de profundidad y la Transformación de Translación con Signo de Profundida.}
     \label{fig:ComparaBandas}
 \end{figure}
 
@@ -414,6 +425,10 @@ En contraste, en el histograma derecho se presentan las medidas utilizando la pr
 
 Como se detallará más exhaustivamente en el Capítulo \ref{Resultados}, una parte de la base de datos consiste en mediciones de glucosa e insulina tomadas durante la Prueba de Tolerancia a la Glucosa Oral en los minutos $0$, $30$, $60$, $90$ y $120$. Estos constituyen los datos funcionales con los que se hará inferencia para proporcionar la probabilidad de tener diabetes. 
 
+Llámese $g(t)$ y $\eta(t)$ a las variables funcionales que representan los niveles de glucosa e insulina, respectivamente, donde $t = 0, 30, 60, 90, 120$. En la Figura \ref{fig:pairsTBD}, se muestran gráficos de dispersión, en los que el eje $x$ representa la profundidad de banda transformada con signo de la variable funcional glucosa, mientras que en el eje $y$ se muestra la profundidad de la variable funcional de insulina. Según ciertos criterios determinados por mediciones de la OGTT (los cuales se detallarán en el capítulo \ref{Resultados}), es posible realizar un prediagnóstico de los individuos clasificados como normales, prediabéticos y diabéticos. Estas categorías están coloreadas en los gráficos de dispersión, junto con la distribución de las bandas de profundidad transformada con signo en insulina y glucosa.
+
+Un aspecto importante a destacar en la Gráfica \ref{fig:pairsTBD}, es que la transformación de la banda de profundidad con signo de la variable glucosa muestra una distribución característica para cada categoría del prediagnóstico. En cuanto a la variable correspondiente a la insulina, no parece haber una separación clara entre las categorías. Sin embargo, en los gráficos de dispersión se puede observar el comportamiento que se busca analizar.
+
 \begin{figure}[H]
     \centering
     \includegraphics[width = 0.7 \textwidth]{Imagenes/pairsTBDS.png}
@@ -421,10 +436,6 @@ Como se detallará más exhaustivamente en el Capítulo \ref{Resultados}, una pa
     \label{fig:pairsTBD}
 \end{figure}
 
-Llámese $g(t)$ y $\eta(t)$ a las variables funcionales que representan los niveles de glucosa e insulina, respectivamente, donde $t = 0, 30, 60, 90, 120$. En la Figura \ref{fig:pairsTBD}, se muestran gráficos de dispersión, en los que el eje $x$ representa la profundidad de banda transformada con signo de la variable funcional glucosa, mientras que en el eje $y$ se muestra la profundidad de la variable funcional de insulina. Según ciertos criterios determinados por mediciones de la OGTT (los cuales se detallarán en el capítulo \ref{Resultados}), es posible realizar un prediagnóstico de los individuos clasificados como normales, prediabéticos y diabéticos. Estas categorías están coloreadas en los gráficos de dispersión, junto con la distribución de las bandas de profundidad transformada con signo en insulina y glucosa.
-
-
-Un aspecto importante a destacar en la Gráfica \ref{fig:pairsTBD}, es que la transformación de la banda de profundidad con signo de la variable glucosa muestra una distribución característica para cada categoría del prediagnóstico. En cuanto a la variable correspondiente a la insulina, no parece haber una separación clara entre las categorías. Sin embargo, en los gráficos de dispersión se puede observar el comportamiento que se busca analizar.
 
 Los altos niveles de glucosa se corresponden con bajos niveles de insulina, ya que la producción de insulina disminuye, lo cual se respalda con el signo negativo de la correlación en la categoría diabética. Por otro lado, los bajos niveles de glucosa también se asocian con bajos o medianos niveles de insulina, lo que indica un funcionamiento adecuado de la insulina en la categoría normal, donde el signo de la correlación es positivo.
 

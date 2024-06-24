@@ -313,7 +313,7 @@ El boxplot funcional de las curvas de insulina se puede observar en la gráfica 
     \label{fig:relGluIns}
 \end{figure}
 
-La figura \ref{fig:relGluIns},  se representan cinco grupos: el grupo control, personas con obesidad, personas con obesidad e intolerancia a la glucosa, personas con obesidad y diabetes con insulina alta, y personas con obesidad y diabetes con baja insulina. El objetivo es ilustrar cómo se comporta la interacción entre la glucosa e insulina dependiendo del estado de salud de los individuos.
+La Figura \ref{fig:relGluIns} tomada de una de las presentaciones de la Dra. Adriana Monroy. En ella se representan cinco grupos: el grupo control, personas con obesidad, personas con obesidad e intolerancia a la glucosa, personas con obesidad y diabetes con insulina alta, y personas con obesidad y diabetes con baja insulina. El objetivo es ilustrar cómo se comporta la interacción entre la glucosa e insulina dependiendo del estado de salud de los individuos.
 
 En la gráfica de la parte inferior, se puede observar cómo, al empeorar la condición de salud, la media de los niveles de glucosa durante la prueba de tolerancia oral a la glucosa (OGTT) es más elevada. Este incremento en los niveles medios de glucosa refleja el deterioro progresivo en la regulación de la glucosa a medida que avanza la enfermedad.
 
@@ -552,3 +552,12 @@ En la Figura \ref{ejEfec1}, se ilustra cómo cambia la variable respuesta en fun
 Por otro lado, en la Figura \ref{ejEfect2}, se muestra el efecto de una variable que no aporta información al modelo. A medida que la covariable $PA.diast$ varía, no se refleja ningún cambio en la predicción; esto permanece constante. Esto indica que  $pA.diast$ no aporta información significativa a la regresión. La ausencia de variación en la respuesta sugiere que esta covariable no está relacionada con la variable de interés y, por lo tanto, no contribuye a mejorar el modelo predictivo. Identificar tales variables es crucial para simplificar el modelo y mejorar su interpretabilidad y eficiencia.
 
 Este gráfico es herramienta fundamental en el análisis de resultados debido a su capacidad para visualizar de manera efectiva la variabilidad y la relación entre una covariable y la variable respuesta. En particular, permiten identificar patrones claros en los datos, como la consistencia en la respuesta frente a diferentes condiciones de una covariable o la falta de efecto de ciertas variables sobre la predicción. Esta capacidad de identificación es crucial para la selección de variables relevantes en los modelos predictivos y para mejorar la interpretación y la precisión de los resultados obtenidos. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Librería deerVineReg}
+
+Todas las herramientas gráficas descritas anteriormente para evaluar y visualizar el desempeño del modelo ajustado fueron implementadas en el paquetería \textbf{deerVineReg}, la cuál se puede encontrar y descargar en github \url{https://github.com/BesitosDeBaba/deerVineReg}, uno de los principales objetivos de esta tesis. Existen otros paquetes, como \textbf{vineReg}, cuya utilidad se centra más en visualizar las dependencias dentro de un conjunto de variables, similar a la función de la PCA. Sin embargo, este proyecto se enfocó en desarrollar una paquetería orientada a un modelo predictivo de Machine Learning, con el objetivo de expandir el uso de modelos basados en cópulas.
+
+El paquete \textbf{deerVineReg} no solo facilita la creación de modelos predictivos robustos utilizando cópulas, sino que también incluye herramientas avanzadas de visualización para interpretar los resultados y evaluar el desempeño del modelo. Esto permite a los usuarios no solo construir modelos precisos, sino también comprender mejor las relaciones subyacentes entre las variables y su impacto en la predicción. \textbf{deerVineReg} representa un avance significativo en el uso de cópulas para la predicción, ofreciendo una alternativa poderosa y accesible para la comunidad científica y médica.
