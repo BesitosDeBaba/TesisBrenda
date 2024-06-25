@@ -2,7 +2,7 @@
 %%%%%%%%%%%          C O P U L A S         %%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\chapter{Cópulas}
+\chapter{Cópulas}\label{CapCopulas}
 
 En este capítulo se definirá el concepto de cópulas, que constituye la herramienta principal para modelar las dependencias entre las covariables. Se hará especial hincapié en las cópulas bivariadas, ya que, dada una función de distribución de un vector aleatorio, esta puede representarse como el producto de cópulas bivariadas condicionales. Esta forma de descomposición se conoce como R-Vines. Sin embargo, esta descomposición no es única, ya que diferentes representaciones pueden obtenerse al permutar el orden de descomposición. En particular, se detallará una forma llamada D-Vine, que se asocia con un grafo o árboles. Utilizando el grafo, es sencillo visualizar las dependencias condicionales o cópulas condicionales necesarias para realizar regresiones utilizando las estructuras mencionadas.
 
@@ -382,7 +382,7 @@ Este enfoque paramétrico proporciona flexibilidad en la modelización de relaci
 \begin{figure}[H]
     \centering
     \includegraphics[width = 0.7 \textwidth]{Imagenes/parametricCopulas.png}
-    \caption{Ejemplos de Cópulas para Paramétricas.}
+    \caption{Ejemplos de cópulas paramétricas.}
     \label{fig:Parametric}
 \end{figure}
 
@@ -506,7 +506,7 @@ Se inicia asignando una cópula bivariada a cada par de variables adyacentes. Lu
 \begin{figure}[H]
     \centering
     \includegraphics[width = 0.6 \textwidth]{Imagenes/Dvine5var.png}
-    \caption{D-vine de 5 variables, 10 Aristas y 4 Arboles.}
+    \caption{D-vine de 5 variables, 10 aristas y 4 árboles.}
     \label{fig:Dvine5}
 \end{figure}
 
@@ -692,7 +692,7 @@ Donde $\Phi$ es la función de distribución normal estándar.
 \begin{figure}[H]
     \centering
     \includegraphics[width = 0.98\textwidth]{Imagenes/Construccion.jpeg}
-    \caption{Visualización gráfica}
+    \caption{Visualización gráfica para la implementación del modelo D-vine.}
     \label{fig:construccion}
 \end{figure}
 
