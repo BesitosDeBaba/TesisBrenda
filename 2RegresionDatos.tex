@@ -1,6 +1,6 @@
 \chapter{Regresión Cuantil y Datos Funcionales}\label{RegCuanDatosFun}
 
-En este capítulo se presentarán conceptos esenciales para el desarrollo matemático fundamental de la investigación. Se comenzará abordando conceptos básicos de probabilidad y el modelo de regresión cuantil, acompañados de ejemplos clásicos para una comprensión más profunda de su funcionamiento.
+En esta sección se presentarán conceptos esenciales para el desarrollo matemático fundamental de la investigación. Se comenzará abordando conceptos básicos de probabilidad y el modelo de regresión cuantil, acompañados de ejemplos clásicos para una comprensión más profunda de su funcionamiento.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -9,7 +9,7 @@ En este capítulo se presentarán conceptos esenciales para el desarrollo matem�
 
 \section{Conceptos Esenciales}
 
-A toda variable aleatoria (v.a.) se le asocia una función de distribución, la cual es de vital importancia porque contiene toda la información relevante sobre la variable aleatoria y la medida de probabilidad asociada a sus posibles valores. Es representa el total de masa acumulada a izquierda hasta en punto $x$ incluyendo este, a continuación se presenta la definición \cite{Rincon}.
+A toda variable aleatoria (v.a.) se le asocia una función de distribución, la cual es de vital importancia porque contiene toda la información relevante sobre la variable aleatoria y la medida de probabilidad asociada a sus posibles valores. Se representa el total de masa acumulada a la izquierda hasta en punto $x$ incluyendo este, a continuación, se presenta la definición \cite{Rincon}.
 
 \begin{defn}[Función de Distribución]
     La función de distribución de una variable aleatoria $X$ es la función $F(X). \mathbb{R} \to [0, 1]$, definida como sigue
@@ -42,7 +42,7 @@ En situaciones prácticas, típicamente se dispone de una muestra fija del vecto
 
 $\widehat{F}$ es un estimador de la función de distribución $F$ dada un conjunto de datos.
 
-Por otro lado, la función cuantil, corresponde a la función inversa de la función de distribución, representa una herramienta esencial en estadística y probabilidad. Esta función proporciona una manera de relacionar valores específicos de una distribución de probabilidad y los percentiles correspondientes. Es decir, dada una probabilidad o percentil determinado, la función cuantil devuelve el valor en la distribución que alcanza o supera esa probabilidad. A continuación se proporciona la definición.
+Por otro lado, la función cuantil, corresponde a la función inversa de la función de distribución, representa una herramienta esencial en estadística y probabilidad. Esta función proporciona una manera de relacionar valores específicos de una distribución de probabilidad y los percentiles correspondientes. Es decir, dada una probabilidad o percentil determinado, la función cuantil devuelve el valor en la distribución que alcanza o supera esa probabilidad. A continuación, se proporciona la definición.
 
 \begin{defn}\label{defcuantil}
     Para cualquier función de distribución se le asocia la función cuantil $Q$, definida por:
@@ -55,7 +55,7 @@ Por otro lado, la función cuantil, corresponde a la función inversa de la func
     \end{defn}
 
 %falta cunatil empiric
-La función cuantil empírica proporciona una forma de estimar cuantiles a partir de los datos observados, sin hacer suposiciones sobre la forma específica de la distribución subyacente. En lugar de utilizar una fórmula analítica, la función cuantil empírica ordena los datos observados y selecciona el valor correspondiente a la posición fraccionaria que representa el cuantil deseado. A continuación se dará la definición de esta función. 
+La función cuantil empírica proporciona una forma de estimar cuantiles a partir de los datos observados, sin hacer suposiciones sobre la forma específica de la distribución subyacente. En lugar de utilizar una fórmula analítica, la función cuantil empírica ordena los datos observados y selecciona el valor correspondiente a la posición fraccionaria que representa el cuantil deseado. A continuación, se dará la definición de esta función. 
 
 \begin{defn}[Función Cuantil Empírica]
     Dada una muestra $(x_1, x_2, \dots, x_n)$, donde cada $x_i$ es una observación proveniente de la v.a. $X$ y es independiente de las otras observaciones. La Función cuantil empírica se define como sigue:
@@ -65,14 +65,14 @@ La función cuantil empírica proporciona una forma de estimar cuantiles a parti
     \end{equation}
 \end{defn}
 
-Más adelante, al modelar variables utilizando cópulas, se asumirá que cada distribución marginal es una variable aleatoria uniforme estándar. Por lo tanto, a continuación se presenta la transformación integral de probabilidad o \textit{Probability Integral Transform} (PIT), la cual establece una relación entre la función de distribución de una variable aleatoria y una variable aleatoria uniforme estándar. Esta transformación es fundamental para entender cómo las distribuciones de diferentes variables se relacionan entre sí y cómo se pueden utilizar variables uniformes estándar para simular y modelar distribuciones más complejas en el contexto de cópulas. Esta se define en \ref{PITdef} \cite{CopulasR}.
+Más adelante, al modelar variables utilizando cópulas, se asumirá que cada distribución marginal es una variable aleatoria uniforme estándar. Por lo tanto, en seguida, se presenta la transformación integral de probabilidad o \textit{Probability Integral Transform} (PIT), la cual establece una relación entre la función de distribución de una variable aleatoria y una variable aleatoria uniforme estándar. Esta transformación es fundamental para entender cómo las distribuciones de diferentes variables se relacionan entre sí y cómo se pueden utilizar variables uniformes estándar para simular y modelar distribuciones más complejas en el contexto de cópulas. Esta se define en \ref{PITdef} \cite{CopulasR}.
 
 \begin{defn}[Transformación integral de probabilidad]\label{PITdef}
     Si $X \sim F$ es una variable aleatoria continua y $x$ es un valor observado de $X$, entonces la transformación $u := F(x)$ se denomina transformación integral de probabilidad (PIT) en $x$.
 \end{defn}
 
 \begin{obs}\label{PITdist}
-    Si $X \sim F$, entonces $U := F(X)$ está distribuida de forma uniforme, primero notesé que $U \in [0, 1]$ y además, 
+    Si $X \sim F$, entonces $U := F(X)$ está distribuida de forma uniforme, primero nótese que $U \in [0, 1]$ y además, 
 
     \begin{equation}
         P(U \leq u)=P(F(X) \leq u)=P\left(X \leq F^{-1}(u)\right)=F\left(F^{-1}(u)\right)=u
@@ -90,14 +90,14 @@ Más adelante, al modelar variables utilizando cópulas, se asumirá que cada di
     
     La regresión cuantil es una técnica estadística utilizada para modelar la relación entre la variable predictora y una variable respuesta, centrándose en diferentes cuantiles de la distribución condicional de la variable de respuesta, comúnmente la mediana \cite{cuantilReg}, esta técnica fue introducida por Koenker y Bassett en 1978.  
     
-    A diferencia de clásica regresión por mínimos cuadrados que se centra en estimar la mediana condicional de la variable de respuesta, la regresión cuantil se centra en como varía la relación entre las variables a lo largo de diferentes partes de la distribución condicional, esta tiene dos principales ventajas sobre la regresión lineal:
+    A diferencia de la clásica regresión por mínimos cuadrados que se centra en estimar la mediana condicional de la variable de respuesta, la regresión cuantil se centra en cómo varía la relación entre las variables a lo largo de diferentes partes de la distribución condicional, esta tiene dos principales ventajas sobre la regresión lineal:
     
     \begin{enumerate}
         \item No hace ningún supuesto sobre la distribución de la distribución de la variable respuesta.
         \item Esta es más robusta ante la presencia de datos atípicos. 
     \end{enumerate}
 
-    Un cuantil especifico puede ser encontrado resolviendo el siguiente problema de teoría de decisiones. Si se define la función de pérdida como en la ecuación \eqref{funPer}, la cual es equivalente a las expresiones que se muestran en la ecuación \eqref{alternativas}. En Figura \ref{fig:perdida} se muestra la gráfica de la función.
+    Un cuantil especifico puede ser encontrado resolviendo el siguiente problema de Teoría de Decisiones. Si se define la función de pérdida como en la ecuación \eqref{funPer}, la cual es equivalente a las expresiones que se muestran en la ecuación \eqref{alternativas}. En la Figura \ref{fig:perdida} se muestra la gráfica de la función.
     
     \begin{equation}\label{funPer}
     \rho_\tau(u)= u\left(\tau-\mathbb{I}_{(u<0)}\right)
@@ -129,7 +129,7 @@ Más adelante, al modelar variables utilizando cópulas, se asumirá que cada di
         0=(1-\tau) \int_{-\infty}^{u} d F(x)-\tau \int_{u}^{\infty} d F(x)=F(u)-\tau
     \end{equation}
 
-    y para el caso empírico la formula queda de la siguiente manera, 
+    y para el caso empírico la fórmula queda de la siguiente manera, 
 
     \begin{equation}\label{qestima}
         \widehat{Q}_{X}(\tau)=\arg \min _{u_\tau \in \Re}\left\{\sum_{X_i \geq u_\tau} \tau \left(X_i-u_\tau\right)+\sum_{X_i< u_\tau}(1-\tau) \left(u_\tau-X_i\right)\right\}
@@ -151,7 +151,7 @@ Más adelante, al modelar variables utilizando cópulas, se asumirá que cada di
 \begin{obs}[Regresión Cuantil Lineal]
     Como se hace en mínimos en la clásica regresión lineal, se define $Y_i=\beta_{0, \tau}+\beta_{1, \tau} \cdot X_i+\varepsilon_{i, \tau} \quad \forall i \in\{1, \dots n\}$ con $0 < \tau < 1$.
     
-    $\tau$ corresponde al $\tau$-ésimo cuantil de error con respecto a la variable respuesta, es decir, $Q(\varepsilon_{i, \tau}) = 0$. Entonces, usando la formula \eqref{qestima} se obtiene la siguiente ecuación.
+    $\tau$ corresponde al $\tau$-ésimo cuantil de error con respecto a la variable respuesta, es decir, $Q(\varepsilon_{i, \tau}) = 0$. Entonces, usando la fórmula \eqref{qestima} se obtiene la siguiente ecuación.
 
     \begin{equation}
         \hat{\beta}_\tau=\arg \min _{\beta_\tau \in \mathbf{R}^2}\left\{\sum_{Y_i \geq A} \tau \left|Y_i-\beta_{0, \tau}-\beta_{1, \tau} X_i\right|+\sum_{Y_i<A}(1-\tau) \left|Y_i-\beta_{0, \tau}-\beta_{1, \tau}  X_i\right|\right\}
@@ -159,7 +159,7 @@ Más adelante, al modelar variables utilizando cópulas, se asumirá que cada di
 
     donde $\beta_\tau = (\beta_{0, \tau}, \beta_{1, \tau} )$ y A = $\beta_{0, \tau} + \beta_{1, \tau}X_i $.
 
-    Por lo que resolver, la estimación de parámetros se convierte en un problema de programación lineal \cite{RegLinealCuantil}.
+    Por lo que, resolver la estimación de parámetros se convierte en un problema de programación lineal \cite{RegLinealCuantil}.
 \end{obs}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -264,7 +264,7 @@ Se introduce este concepto a través de aproximación gráfica.
 \begin{defn}[Banda de Profundidad Poblacional]
     Sea $J$ el número de curvas que determinan la banda, donde $J$ es número fijo entre $2 \leq J \leq n$.
 
-    La banda de profundidad poblacional para observaciones $x_1(t), \dots, x_n(t)$ independientes de un proceso $X(t)$, definida para una curva $x(t)$ con respecto a la medida de probabilidad $P$, se define como,
+    La banda de profundidad poblacional para observaciones $x_1(t), \dots, x_n(t)$ independientes de un proceso $X(t)$, definida para una curva $x(t)$ con respecto a la medida de probabilidad $P$, se define como:
 
     \begin{equation}
         \mathrm{BD}_J(x, P)=\sum_{j=2}^J \mathrm{BD}^{(j)}(x, P)=\sum_{j=2}^J P\left\{G(x) \subset B\left(X_1, \ldots, X_j\right)\right\}
@@ -281,13 +281,13 @@ La versión muestral de la $\mathrm{BD}^{j}(x, P)$ es obtenida calculando la fra
 
 En otras palabras, se está calculando el número de bandas que contiene a la de gráfica $x(t)$. Esto implica que cuanto mayor sea esta fracción, más central será la posición de la curva. En términos prácticos, una fracción más grande indica que la curva es más cercana a la gráfica central.
 
-Así la profundidad muestral de banda de la gráfica $y(t)$ esta determinada por, 
+Así la profundidad muestral de banda de la gráfica $y(t)$ está determinada por, 
 
 \begin{equation}
     \mathrm{BD}_{n, J(x)} = \sum_{j = 2}^{J} \mathrm{BD}_n^{(j)}(x)
 \end{equation}
 
-Para comprender mejor cómo calcular la profundidad de banda, a continuación se presenta un ejemplo sencillo que involucra 4 observaciones el cuál es tomado de \textit{Functional Boxplots}\cite{boxplotFun}.
+Para comprender mejor cómo calcular la profundidad de banda, a continuación se presenta un ejemplo sencillo que involucra cuatro observaciones el cuál es tomado de \textit{Functional Boxplots}\cite{boxplotFun}.
 
 \begin{ejemplo}
    En la Figura \ref{fig:CurvasX}\footnote{
@@ -333,7 +333,7 @@ Ahora, hay que repetir el proceso para $J = 3$. En la Ecuación \eqref{j3} se mu
     \end{matrix} 
 \end{equation}
 
-Finalmente, para $J = 4$, se tiene que la única banda es $B(x_1, x_2, x_3, x_4)$ que contiene a todas las curvas. Por que el valor de profundidad de cada variables es:
+Finalmente, para $J = 4$, se tiene que la única banda es $B(x_1, x_2, x_3, x_4)$ que contiene a todas las curvas. Porque el valor de profundidad de cada variable es:
 
 \begin{equation}
     \begin{matrix}
@@ -378,7 +378,7 @@ Donde $\lambda$ es la medida de Lebesgue en $\mathcal{I}$.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Transformación de Translación con Signo de Profundidad}
 
-    Para mejorar la interpretación, Emanuel, actual estudiante de doctorado, junto con la Dra. Graciela y el Dr. Emilien, propusieron una nueva metodología para calcular el orden de los datos funcionales denotada como \textit{Signed Translation transformed Depth} (STtD). Esta innovación introduce la noción de la banda de profundidad transformada como se muestra en la Ecuación \eqref{TBD}. \cite{BandaEmanuel} 
+    Para mejorar la interpretación, Emmanuel, actual estudiante de doctorado, junto con la Dra. Graciela y el Dr. Emilien, propusieron una nueva metodología para calcular el orden de los datos funcionales denotada como \textit{Signed Translation transformed Depth} (STtD). Esta innovación introduce la noción de la banda de profundidad transformada como se muestra en la Ecuación \eqref{TBD}. \cite{BandaEmanuel} 
     
     \begin{defn}
 
@@ -415,7 +415,7 @@ Para ilustrar cómo esta transformación afecta, en la Figura \ref{fig:ComparaBa
     \label{fig:ComparaBandas}
 \end{figure}
 
-En contraste, en el histograma derecho se presentan las medidas utilizando la profundidad de banda transformada. Debido a la forma en que fue construida, se puede observar una cierta simetría; además, se pueden identificar fácilmente los valores atípicos tanto por encima como por debajo de la curva.
+En contraste, en el histograma derecho se presentan las medidas utilizando la profundidad de banda transformada. Debido a la forma en que fue construida, se puede observar cierta simetría; además, se pueden identificar fácilmente los valores atípicos tanto por encima como por debajo de la curva.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%% M E J O R A C I O N  D E  L A  T B D %%%%%%%%%%%%
@@ -423,11 +423,11 @@ En contraste, en el histograma derecho se presentan las medidas utilizando la pr
 
 \section{Transformación de Variables Funcionales}
 
-Como se detallará más exhaustivamente en el Capítulo \ref{Resultados}, una parte de la base de datos consiste en mediciones de glucosa e insulina tomadas durante la Prueba de Tolerancia a la Glucosa Oral en los minutos $0$, $30$, $60$, $90$ y $120$. Estos constituyen los datos funcionales con los que se hará inferencia para proporcionar la probabilidad de tener diabetes. 
+Como se detallará más exhaustivamente en el Capítulo \ref{Resultados}, una parte de la base de datos consiste en mediciones de glucosa e insulina tomadas durante la Prueba de Tolerancia a la Glucosa Oral en los minutos $0$, $30$, $60$, $90$ y $120$. Estos constituyen los datos funcionales con los que se hará inferencia para proporcionar la probabilidad de padecer diabetes. 
 
 Llámese $g(t)$ y $\eta(t)$ a las variables funcionales que representan los niveles de glucosa e insulina, respectivamente, donde $t = 0, 30, 60, 90, 120$. En la Figura \ref{fig:pairsTBD}, se muestran gráficos de dispersión, en los que el eje $x$ representa la profundidad de banda transformada con signo de la variable funcional glucosa, mientras que en el eje $y$ se muestra la profundidad de la variable funcional de insulina. Según ciertos criterios determinados por mediciones de la OGTT (los cuales se detallarán en el capítulo \ref{Resultados}), es posible realizar un prediagnóstico de los individuos clasificados como normales, prediabéticos y diabéticos. Estas categorías están coloreadas en los gráficos de dispersión, junto con la distribución de las bandas de profundidad transformada con signo en insulina y glucosa.
 
-Un aspecto importante a destacar en la Gráfica \ref{fig:pairsTBD}, es que la transformación de la banda de profundidad con signo de la variable glucosa muestra una distribución característica para cada categoría del prediagnóstico. En cuanto a la variable correspondiente a la insulina, no parece haber una separación clara entre las categorías. Sin embargo, en los gráficos de dispersión se puede observar el comportamiento que se busca analizar.
+Un aspecto importante a destacar, en la Gráfica \ref{fig:pairsTBD}, es que la transformación de la banda de profundidad con signo de la variable glucosa muestra una distribución característica para cada categoría del prediagnóstico. En cuanto a la variable correspondiente a la insulina, no parece haber una separación clara entre las categorías. Sin embargo, en los gráficos de dispersión se puede observar con mayor claridad el comportamiento que se busca analizar.
 
 \begin{figure}[H]
     \centering
@@ -437,7 +437,7 @@ Un aspecto importante a destacar en la Gráfica \ref{fig:pairsTBD}, es que la tr
 \end{figure}
 
 
-Los altos niveles de glucosa se corresponden con bajos niveles de insulina, ya que la producción de insulina disminuye, lo cual se respalda con el signo negativo de la correlación en la categoría diabética. Por otro lado, los bajos niveles de glucosa también se asocian con bajos o medianos niveles de insulina, lo que indica un funcionamiento adecuado de la insulina en la categoría normal, donde el signo de la correlación es positivo.
+Los altos niveles de glucosa se corresponden con bajos niveles de insulina, ya que la producción de insulina disminuye; lo cual se respalda con el signo negativo de la correlación en la categoría diabética. Por otro lado, los bajos niveles de glucosa también se asocian con bajos o medianos niveles de insulina, lo que indica un funcionamiento adecuado de la insulina en la categoría normal, donde el signo de la correlación es positivo.
 
 En cuanto a los individuos prediabéticos se observa que presentan niveles altos tanto de glucosa como de insulina. Aunque la correlación es positiva, es importante notar que los valores de insulina alcanzan un máximo y luego descienden, lo que indica una posible falla irreversible de las células beta.
 
@@ -446,7 +446,7 @@ Además, en el punto $(0, 0)$, que corresponde a las medianas de cada variable, 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Creación de Variable Respuesta}
 
-Definasé el punto $\widetilde{TBD} = (\widetilde{TBD^g}, \widetilde{TBD_{\eta}})$ que representa los valores límite aceptables de glucosa e insulina para pacientes completamente sanos. A partir del punto $(\widetilde{TBD^g},\widetilde{TBD^{\eta}})$ se define la función cuadrante para cada observación como:
+Defínase el punto $\widetilde{TBD} = (\widetilde{TBD^g}, \widetilde{TBD_{\eta}})$ que representa los valores límite aceptables de glucosa e insulina para pacientes completamente sanos. A partir del punto $(\widetilde{TBD^g},\widetilde{TBD^{\eta}})$ se define la función cuadrante para cada observación como:
 
 \begin{equation}
      C_ i = \left\{\begin{matrix}
@@ -459,8 +459,8 @@ Definasé el punto $\widetilde{TBD} = (\widetilde{TBD^g}, \widetilde{TBD_{\eta}}
 
 \begin{enumerate}
     \item El primer cuadrante, denotado como $C_i = 1$, corresponde al cuadrante inferior izquierdo y se asocia con los pacientes \textbf{completamente sanos}. Estos pacientes presentan niveles estables tanto de glucosa como de insulina.
-    \item El segundo cuadrante, asociado con $C_i = 2$, comprende a los pacientes que presentan \textbf{resistencia a la insulina o predisfunción de las células beta}. Estos pacientes han comenzado a aumentar sus niveles de insulina para mantener estable su glucosa. Aquellos en este cuadrante tienen una alta probabilidad de regresar al cuadrante $1$ mediante la mejora de hábitos dietéticos y de ejercicio.
-    \item El tercer cuadrante, relacionado con $C_i = 3$, se refiere a los pacientes con \textbf{resistencia a la insulina o estrés en las células beta}. Estos pacientes, a pesar de experimentar un aumento en sus niveles de insulina, no logran mantener estables sus niveles de glucosa, lo que indica una disminución en su sensibilidad a la insulina. Tienen una probabilidad muy baja de regresar a los cuadrantes 1 o 2 mediante la mejora de hábitos dietéticos y de ejercicio, lo que sugiere que es probable que hayan desarrollado resistencia a la insulina.
+    \item El segundo cuadrante, asociado con $C_i = 2$, comprende a los pacientes que presentan \textbf{resistencia a la insulina o predisfunción de las células beta}. Estos pacientes han comenzado a aumentar sus niveles de insulina para mantener estable su glucosa. Quienes están en este cuadrante tienen una alta probabilidad de regresar al cuadrante $1$ mediante la mejora de hábitos dietéticos y de ejercicio físico.
+    \item El tercer cuadrante, relacionado con $C_i = 3$, se refiere a los pacientes con \textbf{resistencia a la insulina o estrés en las células beta}. Estos pacientes, a pesar de experimentar un aumento en sus niveles de insulina, no logran mantener estables sus niveles de glucosa; lo cual indica una disminución en su sensibilidad a la insulina. Tienen una probabilidad muy baja de regresar a los cuadrantes 1 o 2 mediante la mejora de hábitos dietéticos y de ejercicio, lo que sugiere que es probable que hayan desarrollado resistencia a la insulina.
     \item En el cuarto cuadrante, identificado como $C_i = 4$, se encuentran los pacientes con \textbf{resistencia a la insulina y disfunción evidente de las células beta}. Estos pacientes requieren la administración de insulina para mantener estables sus niveles de glucosa, y tienen escasas posibilidades de regresar a alguno de los cuadrantes previos.
 \end{enumerate}
 
@@ -478,7 +478,7 @@ Donde $\widehat{F}^g$ y $\widehat{F}^{\eta}$ representan la función empírica d
     F B I / G C_i= \begin{cases}\left(M_1-m_i\right) / M_1, & C_i=1, \\ \left(m_i-M_2\right) / M_2, & C_i=2, \\ \left(m_i-M_3\right) / M_3-1, & C_i=3, \\ \left(m_i-M_4\right) / M_4-2, & C_i=4,\end{cases}
 \end{equation}
 
-Con el fin de establecer un cierto orden en la condición de las células beta, se realiza un escalado utilizando el máximo de cada cuadrante y restando una constante. Este procedimiento permite estandarizar los valores y facilitar la comparación entre diferentes grupos de pacientes, proporcionando una medida relativa de la función de las células beta en relación con el estado de salud.
+Con el fin de establecer un cierto orden en la condición de las células beta, se realiza un escalado utilizando el máximo de cada cuadrante y restando una constante. Este procedimiento permite estandarizar los valores y facilitar la comparación entre diferentes grupos de pacientes proporcionando una medida relativa de la función de las células beta en relación con el estado de salud.
 
 Donde $M_k = \max_{i = C_i = k}$ para $k = 1, 2, 3, 4$.
 
@@ -489,4 +489,4 @@ Donde $M_k = \max_{i = C_i = k}$ para $k = 1, 2, 3, 4$.
     \item En el cuadrante 4 se encuentran los pacientes con \textbf{resistencia a la insulina y disfunción evidente de la célula beta}, donde $-3 \leq \text{FBI/GC} \leq -2$.
 \end{enumerate}
 
- Luego de llevar a cabo todos los calculos mencionados anteriormente, se ha logrado construir una variable numérica que encapsula toda la información esencial extraída de los datos funcionales obtenidos de las curvas de glucosa e insulina. Esta variable condensa de manera efectiva la complejidad de los datos originales en una forma que resulta conveniente para el ajuste del modelo de regresión cuantil.
+ Luego de llevar a cabo todos los cálculos mencionados anteriormente, se ha logrado construir una variable numérica que encapsula toda la información esencial extraída de los datos funcionales obtenidos de las curvas de glucosa e insulina. Esta variable condensa de manera efectiva la complejidad de los datos originales en una forma que resulta conveniente para el ajuste del modelo de regresión cuantil.
