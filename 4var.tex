@@ -3,7 +3,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Modelos de 4 variables}
 
-El orden ajustado en los tres modelos se presenta en la Ecuación \eqref{ordenVar4}. Las copulas ajustadas para los datos de mujeres se ilustran en la Figura \ref{fig:copulasTestMu}, mientras que las correspondientes a hombres se muestran en la Figura \ref{fig:copulasTestHo}.
+El orden ajustado en los tres modelos se presenta en la Ecuación \eqref{ordenVar4}. Las cópulas ajustadas para los datos de mujeres se ilustran en la Figura \ref{fig:copulasTestMu}, mientras que las correspondientes a hombres se muestran en la Figura \ref{fig:copulasTestHo}.
 
 \begin{equation}\label{ordenVar4}
      FBIGC \sim Glu.120 + Glu.0 + BMI + PA.diast
@@ -73,7 +73,7 @@ Por último, en la Figura \ref{fig:copulasTestTotal}
 
 Uno de los aspectos más destacados de la Figura \ref{fig:diagTot}, es la posición de la diagonal de la cópula empírica en relación con la diagonal de cópula producto. En su mayor parte, la diagonal de la cópula empírica se sitúa por debajo o por encima de la diagonal, lo que indica que las dependencias entre las variables son mayoritariamente concordantes negativas o positivas, respectivamente. Este patrón de comportamiento es crucial, ya que las cópulas paramétricas pueden modelar estas relaciones de manera efectiva. Por lo tanto, utilizar un modelo R vine con un ajuste paramétrico parece ser una estrategia apropiada.
 
-Otro aspecto destacable es la partición que genera la variable presión diastólica. Recuerdesé que esta es la presión arterial mínima registrada en las arterias durante el ciclo cardíaco cuando el corazón se encuentra en reposo entre latidos. La creación de estos tres grupos podría deberse a la presencia de tres subpoblaciones, como personas con presión diastólica normal, con hipertensión leve y con hipertensión moderada o grave. Sin embargo, no parece haber una dependencia estable con las otras variables.
+Otro aspecto destacable es la partición que genera la variable presión diastólica. Recuérdese que esta es la presión arterial mínima registrada en las arterias durante el ciclo cardíaco cuando el corazón se encuentra en reposo entre latidos. La creación de estos tres grupos podría deberse a la presencia de tres subpoblaciones, como personas con presión diastólica normal, con hipertensión leve y con hipertensión moderada o grave. Sin embargo, no parece haber una dependencia estable con las otras variables.
 
 A continuación se muestran los heatmaps $\mathscr{H}\rho$, $\mathscr{H}\sigma$ y $\mathscr{H}$ de todas las cópulas utilizadas en el modelo D-vine. Esto proporcionan una mejor comprensión del tipo y la fuerza de dependencia de cada cópula, y nos permitirá verificar visualmente la monotonicidad de la función para juzgar si el enfoque paramétrico es correcto. Estos heatmaps ayudan a identificar patrones de dependencia y a evaluar la idoneidad del modelo para capturar las relaciones entre las variables.
 
@@ -184,7 +184,7 @@ En la Figura \ref{fig:Modelo4TotalNivel2} se muestran las cópulas del nivel $2$
 
 La cópula $C_{24|3}$, que representa la relación entre la medición de glucosa al tiempo $120$ y el índice de masa corporal condicionado a los niveles de glucosa al tiempo $0$, muestra una relación de dependencia de cuadrante positiva, lo cual tiene sentido desde un punto de vista médico. Esto sugiere que a medida que los niveles de glucosa al tiempo $120$ aumentan, también tiende a aumentar el índice de masa corporal.
 
-La relación entre la glucosa al tiempo $0$ y la presión diastólica, condicionada al índice de masa corporal, corresponde a la cópula $C_{35|4}$. Al observar una dependencia de cuadrante negativa, se esperaría que un aumento en los niveles de glucosa al tiempo $0$ esté asociado con una disminución en los valores de presión diastólica. Sin embargo, es importante ser cauteloso al interpretar esta relación, ya que puede estar influenciada por la distribución singular que se observó en la cópula $C_{45}$.
+La relación entre la glucosa al tiempo $0$ y la presión diastólica, condicionada al índice de masa corporal, corresponde a la cópula $C_{35|4}$. Al observar una dependencia de cuadrante negativa, se esperaría que un aumento en los niveles de glucosa al tiempo $0$ esté asociado con una disminución en los valores de presión diastólica. Sin embargo, es importante ser cauteloso al interpretar esta relación, ya que puede estar influida por la distribución singular que se observó en la cópula $C_{45}$.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 

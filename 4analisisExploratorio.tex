@@ -1,12 +1,12 @@
 \chapter{Resultados}\label{Resultados}
 
-En este estudio, se analizan datos de pacientes con el objetivo de identificar y modelar la relación entre diversas variables clínicas y la resistencia a la insulina. Los datos recopilados incluyen medidas de glucosa en diferentes momentos, índices de masa corporal, y niveles de presión arterial, entre otros. La adecuada interpretación y modelado de estos datos pueden proporcionar interpretaciones valiosas sobre el estado de salud de los pacientes. 
+En este estudio, se analizan datos de pacientes con el objetivo de identificar y modelar la relación entre diversas variables clínicas y la resistencia a la insulina. Los datos recopilados incluyen medidas de glucosa en diferentes momentos, índices de masa corporal, niveles de presión arterial, entre otros. La adecuada interpretación y modelado de estos datos pueden proporcionar interpretaciones valiosas sobre el estado de salud de los pacientes. 
 
 Se realizó un análisis exploratorio de los datos para entender mejor su distribución y las relaciones entre las variables. Posteriormente, se ajustaron varios modelos de regresión D-vine, que permiten capturar las complejas dependencias entre las variables. 
 
 \section{Análisis Exploratorio}
 
-La base de datos con la que se trabajó fue proporcianada por la Dra. Adriana Monroy, esta conformada por pacientes por 1697 con distintos diagnósticos (normal, prediabetes o diabetes). Las variables que conforman la base son las siguientes:
+La base de datos con la que se trabajó fue proporcianada por la Dra. Adriana Monroy, esta conformada por \textcolor{red}{1697} pacientes con distintos diagnósticos (normal, prediabetes o diabetes). Las variables que conforman la base son las siguientes:
 
 \begin{itemize}
     \item \textbf{Clave} - Clave asociada a cada paciente, variable de tipo categórica.
@@ -118,7 +118,7 @@ En la Figura \ref{fig:CorWolfGen}, se presentan los mapas de calor de la matriz 
 
  \subsection{Clasificación de Variables}
 
-A partir de las variables que se tienen se pueden crear otras variables. A continuación se describe las nuevas variable introducidas.  En función del índice de masa corporal se introdujeron los grados de obesididad como la Dra. Monroy lo indicó, en la Tabla \ref{tab:clasBMI} se marca este clasificación.
+A partir de las variables que se tienen se pueden crear otras variables. A continuación se describe las nuevas variable introducidas.  En función del índice de masa corporal se introdujeron los grados de obesidad como la Dra. Monroy lo indicó, en la Tabla \ref{tab:clasBMI} se marca este clasificación.
 Como breve resumen, se clasificaron 13 pacientes como insuficiente, 362 como normal, 594 con sobrepeso, 397 con obesidad 1, 158 con obesidad 2 y 71 con obesidad 3. 
  
 \begin{table}[H]
@@ -247,7 +247,7 @@ El boxplot funcional parece proporcionar indicios de las tres clasificaciones. L
 
 Para comprender la estructura de los datos funcionales, se realizará una visualización basada en el prediagnóstico. Esto permitirá entender mejor la relación entre la glucosa y la insulina en cada etapa.
 
-En la Figura \ref{bfGluNormal} se muestra el boxplot funcional de glucosa de los pacientes cuyo prediagnóstico es normal. Este conjunto de datos no presenta datos atípicos. La curva más profunda aumenta hasta el minuto 30, alcanzando niveles de alrededor de 180, para luego descender suavemente. En general, las curvas correspondientes al primer y tercer cuartil tienen una forma cóncava similar. Sin embargo, la curva del tercer cuartil mantiene niveles altos hasta el minuto 90, lo que podría indicar principios de estrés en las células beta. Adicionalmente, el ancho de la banda no parece ser muy variable ni demasiado amplio, lo cual sugiera una estabilidad en la varianza de las curvas.
+En la Figura \ref{bfGluNormal} se muestra el boxplot funcional de glucosa de los pacientes cuyo prediagnóstico es normal. Este conjunto de datos no presenta datos atípicos. La curva más profunda aumenta hasta el minuto 30, alcanzando niveles de alrededor de 180, para luego descender suavemente. En general, las curvas correspondientes al primer y tercer cuartil tienen una forma cóncava similar. Sin embargo, la curva del tercer cuartil mantiene niveles altos hasta el minuto 90, lo que podría indicar principios de estrés en las células beta. Adicionalmente, el ancho de la banda no parece ser muy variable ni demasiado amplio, lo cual sugiere una estabilidad en la varianza de las curvas.
 
 El boxplot funcional de insulina de los pacientes con prediagnóstico normal que se expone en la Figura \ref{bfInsNormal}, muestra varios datos atípicos. Estos datos presentan rangos muy altos en ciertos momentos, tomando la forma de una curva que crece rápidamente, alcanzando su pico entre los minutos 30 y 90, para luego descender. Este comportamiento evidencia los altos niveles de producción de insulina necesarios para regular adecuadamente la glucosa en sangre.
 
@@ -304,7 +304,7 @@ En la Figura \ref{bfGluDia}, se muestra el boxplot funcional de las curvas de gl
 
 Además, la separación entre las curvas relacionadas con el primer y tercer cuartil con respecto a la curva más profunda es mayor que en los casos anteriores, lo que indica una mayor varianza en los datos, aunque conservan la misma forma que la curva más profunda. Es importante destacar que en este gráfico no se muestran datos atípicos.
 
-El boxplot funcional de las curvas de insulina se puede observar en la gráfica \ref{bfInsDia}. No se observa ningún valor atípico, sin embargo, la forma y el rango de estas curvas son muy diferentes a las curvas de insulina de los casos anteriores. Estas curvas presentan rangos muy bajos, lo que indica una disfunción en la producción de insulina por parte de las células beta. Además, las curvas muestran un comportamiento creciente durante todo el periodo de observación, lo que sugiere una mala respuesta de las células beta a la glucosa.  Este patrón se puede observar claramente en las curvas del primer y tercer cuartil, así como en la curva más profunda.
+El boxplot funcional de las curvas de insulina se puede observar en la gráfica \ref{bfInsDia}. No se aprecia ningún valor atípico, sin embargo, la forma y el rango de estas curvas son muy diferentes a las curvas de insulina de los casos anteriores. Estas curvas presentan rangos muy bajos, lo que indica una disfunción en la producción de insulina por parte de las células beta. Además, las curvas muestran un comportamiento creciente durante todo el periodo de observación, lo que sugiere una mala respuesta de las células beta a la glucosa.  Este patrón se puede observar claramente en las curvas del primer y tercer cuartil, así como en la curva más profunda.
 
 \begin{figure}[H]
     \centering
@@ -328,7 +328,7 @@ Estas observaciones subrayan la importancia de intervenir tempranamente en indiv
 
 \subsection{Análisis de Resultados}
 
-Dado el objetivo de crear un modelo simplificado, se va a construir un sistema que requiera un mínimo de variables, utilizando mediciones de fácil obtención. La variable de interés es $FBIGC$, la cual se ha generado mediante el concepto de profundidad de banda con signo a partir de las curvas de glucosa e insulina, descrito en el Capitulo \ref{RegCuanDatosFun}. Las variables predictoras incluidas son los niveles de glucosa en ayunas y a los $120$ minutos durante la prueba de tolerancia a la glucosa oral, junto con el índice de masa corporal. Adicionalmente, se planea crear otro modelo al que se le añadirán mediciones de presión diastólica para explorar su efecto en la predicción de $FBIGC$.
+Dado el objetivo de crear un modelo simplificado, se va a construir un sistema que requiera un mínimo de variables, utilizando mediciones de fácil obtención. La variable de interés es $FBIGC$, la cual se ha generado mediante el concepto de profundidad de banda con signo a partir de las curvas de glucosa e insulina, descrito en el Capítulo \ref{RegCuanDatosFun}. Las variables predictoras incluidas son los niveles de glucosa en ayunas y a los $120$ minutos durante la prueba de tolerancia a la glucosa oral, junto con el índice de masa corporal. Adicionalmente, se planea crear otro modelo al que se le añadirán mediciones de presión diastólica para explorar su efecto en la predicción de $FBIGC$.
 
 A continuación, se muestran las matrices de correlación $\sigma$ de Schweizer y Wolff, de hombres y mujeres respectivamente. La correlación de la variable respuesta el grupo de hombres es ligeramente mayor con todas las demás variables que en comparación de la mujeres.
 
@@ -358,7 +358,7 @@ FBIGC      &      BMI      &    Glu.0      &  Glu.120      & PA.diast \\
 \end{blockarray}
  \]
 
-Todos los coeficientes resultantes de las matrices de correlación son lo suficientemente altos como para decir que hay algo que modelar con copulas.
+Todos los coeficientes resultantes de las matrices de correlación son lo suficientemente altos como para decir que hay algo que modelar con cópulas.
 
 \[
 \sigma_{Total} = \begin{blockarray}{cccccc}
@@ -374,10 +374,10 @@ FBIGC      &      BMI      &    Glu.0      &  Glu.120      & PA.diast \\
  \]
 
 
-De acuerdo con \cite{Erdely2022}, en este se enfatiza que si $\sigma_{C} = \rho_{C}$, entonces las variables aleatorias tienen una relación de dependencia de cuadrante positiva, y si $\sigma_{C} = -\rho_{C}$, entonces tienen una relación de dependencia de cuadrante negativa. Por otro lado, si $ |\rho_C| < \sigma_C$, significa que la dependencia es positiva en algunos cuadrantes y negativa en otros dentro del dominio de la copula. Pues $\rho_{C}$ es un valor promedio de dependencia del cuadrante, el cuál podría ser cero.
+De acuerdo con \cite{Erdely2022}, en este se enfatiza que si $\sigma_{C} = \rho_{C}$, entonces las variables aleatorias tienen una relación de dependencia de cuadrante positiva, y si $\sigma_{C} = -\rho_{C}$, entonces tienen una relación de dependencia de cuadrante negativa. Por otro lado, si $ |\rho_C| < \sigma_C$, significa que la dependencia es positiva en algunos cuadrantes y negativa en otros dentro del dominio de la cópula. Pues $\rho_{C}$ es un valor promedio de dependencia del cuadrante, el cual podría ser cero.
 
 
-Esta información es beneficiosa durante el proceso de modelación, ya que una concordancia alta indica que el modelo paramétrico es capaz de capturar adecuadamente la estructura de dependencia entre las variables, mientras que una concordancia baja sugiere que el modelo podría no ser adecuado para describir la relación entre las variables. Además, es importante que el tipo de concordancia sea consistente en todo el dominio, ya que existen otras técnicas que pueden modelar este tipo de comportamiento, como el pegado de copulas, entre otras.
+Esta información es beneficiosa durante el proceso de modelación, ya que una concordancia alta indica que el modelo paramétrico es capaz de capturar adecuadamente la estructura de dependencia entre las variables, mientras que una concordancia baja sugiere que el modelo podría no ser adecuado para describir la relación entre las variables. Además, es importante que el tipo de concordancia sea consistente en todo el dominio, ya que existen otras técnicas que pueden modelar este tipo de comportamiento, como el pegado de cópulas, entre otras.
 
 A continuación, se muestran las matrices de diferencia:
 
@@ -432,7 +432,7 @@ Las matrices de diferencias de los coeficientes $\rho$ de Spearman y $\sigma$ de
 
 Para obtener una comprensión más profunda de cómo se ajusta cada cópula, se emplearon visualizaciones propuestas por Arturo Erdely y Manuel Rubio-Sanchez en \cite{Erdely2022}. Estas visualizaciones ofrecen una nueva perspectiva al representar la clásica gráfica de puntos de una manera innovadora, y al resaltar las diferencias entre la cópula empírica y la cópula independiente. Estas herramientas visuales ayudan a identificar patrones y estructuras de dependencia en los datos, lo que facilita la evaluación del ajuste de las cópulas y el análisis de la relación entre las variables.
 
-Recordando que las medidas $\rho_C$ y $\sigma_C$ se obtiene de medir la distancia entre la copula empírica y la independiente, se proponen los heatmaps $\mathscr{H}_\rho$ y $\mathscr{H}_\sigma$ definidos en las ecuaciones \eqref{Hrho} y \eqref{Hsigma} respectivamente, que visualicen esta distancia en distintos puntos del dominio de la copula. Adicionalmente se propone el heatmap $\mathscr{H}$ definido en \eqref{H}, el cual muestra la distancia ente la cópula empírica y la independiente, con respecto a la cercanía con los limites de Frechet -Hoeffding, ver Ecuación \eqref{D}.
+Recordando que las medidas $\rho_C$ y $\sigma_C$ se obtiene de medir la distancia entre la cópula empírica y la independiente, se proponen los heatmaps $\mathscr{H}_\rho$ y $\mathscr{H}_\sigma$ definidos en las ecuaciones \eqref{Hrho} y \eqref{Hsigma} respectivamente, que visualicen esta distancia en distintos puntos del dominio de la cópula. Adicionalmente se propone el heatmap $\mathscr{H}$ definido en \eqref{H}, el cual muestra la distancia ente la cópula empírica y la independiente, con respecto a la cercanía con los limites de Frechet -Hoeffding, ver Ecuación \eqref{D}.
 
 \begin{equation}\label{Hrho}
     \mathscr{H}_\rho=\left\{12\left[C_n\left(\frac{i}{n}, \frac{j}{n}\right)-\frac{i j}{n^2}\right]: i, j \in\{1, \ldots, n-1\}\right\},
