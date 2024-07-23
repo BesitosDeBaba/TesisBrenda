@@ -11,33 +11,47 @@ Uno de los principales resultados en los que se basa la teoría de cópulas es e
 
 \begin{teor}[Teorema de Sklar]\label{TeoSklar}
     \begin{enumerate}
-    \item Para cada función de distribución $H$ con distribuciones marginales univariadas $F_1, \dots, F_d$, existe una cópula $C$ $d-dimensional$ tal que 
+    \item Para cada función de distribución $H$ con distribuciones marginales univariadas $F_1, \dots, F_d$, función $H$ tal que 
+    
     \begin{equation}\label{eqsklar}
-        H(x) = C(F_1(x_1), F_2(x_2), \dots, F_d(x_d)), \quad x \in \mathbb{R}^{d},
+        H(x) = C(F_1(x_1), F_2(x_2), \dots, F_d(x_d)), \quad x \in \mathbb{R}^{d}.
     \end{equation}
 
-    La cópula C esta únicamente definida en $\prod_{j = 1}^{d}ran F_j$ y está definida por:
+    Dicha función $C$ es una cópula $d-$dimensional. La cópula C esta únicamente definida en $\prod_{j = 1}^{d}ran F_j$ y está dada por:
 
     \begin{equation}
         C(u) = H(F_1^{\leftarrow}(u_1), \dots, F_d^{\leftarrow}(u_d)), \quad u \in \prod_{j = 1}^{d}ran F_j
     \end{equation}
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     
-    \item Por el contrario, dada una cópula $C$ $d-dimensional$ y funciones de distribución univariadas $F_1, \dots, F_d$ y$H$ definida como en \eqref{eqsklar}, es una función de distribución $d$ $dimensional$ con marginales $F_1, \dots, F_d$. \cite{CopulasR}
+    \item Por el contrario, dada una cópula $C$ $d-$dimensional y funciones de distribución univariadas $F_1, \dots, F_d$, y $H$ definida como en \eqref{eqsklar} es una función de distribución $d$-dimensional con marginales $F_1, \dots, F_d$ \cite{CopulasR}.
     \end{enumerate}
 \end{teor}
 
-El teorema de Sklar establece que cualquier función de distribución conjunta puede descomponerse en sus distribuciones marginales y una cópula. Esto es posible gracias al resultado de la transformación integral de probabilidad \eqref{PITdist}, que indica que cualquier distribución continua puede transformarse en una distribución uniforme estándar. Por lo tanto, una cópula descompone esta distribución conjunta, cuyas marginales pueden ser complejas, en términos de otra función de distribución cuya característica es que sus distribuciones marginales son uniformes en el intervalo $[0,1]$. Esta descomposición permite estudiar la dependencia entre las variables de manera independiente de las distribuciones marginales originales.
+El Teorema de Sklar establece que cualquier función de distribución conjunta puede descomponerse en sus distribuciones marginales y una cópula. Esto es posible gracias al resultado de la transformación integral de probabilidad \eqref{PITdist}, que indica que cualquier distribución continua puede transformarse en una distribución uniforme estándar. Por lo tanto, una cópula descompone esta distribución conjunta, cuyas marginales pueden ser complejas, en términos de otra función de distribución cuya característica es que sus distribuciones marginales son uniformes en el intervalo $[0,1]$. Esta descomposición permite estudiar la dependencia entre las variables de manera independiente de las distribuciones marginales originales.
 
 Como resumen, dado un vector $X = (X_1, \dots, X_d)$ con funciones de distribución marginal $F_1, \dots, F_d$, existe una cópula $C$ asociada a $X$. Si solo se está interesado en la estructura de dependencia de $X$, se puede considerar la escala $u$ o la escala cópula aplicando la transformación integral de probabilidad a sus marginales $U_j := F_j(X_j), j = 1, \dots, d$.
 
-En conclusión, es importante destacar que las distribuciones marginales de la cópula no contienen información sobre cómo cada variable aleatoria puede interactuar con las demás. Toda la información sobre su dependencia se encuentra en la función de cópula subyacente.
+Es importante destacar que las distribuciones marginales de la cópula no contienen información sobre cómo cada variable aleatoria puede interactuar con las demás. Toda la información sobre su dependencia se encuentra en la función de cópula subyacente.
 
 \section{Conceptos Preliminares}
 
-Una cópula en palabras generales, es una distribución multivariada con funciones de densidad marginales uniforme estándar, esta es la conexión de las marginales con la distribución conjunta de ahí el nombre de cópula. Estas son utilizadas para modelar la dependencia entre múltiples variables las cuales no son necesariamente lineales lo cual permite capturar patrones de correlación no lineal y asimétrica, lo que puede ser útil en la detección de anomalías, la segmentación de datos. Estas pueden ser paramétricas como no paramétricas \cite{CopulasR}.
+Una cópula, en palabras generales, es una distribución multivariada con funciones de densidad marginales uniforme estándar, esta es la conexión de las marginales con la distribución conjunta de ahí el nombre de cópula. Las cópulas son utilizadas para modelar la dependencia entre múltiples variables la cual no es necesariamente lineal, esto permite capturar patrones de dependencia no lineal y asimétrica, lo que puede ser útil en la detección de anomalías, la segmentación de datos, etc. Estas pueden ser paramétricas como no paramétricas \cite{CopulasR}.
 
-Además, las cópulas se modelan a través de los datos, lo que permite capturar y modelar de manera precisa las relaciones de dependencia entre las variables. Esto proporciona una herramienta poderosa para analizar y entender las interacciones complejas en conjuntos de datos multivariados.
+Además, las cópulas se pueden ajustar a través de los datos, lo que permite capturar y modelar de manera precisa las relaciones de dependencia entre las variables. Esto proporciona una herramienta poderosa para analizar y entender las interacciones complejas en conjuntos de datos multivariados.
+
+\begin{defn}
+    Sean $S_1$ y $S_2$ dos subconjuntos no vacíos $\mathbb{R}$, y sea $H:S_1 \times S_2$. Sea $B = [a_1, a_2] \times [b_1, b_2]$ un rectángulo cuyos vértices están en el dominio. Entonces el $H$-volumen de $B$ esta dado por:
+
+    \begin{equation}
+        V_H(B) = H(a_2, b_2) - H(a_2, b_1) - H(a_1, b_2) + H(a_1, b_2)
+    \end{equation}
+\end{defn}
+
+\begin{defn}[$2$-creciente]
+    Sea $H: \mathbb{R}^2 \to \mathbb{R}$ una función, $H$ es $2$ creciente $V_H(B) \geq 0$ para cualquier rectángulo $B$ cuyos vértices estén en el dominio de $H$. Usualmente, se le denota como la $H$-medida o el $H$-volumen de $B$.
+\end{defn}
+
 
 
 \begin{defn}[Subcópula]
@@ -46,53 +60,26 @@ Además, las cópulas se modelan a través de los datos, lo que permite capturar
     \begin{enumerate}
         \item \textbf{Dominio}: El dominio de la subcópula $C'$ es el producto cartesiano de dos subconjuntos $S_1$ y $S_2$ del intervalo $[0, 1]$, denotado como $S_1 \times S_2$.
 
-        \item \textbf{Aterrizado (Grounded) y 2-creciente}: Grounded quiere decir que, $C(0,v)=0$ y $C(u,0)=0$ para todo $u$ en $u \in S_1$ y $v \in S_2$. 
-        $2$-creciente, significa que para cualquier valor fijo de un argumento, aumentar el otro argumento nunca disminuye el valor de $C$.
+        \item \textbf{Aterrizada (Grounded) y 2-creciente}: Grounded quiere decir que $C(0,v)=0$ y $C(u,0)=0$, para todo $u \in S_1$ y $v \in S_2$. La propiedad de $2$-creciente significa que para cualquier valor fijo de un argumento, aumentar el otro argumento nunca disminuye el valor de $C$.
 
         \item \textbf{Condición sobre los márgenes}: Para cada $u$ en $S_1$ y $v$ en $S_2$, 
         \begin{equation}
-            C'(u, 1) = u, \quad C'(1, v) = v
+            C'(u, 1) = u, \quad C'(1, v) = v,
         \end{equation}
 
-        es decir, cuando se fija uno de los argumentos, la subcópula se comporta como la respectiva distribución marginal
+        es decir, cuando se fija uno de los argumentos, la subcópula se comporta como la respectiva distribución marginal.
     \end{enumerate}
 \end{defn}
 
 
 \begin{defn}[Cópula 2 dimensional]
-    Una cópula bidimensional (o 2-cópula, o simplemente, una cópula) es una 2-subcópula $C$ cuyo dominio es el conjunto $I^2$. Donde $I$ es el intervalo unitario $[0,1]$. 
+    Una cópula bidimensional (o 2-cópula, o simplemente, una cópula) es una 2-subcópula $C$ cuyo dominio es el conjunto $I^2$, donde $I$ es el intervalo unitario $[0,1]$. 
 \end{defn}
 
-
-
-\begin{defn}[Subcópula n-dimensional]
-    Una subcópula n-dimensional es una función $C'$ con las siguientes propiedades:
-
-    \begin{enumerate}
-        \item \textbf{Dominio}: El dominio de la subcópula $C'$ es el producto cartesiano de n subconjuntos $S_i $ para $ i = \left\{ 1, \dots, n\right\}$ del intervalo $[0, 1]$, denotado como $S_1 \times \cdots \times S_n$.
-
-        \item \textbf{Aterrizado (Grounded) y n-creciente}: Grounded quiere decir que, $C(u_1, \dots, u_n)=0$ si alguna $u_i = 0$, para todo $u_1$ en $u_1 \in S_i$. 
-        $n$-creciente, significa que para cualquier valor fijo de un argumento, aumentar el otro argumento nunca disminuye el valor de $C$.
-
-        \item \textbf{Condición sobre los márgenes}: Para cada $u_i$ en $S_i$ para $i =  \left\{ 1, \dots, n\right\}$, 
-        \begin{equation}
-            C'(1, \dots, u_i, \dots,  1) = u_i, \quad \left\{ 1, \dots, n\right\}
-        \end{equation}
-
-        es decir, cuando se fija uno de los argumentos, la subcópula se comporta como la respectiva distribución marginal
-    \end{enumerate}
-\end{defn}
-
-En otras palabras, una cópula es una subcópula bidimensional cuyo dominio abarca todo el cuadrado unitario $[0, 1]^2$. Esto significa que la cópula relaciona las distribuciones marginales de dos variables aleatorias y describe la estructura de dependencia conjunta entre ellas a lo largo de todo el rango posible de valores que pueden tomar \cite{nelsenintroduction}.
-
-\begin{defn}[Cópula n dimensional]
-    Una cópula n dimensional es una 2-subcópula $C$ cuyo dominio es el conjunto $I^n$. Donde $I$ es el intervalo unitario $[0,1]$. 
-\end{defn}
+En otras palabras, una cópula es una subcópula bidimensional cuyo dominio abarca todo el cuadrado unitario $[0, 1]^2$. La cópula relaciona las distribuciones marginales de dos variables aleatorias y describe la estructura de dependencia conjunta entre ellas a lo largo de todo el rango posible de valores que pueden tomar \cite{nelsenintroduction}. Una cópula se dice absolutamente continua si la cópula $C$ admite función de densidad.
 
 \begin{ejemplo}[Cópula Producto]
-    La cópula más sencilla que se construye consiste en multiplicar las funciones de distribución marginales de las variables aleatorias individuales.
-
-    Sea $X = (X_1, X_2)$ donde cada entrada del vector aleatorio tiene como función de distribución $X_i \sim F(X_i)$, si se define $u_i = F(x_i)$ entonces,
+    La cópula más sencilla que se construye consiste en multiplicar las funciones de distribución marginales de las variables aleatorias individuales. Sea $X = (X_1, X_2)$ un vector aleatorio donde cada entrada tiene como función de distribución $X_i \sim F(X_i)$, si se define $u_i = F(x_i)$ entonces,
 
     \begin{equation}
          \prod (u_1, u_2) = u_1 \cdot u_2
@@ -100,45 +87,84 @@ En otras palabras, una cópula es una subcópula bidimensional cuyo dominio abar
 
     es una cópula.
 
-    Esto es claro, ya que cada $u_i \sim U(0, 1)$, haciendo la transformación integral de probabilidad \ref{PITdef} y es función de distribución pues es la definición de variables aleatorias independiente. Cabe mencionar que Si dos variables aleatorias $X$ e $Y$ están relacionadas a través de una cópula independiente, significa que no hay ninguna relación o dependencia entre ellas.
+    Lo anterior es claro, ya que por el Teorema de Transformación Integral de Probabilidad \ref{PITdef} cada $u_i \sim U(0, 1)$. De hecho, es función de distribución de variables aleatorias independientes. Cabe mencionar que si dos variables aleatorias $X$ e $Y$ están relacionadas a través de una cópula independiente, significa que no hay ninguna relación o dependencia entre ellas.
 \end{ejemplo}
 
-El requisito de que las distribuciones marginales sean uniformes en el intervalo $[0,1]$ es en cierto sentido arbitrario, ya que las cópulas pueden definirse para cualquier distribución marginal. Sin embargo, trabajar con distribuciones marginales uniformes estándar simplifica los cálculos y la interpretación de las cópulas. El teorema de transformación integral es una herramienta fundamental en el estudio de cópula el cuál simplifica la teoría y las aplicaciones prácticas de las cópulas, lo que hace que trabajar con ellas sea más conveniente y comprensible. \cite{CopulasR}
+El requisito de que las distribuciones marginales sean uniformes en el intervalo $[0,1]$ es en cierto sentido arbitrario, ya que las cópulas pueden definirse para cualquier distribución marginal. Sin embargo, trabajar con distribuciones marginales uniformes estándar simplifica los cálculos y la interpretación de las cópulas. El Teorema de Transformación Integral es una herramienta fundamental en el estudio de cópulas, el cuál simplifica la teoría y las aplicaciones prácticas de las cópulas, lo que hace que trabajar con ellas sea más conveniente y comprensible \cite{CopulasR}.
 
-Con el objetivo de estimar la cópula subyacente a partir de un conjunto de observaciones disponibles. Se propone un ajuste para vectores de variables continuas \cite{CopulasR}.
+Con el objetivo de estimar la cópula subyacente a partir de un conjunto de observaciones disponibles, se propone un ajuste para vectores de variables continuas \cite{CopulasR}.
 
 \begin{defn}[Aproximación Empírica para una Cópula de dim. $2$ ]
-    Para una muestra de una cópula bivariada $\left\{u_{1 i}, u_{2 i}, i=1, \ldots, n\right\}$, la aproximación empírica de la cópula se define como
+    Para una muestra de una cópula bivariada $\left\{ (u_{1 i}, u_{2 i}), i=1, \ldots, n\right\}$, la aproximación empírica de la cópula se define como
 
     \begin{equation}
-        \hat{C}\left(u_1, u_2\right):=\frac{1}{n+1} \sum_{i=1}^n 1_{\left\{u_{1 i} \leq u_1, u_{2 i} \leq u_2\right\}} \text { para todo } 0 \leq u_1, u_2 \leq 1.
+        \hat{C}\left(u_1, u_2\right):=\frac{1}{n+1} \sum_{i=1}^n 1_{\left\{u_{1 i} \leq u_1, u_{2 i} \leq u_2\right\}} \quad \text {para todo } 0 \leq u_1, u_2 \leq 1.
     \end{equation}
 \end{defn}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%% C O P U L A S  D - D I M E N S I O N A L E S %%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Cópulas $n$-dimensionales}
 
 Ahora, se generaliza para $d$ dimensiones. Se enfatizó en 2 dimensiones ya que estas constituirán nuestras herramientas principales en el modelado. Para que una función $C: [0, 1]^d \to [0, 1]$ sea considerada una cópula, es necesario que cumpla con ciertas propiedades que garanticen que $C$ sea una función de distribución multivariada. Para lograr esto, se introducirán conceptos adicionales estos son principalmente tomados de \cite{nelsenintroduction} y \cite{TesisEmanuel}.
 
 \begin{defn}
-    Para cualquier $a, b \in [0, 1]$, tal que $a \leq b$, se denota al hiper-rectángulo $(a, b]$, está definido por $\left\{ u \in [0, 1]^{d}: a <u \leq b\right\}$.
+    Para cualquier $\overline{a}, \overline{b} \in [0, 1]^d$, tal que $\overline{a} \leq \overline{b}$, se denota al hiper-rectángulo $ [\overline{a}, \overline{b}]$, está definido por $B = \left\{ \overline{u} \in [0, 1]^d : a_i \leq u_i \leq b_i, \text{  para } i = 1 , \dots, d \right\}$.
 \end{defn}
 
 \begin{defn}
-    Para cualquier hiper-rectángulo $(a, b] \in [0, 1]^d$, se define el $C-volumen$ como
+    Sean $S_1, S_2, \dots, S_n$ subconjuntos no vacíos de $\mathbb{R}$, y sea $H:\mathbb{R}^n  \to \mathbb{R}$ una tal que $Dom H = S_1 \times S_2 \times \dots \times S_n$. Sea $B = [\overline{a}, \overline{b}]$ un hiper-rectángulo que todos sus vértices están dentro de dominio de $H$. Entonces el $H$-volumen de $B$ está dada por: 
+
     \begin{equation}
-        \Delta_{(\boldsymbol{a}, \boldsymbol{b}]} C=\sum_{\boldsymbol{i} \in\{0,1\}^d}(-1)^{\sum_{j=1}^d i_j} C\left(a_1^{i_1} b_1^{1-i_1}, \ldots, a_d^{i_d} b_d^{1-i_d}\right),
+        V_H(B) = \sum sgn(c) H(c),
+    \end{equation}
+
+    donde la suma se toma sobre todos los vértices $c$ de $B$, y $sgn(c)$ está dada por:
+
+    \begin{equation}
+        sgn(c) = \left\{\begin{matrix}
+    1, & \text{si } (\sum_{i}^{d} \mathbb{I} c_k = a_k) \equiv 0 \mod 2\\
+    -1 & \text{si }  (\sum_{i}^{d} \mathbb{I} c_k = a_k) \equiv 1 \mod 2
+\end{matrix}\right.
     \end{equation}
 \end{defn}
 
-Si todos los hiperectángulos $(a, b] \in [0, 1]^d$ es no negativo, es decir, 
+Esta es una forma de medir el tamaño de un conjunto en $\mathbb{R}^n$, extendiendo la noción de longitud, área y volumen.
 
-\begin{equation}
-    \Delta_{(\boldsymbol{a}, \boldsymbol{b}]} C \geq 0 \quad \text { for all } a, b \in[0,1]^d, a \leq b
-\end{equation}
+\begin{defn}[$n$-creciente]
+    Se dice que $H$ es $n$-creciente si para cualquier hiper-rectángulo $(\overline{a}, \overline{b}] \in [0, 1]^d$ es no negativo, es decir, 
 
-Una cópula se dice absolutamente continua si la cópula $C$ admite función de densidad. Por otro lado, el Teorema de Sklar \ref{TeoSklar} es el teorema central de cópulas; este explica por qué las cópulas determinan la dependencia entre los componentes de un vector aleatorio.
+    \begin{equation}
+         V_H(B) \geq 0 \quad \text { para todo } \overline{a}, \overline{b} \in[0,1]^d, \overline{a} \leq \overline{b}
+    \end{equation}
+\end{defn}
+
+
+\begin{defn}[Subcópula n-dimensional]
+    Una subcópula $n$-dimensional es una función $C'$ con las siguientes propiedades:
+
+    \begin{enumerate}
+        \item \textbf{Dominio}: El dominio de la subcópula $C'$ es el producto cartesiano de n subconjuntos $S_i $ para $ i = 1, \dots, n$ del intervalo $[0, 1]$, denotado como $S_1 \times \cdots \times S_n$.
+
+        \item \textbf{Aterrizado (Grounded) y n-creciente}: En este contexto, Grounded quiere decir que, $C(u_1, \dots, u_n)=0$ si alguna $u_i = 0$, para todo $u_1 \in S_i$. 
+        La condición $n$-creciente significa que para cualquier valor fijo de un argumento, aumentar el otro argumento nunca disminuye el valor de $C$.
+
+        \item \textbf{Condición sobre los márgenes}: Para cada $u_i$ en $S_i$ para $i =  1, \dots, n$, 
+        \begin{equation}
+            C'(1, \dots, 1, u_i, 1, \dots,  1) = u_i;
+        \end{equation}
+
+        es decir, cuando se fija uno de los argumentos, la subcópula se comporta como la respectiva distribución marginal
+    \end{enumerate}
+\end{defn}
+
+
+\begin{defn}[Cópula $n$ dimensional]
+    Una cópula $n$ dimensional es una subcópula $n$-dimensional $C$ cuyo dominio es el conjunto $I^n$, donde $I$ es el intervalo unitario $[0,1]$. 
+\end{defn}
+
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -150,13 +176,13 @@ Una cópula se dice absolutamente continua si la cópula $C$ admite función de 
 Las cotas proporcionan una forma rápida y sencilla de verificar si una función dada $C(u, v)$  es una cópula válida. Es decir, si una función no cumple con las cotas de Fréchet-Hoeffding, entonces no puede ser considerada una cópula. Adicionalmente, al utilizar cópulas en el análisis de datos, las cotas pueden proporcionar información útil sobre la naturaleza de la dependencia entre variables. Por ejemplo, si una cópula está cerca de las cotas inferiores, sugiere una fuerte dependencia negativa, mientras que si está cerca de las cotas superiores, sugiere una fuerte dependencia positiva.
 
 \begin{defn}[Cotas de Fréchet-Hoeffding]
-    Sea $C$ una cópula d-dimensional. Entonces para toda $\boldsymbol{u} \in[0,1]^d$,
+    Sea $C$ una cópula $d$-dimensional. Entonces para toda $\boldsymbol{u} \in[0,1]^d$,
 
     \begin{equation}
         W^d(\boldsymbol{u}) \leq C(\boldsymbol{u}) \leq M^d(\boldsymbol{u}),
     \end{equation}
 
-Donde $W^d(\boldsymbol{u}):= \max \left(u_1+\ldots+u_d-d+1,0\right)$ y $M^d(\boldsymbol{u}):=\min \left(u_1, \ldots, u_d\right)$.
+donde $W^d(\boldsymbol{u}):= \max \left(u_1+\ldots+u_d-d+1,0\right)$ y $M^d(\boldsymbol{u}):=\min \left(u_1, \ldots, u_d\right)$.
 \end{defn}
 
 Se puede demostrar que el límite superior $M^d$ es una cópula, mientras que el límite inferior $W^d$ es una cópula sólo para $d = 2$.
@@ -164,19 +190,19 @@ Se puede demostrar que el límite superior $M^d$ es una cópula, mientras que el
 Estas cotas son importantes en la teoría de las cópulas porque proporcionan una referencia útil para evaluar la dependencia entre las variables aleatorias como la enuncia en Lema \ref{lemCotas}. Además, pueden ser utilizadas para verificar la validez de un modelo de cópula propuesto y para evaluar la bondad de ajuste de una cópula a un conjunto de datos observados.
 
 \begin{lema}\label{lemCotas}
-    Sean $X$ e $Y$ variables aleatorias con función de distribución conjunta $H$. Entonces, $H$ es igual a su límite superior de Fréchet-Hoeffding si y solo si para cada $(x, y)$ en $\mathbb{R}^2$, ya sea que $P[X > x, Y \leq y] = 0$ o que $P[X \leq x, Y > y] = 0$.
+    Sean $X$ e $Y$ variables aleatorias con función de distribución conjunta $H$. Entonces, $H$ es igual a su límite superior de Fréchet-Hoeffding si y solo si para cada $(x, y) \in \mathbb{R}^2$, se cumple que $P[X > x, Y \leq y] = 0$ o que $P[X \leq x, Y > y] = 0$.
 \end{lema}
 
 \begin{teor}
-    Se dice que $X$ e $Y$ son variables aleatorias con función de distribución conjunta $H$. Entonces, $H$ es idénticamente igual a su límite superior de Fréchet-Hoeffding si y solo si el soporte de $H$ es un subconjunto no decreciente de $\mathbb{R}^2$.
+    Sean $X$ e $Y$ variables aleatorias con función de distribución conjunta $H$. Entonces, $H$ es idénticamente igual a su límite superior de Fréchet-Hoeffding si y solo si el soporte de $H$ es un subconjunto no decreciente de $\mathbb{R}^2$.
 \end{teor}
 
 \begin{teor}
-    Se dice que $X$ e $Y$ son variables aleatorias con función de distribución conjunta $H$. Entonces, $H$ es idénticamente igual a su límite inferior de Fréchet-Hoeffding si y solo si el soporte de $H$ es un subconjunto no creciente de $\mathbb{R}^2$.
+    Sean $X$ e $Y$ variables aleatorias con función de distribución conjunta $H$. Entonces, $H$ es idénticamente igual a su límite inferior de Fréchet-Hoeffding si y solo si el soporte de $H$ es un subconjunto no creciente de $\mathbb{R}^2$.
 \end{teor}
 
 \begin{defn}
-    Sean $X$, $Y$ variables aleatorias continuas con cópula subyacente $C_{XY}$, entonces $X$, $Y$ guardan una dependencia
+    Sean $X$, $Y$ variables aleatorias continuas con cópula subyacente $C_{XY}$. Entonces $X$, $Y$ guardan una dependencia
     estrictamente monótona si 
     
     \begin{equation}
@@ -187,7 +213,7 @@ Estas cotas son importantes en la teoría de las cópulas porque proporcionan un
 \end{defn}
 
 
-Los lemas y teoremas anteriores proporcionan condiciones sobre la función de distribución que ayudan a comprender la naturaleza de la relación entre las variables $X$ e $Y$, donde una variable tiende a moverse en una sola dirección a medida que la otra cambia. Esto se refiere a si la dependencia entre las variables es monótona. Además, estos resultados establecen criterios que pueden guiar la elección de modelos probabilísticos adecuados para describir la relación entre dos variables aleatorias.
+Los lemas y teoremas anteriores, proporcionan condiciones sobre la función de distribución que ayudan a comprender la naturaleza de la relación entre las variables $X$ e $Y$ cuando una variable tiende a moverse en una sola dirección a medida que la otra cambia. Esto se refiere a si la dependencia entre las variables es monótona. Además, estos resultados establecen criterios que pueden guiar la elección de modelos probabilísticos adecuados para describir la relación entre dos variables aleatorias.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%% Medidas de Dependencia %%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -196,24 +222,24 @@ Los lemas y teoremas anteriores proporcionan condiciones sobre la función de di
 
 Existen diversas medidas que se encargan de cuantificar la fuerza y dirección en la que dos variables aleatorias se relacionan. Estas medidas son fundamentales en el análisis de dependencia entre variables, ya que permiten comprender cómo cambia una variable en respuesta a cambios en otra. 
 
-Entre las más comunes se encuentra el coeficiente de correlación de Pearson, que mide la relación lineal entre dos variables. Sin embargo, en muchos casos, las relaciones entre variables pueden no ser lineales o pueden presentar patrones más complejos. Es ahí donde entran en juego medidas alternativas como el coeficiente de correlación de Kendall y el coeficiente de correlación de Spearman. Estas medidas, también conocidas como correlaciones de rango, evalúan la asociación entre variables basándose en el ordenamiento de los datos en lugar de en sus valores exactos. \cite{czadoAnalyzing}
+Entre las más comunes se encuentra el coeficiente de correlación de Pearson, que mide la relación lineal entre dos variables. Sin embargo, en muchos casos, las relaciones entre variables pueden no ser lineales y pueden presentar patrones más complejos. Es ahí donde entran en juego medidas alternativas como el coeficiente de correlación de Kendall y el coeficiente de correlación de Spearman. Estas medidas, también conocidas como correlaciones de rango, evalúan la asociación entre variables basándose en el ordenamiento de los datos en lugar de en sus valores exactos \cite{czadoAnalyzing}.
 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsubsection{Correlación de Pearson}
+\subsection{Correlación de Pearson}
 
-Se utilizó el coeficiente de Pearson para medir la correlación lineal entre dos variables aleatorias. En la Ecuación \eqref{correlacion} se muestra como se define el coeficiente de Pearson para dos variables aleatorias $X$ y $Y$. Cuando se quiere medir el coeficiente de correlación entre dos muestras se define el coeficiente de correlación de Pearson muestral como en la Ecuación \eqref{corrMuestral}.
+Se utiliza el coeficiente de Pearson para medir la correlación entre dos variables aleatorias. La Ecuación \eqref{correlacion} se muestra la definición del coeficiente de Pearson para dos variables aleatorias $X$ y $Y$; cuando se quiere medir el coeficiente de correlación entre dos muestras se define el coeficiente de correlación de Pearson muestral como en la Ecuación \eqref{corrMuestral}:
 
 \begin{equation}\label{correlacion}
-    \rho_{X, Y} = \frac{Cov(X, Y)}{\sqrt{Var(X) \cdot Var(Y)}} = \frac{\sigma_{X, Y}}{\sigma_X \sigma_Y}
+    \rho_{X, Y} = \frac{Cov(X, Y)}{\sqrt{Var(X) \cdot Var(Y)}} = \frac{\sigma_{X, Y}}{\sigma_X \sigma_Y},
 \end{equation}
 
 \begin{equation}\label{corrMuestral}
-    r_{x y}=\frac{\sum_{i=1}^n\left(x_i-\bar{x}\right)\left(y_i-\bar{y}\right)}{\sqrt{\sum_{i=1}^n\left(x_i-\bar{x}\right)^2} \sqrt{\sum_{i=1}^n\left(y_i-\bar{y}\right)^2}}
+    r_{x y}=\frac{\sum_{i=1}^n\left(x_i-\bar{x}\right)\left(y_i-\bar{y}\right)}{\sqrt{\sum_{i=1}^n\left(x_i-\bar{x}\right)^2} \sqrt{\sum_{i=1}^n\left(y_i-\bar{y}\right)^2}}.
 \end{equation}
 
- Una propiedad distintiva de este coeficiente es que se encuentra acotado entre $-1$ y $1$. Si este coeficiente muy cercano a $1$ en valor absoluto entonces se existe una fuerte dependencia lineal puede ser una dependencia proporcional o inversamente proporcional dependiendo si el signo del coeficiente es positivo o negativo respectivamente. Por otro lado, si este coeficiente es muy cercano a 0 entonces la dependencia lineal entre estas dos variables es muy baja. Cabe destacar que si este coeficiente es 0 o muy cercano a 0 no implica que no existe alguna dependencia entre las dos variables solamente indica que no es lineal.
+ Una propiedad distintiva de este coeficiente es que se encuentra acotado entre $-1$ y $1$. Si este coeficiente muy cercano a $1$ en valor absoluto, entonces se existe una fuerte dependencia lineal que puede ser una dependencia proporcional o inversamente proporcional, dependiendo si el signo del coeficiente es positivo o negativo, respectivamente. Por otro lado, si este coeficiente es muy cercano a 0, entonces la dependencia lineal entre estas dos variables es muy baja. Cabe destacar que si este coeficiente es $0$, o muy cercano a $0$, no implica que no existe alguna dependencia entre las dos variables, solamente indica que no es lineal.
 
 Como se ha mencionado previamente, el coeficiente de correlación lineal no proporciona información relevante cuando las variables no exhiben una relación lineal, y además es susceptible a ser influenciado por valores atípicos. Con el propósito de entender y visualizar las relaciones entre variables de manera más completa, se introducirán otras medidas de dependencia que se basan en la concordancia, es decir, en la consistencia en la dirección de los cambios entre las variables.
 
@@ -225,26 +251,26 @@ Como se ha mencionado previamente, el coeficiente de correlación lineal no prop
 
 \subsection{Concordancia}
 
-Existen varios aspectos de interés en una medida de dependencia entre variables aleatorias, siendo la `invarianza ante la escala' uno de los más destacados. Esto implica que la medida no cambia bajo transformaciones estrictamente crecientes. Como se mencionó anteriormente, las cópulas son transformaciones crecientes que describen la relación de la distribución conjunta de variables aleatorias. Por lo tanto, este tipo de medidas son de gran utilidad. Entre las medidas más famosas invariantes ante la escala se encuentran la $\tau$ de Kendall y la $\rho$ de Spearman.\cite{czadoAnalyzing}
+Existen varios aspectos de interés en una medida de dependencia entre variables aleatorias, siendo la `invarianza ante la escala' uno de los más destacados. Esto implica que la medida no cambia bajo transformaciones estrictamente crecientes. Como se mencionó anteriormente, las cópulas son transformaciones crecientes que describen la relación en la distribución conjunta de un conjunto variables aleatorias. Por lo tanto, este tipo de medidas son de gran utilidad. Entre las medidas más famosas invariantes ante la escala, se encuentran la $\tau$ de Kendall y la $\rho$ de Spearman \cite{czadoAnalyzing}.
 
-La concordancia y la monotonía están estrechamente relacionadas porque la concordancia es una forma de medir cuán consistentemente dos variables mantienen una relación monótona. Una medida de concordancia, en términos simples, evalúa cuán fuertemente están asociados los valores de una variable con los valores altos o bajos de la otra variable. Más precisamente, si $(x_i, y_i)$ y $(x_j, y_j)$ denoten dos observaciones de un vector $(X, Y)$ de variables aleatorias continuas. 
+La concordancia y la monotonía están estrechamente relacionadas porque la concordancia es una forma de medir cuán consistentemente dos variables mantienen una relación monótona. Una medida de concordancia, en términos simples, evalúa cuán fuertemente están asociados los valores de una variable con los valores altos o bajos de la otra variable. Más precisamente. 
 
 \begin{defn}[Concordancia]
-    Se dice que $(x_i, y_i)$ y $(x_j, y_j)$ son concordantes si $x_i < x_j$ y $y_i < y_j$. De manera similar, se dice que $(x_i, y_i)$ y $(x_j, y_j)$ son discordantes si $x_i < x_j$ y $y_i > y_j$, o $si x_i > x_j$ y $y_i < y_j$. 
+    Sean $(x_i, y_i)$ y $(x_j, y_j)$ dos observaciones de un vector $(X, Y)$ de variables aleatorias continuas. Se dice que $(x_i, y_i)$ y $(x_j, y_j)$ son concordantes si $x_i < x_j$ y $y_i < y_j$ ó $x_i > x_j$ y $y_i > y_j$ . De manera similar, se dice que $(x_i, y_i)$ y $(x_j, y_j)$ son discordantes si $x_i < x_j$ y $y_i > y_j$, o si $x_i > x_j$ y $y_i < y_j$. 
     
-    Alternativamente, $(x_i, y_i)$ y $(x_j, y_j)$ son concordantes si $(x_i - x_j)(y_i - y_j) < 0$.
+    Alternativamente, $(x_i, y_i)$ y $(x_j, y_j)$ son concordantes si $(x_i - x_j)(y_i - y_j) > 0$.
 \end{defn}
 
-Para evaluar y comparar la dependencia entre variables observada en datos reales con la dependencia que se esperaría si las variables fueran independientes, se recurre a la cópula producto. Esta cópula proporciona una referencia fundamental para entender la estructura de dependencia entre variables. Se utiliza la métrica $\mathcal{L}_p$ (ver Definición \ref{lp}), para cuantificar y comparar la discrepancia entre la dependencia observada y la independencia teórica \cite{TesisEmanuel}.
+Para evaluar y comparar la dependencia entre variables observada en datos reales con la dependencia que se esperaría si las variables fueran independientes, se recurre a la cópula producto. Esta cópula proporciona una referencia fundamental para entender la estructura de dependencia entre variables. Se utiliza la métrica $\mathcal{L}_p$ (ver Definición \ref{lp}), para cuantificar y comparar la discrepancia entre la dependencia observada y la independencia teórica \cite{TesisEmanuel}. Todas las dependencias que se mencionan ya están implementadas en el lenguaje de programación \texttt{R}.
 
 \begin{defn}\label{lp}
-    Para cualquier $p \in[1, \infty)$ la distancia $L_p$ entre una cópula $\mathcal{C}$ y $\Pi$ esta dada por:
+    Para cualquier $p \in[1, \infty)$, la distancia $L_p$ entre una cópula $\mathcal{C}$ y $\Pi$ esta dada por
 
     \begin{equation}\label{eqLP}
         \mathcal{V}_p(C)=\left(k_p \iint_{\mathcal{I}^2}|\mathcal{C}(u, v)-u v|^p d u d v\right)^{\frac{1}{p}},
     \end{equation}
 
-    donde $k_p$ es una constante elegida de tal modo que, en la Ecuación \eqref{eqLP}, sea igual a $1$ cuando $\mathcal{C}=\mathcal{M}$ o $\mathcal{W}$.
+    donde $k_p$ es una constante elegida de tal modo que $\mathcal{V}_p(C)$ sea igual a $1$ cuando $\mathcal{C}=\mathcal{M}$ o $\mathcal{W}$.
 \end{defn}
 
 
@@ -254,12 +280,16 @@ A continuación, se describen un conjunto mínimo de propiedades deseables para 
     Una medida numérica $\delta$ de asociación entre dos variables aleatorias continuas $X$ e $Y$ cuya cópula es $C$ es una medida de dependencia si satisface las siguientes propiedades (donde se escribe $\delta_{X,Y}$, o $\delta_C$ si es conveniente):
 
     \begin{enumerate}
-        \item $\delta$ está definida para cada par de variables aleatorias continuas X e Y.
+        \item $\delta$ está definida para cada par de variables aleatorias continuas $X$ e $Y$.
         \item $\delta_{X,Y} = \delta_{Y,X}$.
+        
         \item $0 \leq \delta_ {X,Y} \leq 1$.
+        
         \item  $\delta_{X,Y} = 0$ si y solo si $X$ e $Y$ son independientes, $\delta_{X,Y} = 1$ si y solo si cada una de $X$ e $Y$ es casi seguramente una función estrictamente monótona de la otra.
+        
         \item si $\alpha$ y $\beta$ son funciones casi seguramente estrictamente monótonas en $RanX$ y $RanY$, respectivamente, entonces da $\delta_{\alpha(X), \beta(Y)} = \delta_{X,Y}$.
-        \item si $\left\{ ( Xn ,Yn )\right\}$ es una secuencia de variables aleatorias continuas con cópulas $C_n$, y si $\left\{ C_n\right\}$ converge punto a punto a $C$, entonces $\lim_{n \to \infty} \delta C_n = \delta_C$.
+        
+        \item si $\left\{ ( Xn ,Yn )\right\}$ es una sucesión de variables aleatorias continuas con cópulas $C_n$, y si $ C_n$ converge punto a punto a $C$, entonces $\lim_{n \to \infty} \delta_{C_n} = \delta_C$.
     \end{enumerate}
 \end{defn}
 
@@ -267,50 +297,54 @@ A continuación, se describen un conjunto mínimo de propiedades deseables para 
     Una medida numérica $\kappa$ de asociación entre dos variables aleatorias continuas $X$ e $Y$ cuya cópula es $C$, es una medida de concordancia si satisface las siguientes propiedades (donde se escribe $\kappa_{X,Y}$ o $\kappa_{C}$ si es conveniente):
 
     \begin{enumerate}
-        \item $-1 \leq \kappa_{X,Y} \leq 1, \kappa_{X,X} = 1, \kappa_{X,-X} = -1$
+        \item $-1 \leq \kappa_{X,Y} \leq 1$, $\quad \kappa_{X,X} = 1$, $\quad \kappa_{X,-X} = -1$
 
         \item $\kappa_{X,Y} = \kappa_{Y,X}$
 
         \item Si $X$ y $Y$ son independientes entonces $\kappa_{X,Y} = 0$.
 
-        \item $\kappa_{-X,Y} = \kappa_{X,-Y} = -\kappa X,Y$
-        \item Si $C1 \leq C2$ entonces $\kappa C1 \leq \kappa C2$
+        \item $\kappa_{-X,Y} = \kappa_{X,-Y} = -\kappa_{X,Y}$
+        \item Si $C1 \leq C2$ entonces $\kappa_{C1} \leq \kappa_{C2}$
     \end{enumerate}
 \end{defn}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsubsection{$\rho$ de Spearman}
+\subsection{$\rho$ de Spearman}
 
-El coeficiente de correlación de Sperman el cuál evalúa la relación monotónica entre dos variables, no asume una relación lineal y es robusta ante la presencia a valores atípicos, este es definida como se muestra en la ecuación \eqref{corSpear}.  
+El coeficiente de correlación de Sperman, el cual evalúa la relación monotónica entre dos variables, no asume una relación lineal y es robusto ante la presencia a valores atípicos. Tal coeficiente está definido como
 
 \begin{equation}\label{corSpear}
-    r_s=\rho_{\mathrm{R}(X), \mathrm{R}(Y)}=\frac{\operatorname{cov}(\mathrm{R}(X), \mathrm{R}(Y))}{\sigma_{\mathrm{R}(X)} \sigma_{\mathrm{R}(Y)}}
+    r_s=\rho_{\mathrm{R}(X), \mathrm{R}(Y)}=\frac{\operatorname{cov}(\mathrm{R}(X), \mathrm{R}(Y))}{\sigma_{\mathrm{R}(X)} \sigma_{\mathrm{R}(Y)}},
 \end{equation}
 
-Donde $\rho$ denota el coeficiente de correlación de Pearson, $\mathrm{R}(X)$ y $\mathrm{R}(Y)$, el rango de la variable aleatoria $X$ y $Y$ respectivamente y $\sigma_{\mathrm{R}(X)}$ y $\sigma_{\mathrm{R}(Y)}$ la desviación estándar del rango de las variables $X$ y $Y$ respectivamente. En palabras sencillas, el coeficiente de correlación de Spearman es el resultado de aplicar la correlación de Pearson al rango de las variables. Sin embargo, esta puede ser reescrita en términos de dos variables aleatorias $U$ y $V$, y $C$ su respectiva cópula asociada como se aprecia en la Ecuación \eqref{SpearTeo}.
-
+donde $\rho$ denota el coeficiente de correlación de Pearson, $\mathrm{R}(X)$ y $\mathrm{R}(Y)$, los rangos de la variables aleatorias $X$ y $Y$, respectivamente, y $\sigma_{\mathrm{R}(X)}$ y $\sigma_{\mathrm{R}(Y)}$ la desviación estándar del rango de las variables $X$ y $Y$, respectivamente. En palabras sencillas, el coeficiente de correlación de Spearman es el resultado de aplicar la correlación de Pearson al rango de las variables. Sin embargo, la $\rho$ de Spearman puede ser reescrita en términos de la cópula de $C$ entre $X, Y$, como:
 
 \begin{equation}\label{SpearTeo}
     \rho_{\mathbf{C}}=12 \iint_{\mathcal{I}^2} (\mathbf{C}(u, v)-u v) \mathrm{d} u \mathrm{~d} v
 \end{equation}
 
-La fórmula empírica para dos vectores muestrales, es la que se muestra en la ecuación \eqref{SWEemp}, donde $\hat{\sigma}_{\mathbf{C}}$ es la cópula empírica. 
+La fórmula empírica para dos vectores muestrales, está dada por la siguiente ecuación, donde $\hat{\mathbf{C}}$ es la cópula empírica: 
 
 \begin{equation}\label{Spearemp}
-    \hat{\sigma}_{\mathbf{C}}=\frac{12}{n^2-1} \sum_{i=1}^n \sum_{j=1}^n\hat{\mathbf{C}}_n\left(\frac{i}{n}, \frac{j}{n}\right)-\frac{i}{n} \times \frac{j}{n}
+    \hat{\rho}_{\mathbf{C}}=\frac{12}{n^2-1} \sum_{i=1}^n \sum_{j=1}^n\hat{\mathbf{C}}_n\left(\frac{i}{n}, \frac{j}{n}\right)-\frac{i}{n} \times \frac{j}{n}.
 \end{equation}
+
+O alternativamente, dados un conjunto de $n$ observaciones de dos variables $X$ y $Y$ y, $x_{(1)}, \dots, x_{(n)}$ y $y_{(1)}, \dots, y_{(n)}$ sus respectivos estadísticos de orden. Se define como
+
+\begin{equation}
+    \rho = 1 - \frac{6 \sum_{i}^{n} \left (  x_{(i)} - y_{(i)}) \right )^{2}}{n(n^{2} - 1)}
+\end{equation}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsubsection{$\sigma$ de Schweizer y Wolff}
+\subsection{$\sigma$ de Schweizer y Wolff}
 
-Una medida dependencia adicional la Sigma de Schweizer y Wolff fue propuesta por los matemáticos Peter Schweizer y Ekkehard Wolff. Se utiliza en el contexto de teoría de la cópula para cuantificar la asociación entre variables aleatorias de manera más general que las medidas tradicionales de correlación. Esta es definida como en la ecuación \eqref{SWETeo}, donde $C$ es una cópula cuyas marginales son $U$ y $V$.
-
-Es una medida robusta que puede capturar una amplia gama de estructuras de dependencia, incluidas aquellas que son no lineales o no monótonas. 
+Una medida dependencia adicional la Sigma de Schweizer y Wolff, fue propuesta por los matemáticos Peter Schweizer y Ekkehard Wolff. Se utiliza en el contexto de teoría de cópulas para cuantificar la asociación entre variables aleatorias de manera más general que las medidas tradicionales de correlación. Es una medida robusta que puede capturar una amplia gama de estructuras de dependencia, incluidas aquellas que son no lineales o no monótonas. Esta medida de dependencia está definida como
 
 \begin{equation}\label{SWETeo}
     \sigma_{\mathbf{C}}=12 \iint_{\mathcal{I}^2}|\mathbf{C}(u, v)-u v| \mathrm{d} u \mathrm{~d} v
 \end{equation}
 
-La fórmula empírica para dos vectores muestrales, es la que se muestra en la ecuación \eqref{SWEemp}, donde $\hat{\sigma}_{\mathbf{C}}$ es la cópula empírica. Todas las correlaciones anteriormente mencionadas ya están implementadas en el lenguaje de programación R.
-
+donde $C$ es la función cópula entre la variable $X$ y $Y$.
+La fórmula empírica de la $\sigma$ de Schweizer y Wolff para dos vectores muestrales, donde $\hat{\mathbf{C}}$ es la cópula empírica. 
 \begin{equation}\label{SWEemp}
     \hat{\sigma}_{\mathbf{C}}=\frac{12}{n^2-1} \sum_{i=1}^n \sum_{j=1}^n\left|\hat{\mathbf{C}}_n\left(\frac{i}{n}, \frac{j}{n}\right)-\frac{i}{n} \times \frac{j}{n}\right|
 \end{equation}
@@ -320,9 +354,9 @@ La fórmula empírica para dos vectores muestrales, es la que se muestra en la e
     Sean $X$, $Y$ variables aleatorias con dependencia estrictamente monótona y sea $C$ la cópula asociada. Dadas las medidas de asociación $\rho_C$ de Spearman \eqref{SpearTeo} y $\sigma_C$ de Schweizer y Wolff \eqref{SWETeo}, entonces $|\rho_C| = \sigma_C$
 \end{propo}
 
-La proposición anterior ofrece un punto de referencia crucial para evaluar la monotonía de la cópula subyacente $C$ de las variables $X$ y $Y$, utilizando medidas de dependencia. En términos simples, sugiere que cuanto menor sea la diferencia la $\rho$ de Spearman y la $sigma$ de Schweizer y Wolff, mayor será la relación de monotonía entre las variables.
+La proposición anterior ofrece un punto de referencia crucial para evaluar la monotonía de la cópula subyacente $C$ para las variables $X$ y $Y$. En términos simples, sugiere que cuanto menor sea la diferencia entre $\rho_C$ y $\sigma_C$, mayor será la relación de monotonía entre las variables.
 
-La relevancia de que un par de variables aleatorias mantenga una dependencia estrictamente monótona radica en el hecho de que la mayoría de las cópulas conocidas cumplen con esta condición. Por lo tanto, al buscar un ajuste paramétrico conjunto para un par de variables aleatorias, es crucial identificar dependencias estrictamente monótonas en la muestra que puedan ser modeladas por cópulas bien establecidas. Esto asegura que el modelo propuesto se ajuste de manera precisa a la estructura de dependencia observada en los datos, lo que a su vez mejora la capacidad del modelo para realizar predicciones precisas. \cite[pág. 43]{TesisEmanuel}
+La relevancia de que un par de variables aleatorias mantenga una dependencia estrictamente monótona radica en el hecho de que la mayoría de las cópulas conocidas cumplen con esta condición. Por lo tanto, al buscar un ajuste paramétrico conjunto para un par de variables aleatorias, es crucial identificar dependencias estrictamente monótonas en la muestra que puedan ser modeladas por cópulas bien establecidas. Esto asegura que el modelo propuesto se ajuste de manera precisa a la estructura de dependencia observada en los datos, lo que a su vez mejora la capacidad del modelo para realizar predicciones precisas \cite[pág. 43]{TesisEmanuel}.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -331,7 +365,7 @@ La relevancia de que un par de variables aleatorias mantenga una dependencia est
 
 \subsection{La Diagonal}
 
-Durante el proceso de ajuste de modelos probabilísticos, es crucial contar con herramientas que nos permitan comprender las relaciones entre las variables aleatorias. Entre estas herramientas, las secciones diagonal, horizontal y vertical de una cópula juegan un papel fundamental al proporcionar información detallada sobre la estructura de dependencia entre estas variables. A continuación, se da la definición de cada una de ellas. Para demostraciones detalladas ver el libro `\textit{An Introduction to Cópulas}' \cite{nelsenintroduction} o la tesis de licenciatura `\textit{Desarrollo Humano e Intensidad Migratoria: Modelado Conjunto Vía Cópulas}'.
+Durante el proceso de ajuste de modelos probabilísticos, es crucial contar con herramientas que nos permitan comprender las relaciones entre las variables aleatorias. Entre estas herramientas, las secciones diagonal, horizontal y vertical de una cópula juegan un papel fundamental al proporcionar información detallada sobre la estructura de dependencia entre estas variables. A continuación, se da la definición de cada una de ellas. Para demostraciones detalladas se sugiere consultar el libro `\textit{An Introduction to Cópulas}' \cite{nelsenintroduction} o la tesis de licenciatura `\textit{Desarrollo Humano e Intensidad Migratoria: Modelado Conjunto Vía Cópulas}'\cite{TesisEmanuel}.
 
 \begin{defn}
     Sea $C$ una cópula, y sea $a$ cualquier número en $I$. 
@@ -353,19 +387,17 @@ Durante el proceso de ajuste de modelos probabilísticos, es crucial contar con 
     \label{fig:diagEj}
 \end{figure}
 
-Si la cópula es monótona a lo largo de la diagonal, significa que la asociación entre las variables aumenta o disminuye de manera constante a medida que ambas variables aumentan o disminuyen en valor. Esto indica una relación de dependencia monótona entre las variables. \cite{TesisEmanuel}
+La monotonía a lo largo de la diagonal de la cópula, brinda información de la asociación entre las variables aumenta o disminuye de manera constante a medida que ambas variables aumentan o disminuyen en valor. Esto indica una relación de dependencia monótona entre las variables \cite{TesisEmanuel}.
 
-Para ilustrar cómo se interpretan las diagonales de las cópulas, en la Figura \ref{fig:diagEj}, se muestran varias diagonales de referencia: en azul, la diagonal de la cópula producto o independiente; en verde, la diagonal de la cópula $M$, que es la cota superior; y en rojo, la diagonal de la cópula $W$, que es la cota inferior. En negro se muestra la diagonal de la cópula empírica. Las tres primeras diagonales sirven como referencias para inferir la relación que representa la cópula empírica.
+Para ilustrar cómo se interpretan las diagonales de las cópulas, en la Figura \ref{fig:diagEj} se muestran varias diagonales de referencia. En azul aparece, la diagonal de la cópula producto o independiente; en verde, la diagonal de la cópula $M$, que es la cota superior; y en rojo, la diagonal de la cópula $W$, que es la cota inferior. Además, en negro se muestra la diagonal de la cópula empírica. Las tres primeras diagonales sirven como referencias para inferir la relación que representa la cópula empírica:
 
 \begin{itemize}
     \item Si la diagonal de la cópula empírica es muy cercana a la diagonal de la cópula independiente, es muy probable que no pase el test de independencia. En caso de que solo una sección de la diagonal de la cópula empírica sea cercana a la de la cópula independiente, se debería considerar la posibilidad de modelar esta relación utilizando una combinación de cópulas. Es decir, una sección se modelaría como una estructura independiente y la otra sección con una cópula diferente.
 
-    \item Por otra parte, si la diagonal de la cópula empírica se encuentra por encima o por debajo de la diagonal de la cópula independiente, esto proporciona información sobre la naturaleza de la relación de monotonía entre las variables. Si está por encima, indica una relación monótona creciente, mientras que si está por debajo, sugiere una relación monótona decreciente. Del mismo modo, esta interpretación puede aplicarse a secciones específicas de la cópula.
+    \item Por otra parte, si la diagonal de la cópula empírica se encuentra por encima o por debajo de la diagonal de la cópula independiente, esto proporciona información sobre la naturaleza de la relación de monotonía entre las variables. Si está por encima, indica una relación monótona creciente, mientras que si está por debajo sugiere una relación monótona decreciente. Del mismo modo, esta interpretación puede aplicarse a secciones específicas de la cópula.
 \end{itemize}
 
-En la Figura \ref{fig:diagEj}, se puede observar una cópula cuya relación es monótona decreciente en todo el dominio. Además, parece haber secciones donde se encuentra muy cerca de la cópula independiente en los extremos. La noción de cercanía es meramente intuitiva, por lo que este análisis es una herramienta de carácter exploratorio.
-
-Estudiar las secciones diagonal, horizontal y vertical de una cópula en términos de relaciones monótonas, ayuda comprender mejor la dirección y la fuerza de la dependencia entre las variables aleatorias en diferentes escenarios. 
+En la Figura \ref{fig:diagEj}, se puede observar una cópula cuya relación es monótona decreciente en todo el dominio. Además, parece haber secciones donde se encuentra muy cerca de la cópula independiente en los extremos. La noción de cercanía es meramente intuitiva, por lo que este análisis es una herramienta de carácter exploratorio. Estudiar las secciones diagonal, horizontal y vertical de una cópula en términos de relaciones monótonas, ayuda comprender mejor la dirección y la fuerza de la dependencia entre las variables aleatorias en diferentes escenarios. 
 
 
 
@@ -374,9 +406,36 @@ Estudiar las secciones diagonal, horizontal y vertical de una cópula en términ
 
 \section{Cópulas Paramétricas}
 
-Hay variables aleatorias paramétricas como las distribuciones normales o gamma, poseen una forma específica definida por sus parámetros, lo que facilita su modelado y análisis en diferentes contextos. De manera similar, en el ámbito de las cópulas, las cópulas paramétricas ofrecen una herramienta poderosa para  representar la estructura de dependencia entre variables aleatorias. Al ajustar los parámetros de la cópula, es posible capturar una amplia gama de patrones de dependencia, desde la independencia hasta la dependencia extrema. 
+Hay distribuciones de probabilidad paramétricas como las distribuciones normales o gamma, las cuales poseen una forma específica definida por sus parámetros, lo que facilita su modelado y análisis en diferentes contextos. De manera similar, en el ámbito de las cópulas, las cópulas paramétricas ofrecen una herramienta poderosa para  representar la estructura de dependencia entre variables aleatorias. Al ajustar los parámetros de la cópula, es posible capturar una amplia gama de patrones de dependencia, desde la independencia hasta la dependencia extrema. 
 
-Este enfoque paramétrico proporciona flexibilidad en la modelización de relaciones complejas entre variables, lo que resulta especialmente útil. En la modelización de variables aleatorias individuales como en la descripción de su dependencia conjunta, el uso de funciones paramétricas es de gran útilidad para capturar con precisión la variabilidad y las interacciones en los datos. En la Figura \ref{fig:Parametric}\footnote{Figura tomada de \cite{ImgCopulas}} se muestran las curvas de nivel de algunas cópulas paramétricas.
+\begin{ejemplo}[Familia Frank]
+    Estas cópulas están parametrizadas $\theta \in \mathbb{R} \setminus \left\{ 0 \right\}$. En el caso bivariado las cópulas estan definidas por
+
+    \begin{equation}\label{Frank}
+    C_{\theta}^{F}(\boldsymbol{u}) ) -\frac{1}{\theta} log\left ( 1 + \frac{(exp(-\theta u_1)-1)(exp(-\theta u_2)-1)}{exp(-\theta)-1} \right ), \quad \boldsymbol{u} \in [0, 1]^2,    
+    \end{equation}
+    
+con la convención $C_{0}^{F} = \Pi$, como consecuencia de hecho de que la función \eqref{Frank} converge a $\Pi$ cuando $\theta \to 0$ \cite{CopulasR}.
+\end{ejemplo}
+
+\begin{ejemplo}[Familia Clayton]
+    Para $d=2$, las cópulas están parametrizadas por $\theta \in[-1, \infty) \backslash\{0\}$, están definidas como
+
+    \begin{equation}
+    C_\theta^{\mathrm{C}}(\boldsymbol{u})=\max \left\{u_1^{-\theta}+u_2^{-\theta}-1,0\right\}^{-1 / \theta}, \quad \boldsymbol{u} \in[0,1]^2.
+\end{equation}
+
+    Para $d \geq 3$, se considera $\theta \in(0, \infty)$ y están dadas por,
+
+    \begin{equation}
+    C_\theta^{\mathrm{C}}(\boldsymbol{u})=\left(1-d+\sum_{j=1}^d u_j^{-\theta}\right)^{-1 / \theta}, \quad \boldsymbol{u} \in[0,1]^d .
+    \end{equation}
+
+    En ambos caso, se toma la convención $C_0^{\mathrm{C}}=$ $\Pi$ (se deriva del hecho $C_\theta^C$ converge a $\Pi$ cuando $\theta \rightarrow 0$).
+\end{ejemplo}
+
+
+Este enfoque paramétrico proporciona flexibilidad en la modelización de relaciones complejas entre variables, lo que resulta especialmente útil. En la modelización de variables aleatorias individuales, como en la descripción de su dependencia conjunta, el uso de funciones de cópulas paramétricas es de gran útilidad para capturar con precisión la variabilidad y las interacciones en los datos. En la Figura \ref{fig:Parametric}\footnote{Figura tomada de \cite{ImgCopulas}} se muestran las curvas de nivel de algunas cópulas paramétricas.
 
 \begin{figure}[H]
     \centering
@@ -385,23 +444,8 @@ Este enfoque paramétrico proporciona flexibilidad en la modelización de relaci
     \label{fig:Parametric}
 \end{figure}
 
-\begin{ejemplo}[Distribución estándar Bivariada $t$ de Student] La Distribución estándar Bivariada $t$ de Student, cuyo vector de media $\boldsymbol{\mu}$ es igual a cero, y la matriz de parámetros de escala es
 
-\begin{equation}
-    \Sigma_\rho=\left[\begin{array}{ll}
-    1 & \rho \\
-    \rho & 1
-    \end{array}\right] .
-\end{equation}
-
-La densidad asociada esta dada por
-
-\begin{equation}
-    t\left(x_1, x_2 ; \nu, \rho\right)=\frac{\Gamma\left(\frac{\nu+2}{2}\right)\left(1-\rho^2\right)^{-1 / 2}}{\Gamma\left(\frac{\nu}{2}\right)(\nu \pi)}\left\{1+\frac{1}{\nu} \frac{x_1^2-2 x_1 x_2 \rho+x_2^2}{1-\rho^2}\right\}^{-\frac{v+2}{2}} .
-\end{equation}
-\end{ejemplo}
-
-La biblioteca VineCopula es una herramienta poderosa y versátil para el modelado de dependencias multivariadas mediante cópulas en el entorno de R. Esta biblioteca proporciona una amplia variedad de familias paramétricas de cópulas que pueden ser utilizadas para capturar diferentes tipos de relaciones de dependencia entre variables aleatorias. A continuación, se muestra una tabla con las familias disponibles:
+La biblioteca \texttt{VineCopula} es una herramienta poderosa y versátil para el modelado de dependencias multivariadas mediante cópulas en el entorno de \texttt{R}. Esta biblioteca proporciona una amplia variedad de familias paramétricas de cópulas que pueden ser utilizadas para capturar diferentes tipos de relaciones de dependencia entre variables aleatorias. A continuación, se muestra una tabla con las familias disponibles:
 
 \begin{table}[H]
     \centering
@@ -430,7 +474,7 @@ Rotated Tawn type 1(90 and 270 degrees)	1   & 24, 134	& (-Inf,-1]	& [0, 1]    \\
 (Survival) Tawn type 2	                    & 204, 214	& [1, Inf)	& [0, 1]    \\ 
 Rotated Tawn type 2 (90 and 270 degrees)	& 224, 234	& (-Inf,-1]	& [0, 1]    \\ \hline \hline
     \end{tabular}
-    \caption{Familias de cópulas paramétricas con las que trabaja R.}
+    \caption{Familias de cópulas paramétricas con las que trabaja \texttt{R}.}
     \label{tab:family_set}
 \end{table}
 
@@ -440,35 +484,43 @@ Rotated Tawn type 2 (90 and 270 degrees)	& 224, 234	& (-Inf,-1]	& [0, 1]    \\ \
 
 Se va a explorar un enfoque de modelado que emplea cópulas a pares, teniendo en cuenta las dependencias condicionales. La idea central radica en descomponer la distribución conjunta en una sucesión de cópulas a pares, las cuales se aplican tanto a las variables originales como a las distribuciones condicionales. La gran mayoría esta subsección se baso en el artículo \textit{Pair-copula constructions of multiple dependence} \cite{PairCopula}.
 
-Usando el resultado del Teorema de Sklar \ref{TeoSklar}, y la regla de la cadena se puede obtener la función de densidad conjunta $f$, para una $F$ absolutamente continua con densidades marginales $F_1, \dots, F_n$ estrictamente crecientes y continuas se tiene la igualdad de la ecuación \eqref{conjunta}. Para alguna única cópula de densidad de $d-$variedad. 
+Usando el resultado del Teorema de Sklar \ref{TeoSklar} y la regla de la cadena, se puede obtener la función de densidad conjunta $f$. Para una función de distribución $F$ absolutamente continua, con densidades marginales $F_1, \dots, F_n$ estrictamente crecientes y continuas, se tiene la igualdad
 
 \begin{equation}\label{conjunta}
-    f\left( x_1, \dots, x_n\right)=  c_{1 \cdots n} (F_1\left(x_1\right), \ldots, F_n\left(x_n\right) ) \cdot f_1\left(x_1\right) \dots \cdot f_n\left(x_n\right)
+    f\left( x_1, \dots, x_n\right)=  c_{1 \cdots n} (F_1\left(x_1\right), \ldots, F_n\left(x_n\right) ) \cdot f_1\left(x_1\right) \dots \cdot f_n\left(x_n\right),
 \end{equation}
 
-En particular, para el caso de $d = 2$ la descomposión de cópula a pares se ve como en la Ecuación \eqref{eq1}.
+para alguna única cópula de densidad $d$-dimensional y donde $f_i$ es la función de densidad de $F_i$. En particular, para el caso de $d = 2$ la descomposión de cópula a pares se ve como,
 
 \begin{equation} \label{eq1}
     \begin{split}
-        f (x1, x2) & = c_{12}(F1(x1), F2(x2)) \cdot f_1(x_1) \cdot f_2(x_2) \\
-      \Rightarrow f\left(x_1 | x_2\right) & = c_{12}(F_1\left(x_1\right), F_2\left(x_2\right)) \cdot f_1\left(x_1\right)
+        f (x_1, x_2) & = c_{12}(F_1(x_1), F_2(x_2)) \cdot f_1(x_1) \cdot f_2(x_2) \\
+      \Rightarrow f\left(x_1 | x_2\right) & = c_{12}(F_1\left(x_1\right), F_2\left(x_2\right)) \cdot f_1\left(x_1\right).
     \end{split}
 \end{equation}
 
-Para $3$ variables la descommposición queda como se muestra en la ecuación \eqref{3var}.
+Del Teorema de Sklar \ref{TeoSklar}, la función de distribución condicional $F(\mathbf{t} \mid \mathbf{x})=\mathbb{P}(\mathbf{Y} \leq \mathbf{y} \mid \mathbf{X}=\mathbf{x})$ puede ser expresada como,
+
+\begin{equation}
+    F(\mathbf{y} \mid \mathbf{x})= C_{\mathbf{x}}\left(F\left(y_{1} \mid \mathbf{x}\right), \ldots, F\left(y_{n} \mid \mathbf{x}\right)\right),
+\end{equation}
+
+ para todo $\mathbf{y}=\left(y_{1}, \ldots, y_{n}\right) \in \mathbb{R}^d$ \cite{arxiv.2403.12565}. Para $3$ variables la descomposición queda como
 
 \begin{equation}\label{3var}
     \begin{split}
-        f\left(x_1 \mid x_2, x_3\right) & = c_{13 \mid 2} (F\left(x_1 \mid x_2\right), F\left(x_3 \mid x_2\right) ) \cdot f\left(x_1 \mid x_2\right) \\
-        f\left(x_1 \mid x_2, x_3\right) & = c_{13 \mid 2}(F\left(x_1 \mid x_2\right), F\left(x_3 \mid x_2\right)) \cdot c_{12}( F\left(x_1\right), F\left(x_2\right)) \cdot f_1(x_1)
+        f\left(x_1 \mid x_2, x_3\right) & = c_{13 \mid 2} (F\left(x_1 \mid x_2\right), F\left(x_3 \mid x_2\right) ) \cdot f\left(x_1 \mid x_2\right), \\
+        f\left(x_1 \mid x_2, x_3\right) & = c_{13 \mid 2}(F\left(x_1 \mid x_2\right), F\left(x_3 \mid x_2\right)) \cdot c_{12}( F\left(x_1\right), F\left(x_2\right)) \cdot f_1(x_1).
     \end{split}
 \end{equation}
 
-En general, para un vector $v$ $d-$dimensional y denótese $v_j$ un elemento arbitrario de $v$ y $v_{-j}$ al vector $v \setminus \left\{ v_j \right\}$, se tiene la formula \eqref{fact}. Esta representa la fórmula de representar la distribución en términos de una cópula a par.
+En general, para un vector $v$ $d-$dimensional y denótese $v_j$ un elemento arbitrario de $v$ y $v_{-j}$ al vector $v \setminus \left\{ v_j \right\}$, se tiene
 
 \begin{equation}\label{fact}
-    f(x \mid \boldsymbol{v}) = c_{x v_j \mid \boldsymbol{v}_{-j}} (  F \left(x \mid \boldsymbol{v}_{-j}\right), F\left(v_j \mid \boldsymbol{v}_{-j}\right) ) \cdot f\left(x \mid \boldsymbol{v}_{-j}\right)
+    f(x \mid \boldsymbol{v}) = c_{x v_j \mid \boldsymbol{v}_{-j}} (  F \left(x \mid \boldsymbol{v}_{-j}\right), F\left(v_j \mid \boldsymbol{v}_{-j}\right) ) \cdot f\left(x \mid \boldsymbol{v}_{-j}\right).
 \end{equation}
+
+Esta representa la fórmula de representar la distribución en términos de una cópula a par.
 
 \begin{lema}[Densidades Condicionales y funciones de distribución de distribuciones bivariadas en términos de su cópula]La densidad condicional y la función de distribución puede ser reescrita como
 
@@ -483,24 +535,24 @@ En general, para un vector $v$ $d-$dimensional y denótese $v_j$ un elemento arb
 Lema tomado de \cite[pag 20]{czadoAnalyzing}.
 \end{lema}
 
-Como notación estándar se denota a la función $h(x, v, \Theta)$ a distribución condicional cuando $x$ y $v$ son uniformes. 
+Como notación estándar, se denota por $h(x, v; \Theta)$ a la función de distribución condicional de $x|v$ cuando $x$ y $v$ son uniformes
 
-\begin{equation}
-    h(x, v, \Theta) = F(x \mid v)=\frac{\partial C_{x, v}(x, v, \Theta)}{\partial v}
+\begin{equation}\label{funH}
+    h(x, v; \Theta) = F(x \mid v)=\frac{\partial C_{x, v}(x, v; \Theta)}{\partial v}
 \end{equation}
+
+es decir, $h$ representa la distribución condicional en la escala de la cópula.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Considérese un vector aleatorio $X = (X_1, \dots, X_d)$ con función de densidad $f(x_1, \dots, x_d)$ esta función puede ser factorizada como se muestra en la Ecuación \eqref{fact1} y esta descomposición es única hasta una reorganización de las variables.
+Considérese un vector aleatorio $X = (X_1, \dots, X_d)$ con función de densidad $f(x_1, \dots, x_d)$. Esta función puede ser factorizada como
 
 \begin{equation}\label{fact1}
     f(x_1, \dots, x_d) = f(x_d) \cdot f(x_{d-1}|x_d) \cdot f(x_{d-2} | x_{d-1}, x_{d}) \dots \cdot  f(x_{d-2} | x_{2}, \dots, x_{d-1}, x_{d})
 \end{equation}
 
-En el caso de distribuciones de alta dimensionalidad, surgen numerosas posibles descomposiciones a pares de cópulas. Bedford y Cooke introdujeron un modelo gráfico conocido como \textit{vine regular}. En particular, nos interesa una arquitectura específica llamada \textit{vine drawble} o \textit{D-vines}.
+ y esta descomposición es única salvo una reorganización de las variables.
 
-En una D-vine, las cópulas a pares se organizan en una estructura de árbol. Para construir una D-vine, las variables aleatorias se ordenan secuencialmente y se emparejan de manera que cada nodo tenga dos aristas o una sola arista, formando así un camino. Para ilustrar este proceso, se presenta en la Figura \ref{fig:Dvine5} (tomada de \cite{PairCopula}) este emparejamiento en el árbol $T_1$ con un ejemplo de 5 variables.
-
-Se inicia asignando una cópula bivariada a cada par de variables adyacentes. Luego, cada cópula o arista se convierte en un nodo en el siguiente árbol, y nuevamente a cada arista se le asigna una cópula, pero esta vez condicionada por la variable presente en ambos nodos, como se muestra en el árbol $T_2$ de la Figura \ref{fig:Dvine5}. Este proceso de repite hasta que solo se tenga una arista la cual corresponde a la última cópula. 
+En el caso de distribuciones de alta dimensionalidad, surgen numerosas posibles descomposiciones a pares de cópulas. Bedford y Cooke  introdujeron un modelo gráfico conocido como \textit{vine regular} \cite{Bedford2001}. En particular, nos interesa una arquitectura específica llamada \textit{vine drawble} o \textit{D-vines}.
 
 \begin{figure}[H]
     \centering
@@ -509,7 +561,12 @@ Se inicia asignando una cópula bivariada a cada par de variables adyacentes. Lu
     \label{fig:Dvine5}
 \end{figure}
 
-Al finalizar esta construcción, se obtiene una forma sencilla de visualizar la representación de la distribución conjunta utilizando cópulas a pares, como se muestra en la ecuación \eqref{dist5}. Los argumentos de las funciones cópula son distribuciones condicionales, en la ecuación \eqref{distC5} se muestra sus evaluaciones.
+En una D-vine, las cópulas a pares se organizan en una estructura de árbol. Para construir una D-vine, las variables aleatorias se ordenan secuencialmente y se emparejan de manera que cada nodo tenga dos aristas o una sola arista, formando así un camino. Para ilustrar este proceso, se presenta en la Figura \ref{fig:Dvine5}\footnote{Figura tomada de \cite{PairCopula}.} este emparejamiento en el árbol $T_1$ con un ejemplo de 5 variables.
+
+Se inicia asignando una cópula bivariada a cada par de variables adyacentes. Luego, cada cópula o arista se convierte en un nodo en el siguiente árbol, y nuevamente a cada arista se le asigna una cópula, pero esta vez condicionada por la variable presente en ambos nodos, como se muestra en el árbol $T_2$ de la Figura \ref{fig:Dvine5}. Este proceso de repite hasta que solo se tenga una arista la cual corresponde a la última cópula. 
+
+
+Al finalizar esta construcción, se obtiene una forma sencilla de visualizar la representación de la distribución conjunta utilizando cópulas a pares. Esto como se muestra en la siguiente ecuación
 
 \begin{equation}\label{dist5}
      \begin{split}
@@ -517,10 +574,11 @@ Al finalizar esta construcción, se obtiene una forma sencilla de visualizar la 
          & \cdot C_{12} \cdot C_{23} \cdot C_{34} \cdot C_{45} \quad (T_1)\\
          & \cdot C_{13|2} \cdot C_{24|3} \cdot C_{35|4} \quad (T_2)\\\
          & \cdot C_{14|23} \cdot C_{25|34} \quad (T_3)\\
-         & \cdot C_{15|234} \quad (T_4)\\
+         & \cdot C_{15|234} \quad (T_4). \\
      \end{split}
 \end{equation}
 
+Aquí se han omitido por conveniencia escribir los argumentos en la función para que la construcción de los árboles sea clara. Los argumentos de las funciones cópula son distribuciones condicionales como se muestran a continuación, 
 
 \begin{equation}\label{distC5}
      \begin{split}
@@ -531,7 +589,7 @@ Al finalizar esta construcción, se obtiene una forma sencilla de visualizar la 
          &\cdot C_{35|4}(F_{3|4}(x_3|x_4), F_{5|4}(x_5|x_4)) \quad (T_2)\\
          & \cdot C_{14|23}(F_{1|23}(x_1|x_2, x_3), F_{4|23}(x_4|x_2, x_3)) \\
          & \cdot C_{25|34}(F_{2|34}(x_2|x_3, x_4), F_{5|34}(x_5|x_3, x_4)) \quad (T_3)\\
-         & \cdot C_{15|234}(F_{1|234}(x_1|x_2, x_3, x_4), F_{5|234}(x_5|x_2, x_3, x_4)) \quad (T_4)\\
+         & \cdot C_{15|234}(F_{1|234}(x_1|x_2, x_3, x_4), F_{5|234}(x_5|x_2, x_3, x_4)) \quad (T_4).\\
      \end{split}
 \end{equation}
   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -540,19 +598,19 @@ Al finalizar esta construcción, se obtiene una forma sencilla de visualizar la 
 
 \section{Regresión Cuantílica Usando D-Vines}
 
-Como es típico en los métodos de regresión, el objetivo principal es comprender o predecir la variable respuesta $Y$ a partir de las covariables $X_1, X_2, \dots , X_d$.
+Como es típico en los métodos de regresión, el objetivo principal es comprender o predecir la variable respuesta $Y$ a partir de las covariables $X_1, X_2, \dots , X_d$
 
 \begin{equation}\label{regresion}
-    y = \Phi_{\alpha}(x)
+    y = \Phi_{\alpha}(x), \quad \alpha \in [0, 1],
 \end{equation}
 
-Qué es la solución de 
+que es la solución de la ecuación 
 
 \begin{equation}
-     \mathbb{P}[Y \leq y | X_1 = x_1, \dots, X_n = x_n ] = \alpha
+     \mathbb{P}[Y \leq y | X_1 = x_1, \dots, X_n = x_n ] = \alpha,
 \end{equation}
 
-Ejemplo de la solución para una covariable
+Para una covariable se tiene
 
 \begin{equation}
     F_{y|x}(y|x) = \frac{\partial }{\partial u_x} C_{yx}(F_y(y), u_x) \Big|_{u_x = F_x(x)}  
@@ -564,7 +622,7 @@ En general,
     F_{y|\overline{x}}(y|\overline{x}) = \frac{\partial }{\partial u_{\overline{x}}} C_{y\overline{x}}(F_y(y), u_{\overline{x}}) \Big|_{u_{\overline{x}} =F_{\overline{x}(x)}} 
 \end{equation}
 
-Ejemplo de regresión con 3 variables 
+Como otro ejemplo, para $3$ variables se tiene que 
 
 \begin{equation}
     \begin{aligned}
@@ -577,8 +635,7 @@ Ejemplo de regresión con 3 variables
     \end{aligned}
 \end{equation}
 
-
-Después de haber ilustrado el funcionamiento con un pequeño ejemplo de tres variables, el siguiente paso será proporcionar una descripción exhaustiva de la implementación del algoritmo disponible en GitHub \url{https://github.com/BesitosDeBaba/deerVineReg}.
+Recuérdese que función $h$ se definió en \eqref{funH}. Después de haber ilustrado el funcionamiento con un pequeño ejemplo de tres variables, el siguiente paso será proporcionar una descripción exhaustiva de la implementación del algoritmo de regresión cuantil utilizando el modelo D-Vine. Este está disponible en GitHub \url{https://github.com/BesitosDeBaba/deerVineReg}, junto con un tutorial de su uso y descarga.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%% G R A F O  I N I C I A L  %%%%%%5%%%%%
