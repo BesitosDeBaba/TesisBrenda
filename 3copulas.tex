@@ -445,7 +445,7 @@ Este enfoque paramétrico proporciona flexibilidad en la modelización de relaci
 \end{figure}
 
 
-La biblioteca \texttt{VineCopula} es una herramienta poderosa y versátil para el modelado de dependencias multivariadas mediante cópulas en el entorno de \texttt{R}. Esta biblioteca proporciona una amplia variedad de familias paramétricas de cópulas que pueden ser utilizadas para capturar diferentes tipos de relaciones de dependencia entre variables aleatorias. A continuación, se muestra una tabla con las familias disponibles:
+La biblioteca \textbf{VineCopula} es una herramienta poderosa y versátil para el modelado de dependencias multivariadas mediante cópulas en el entorno de \texttt{R}. Esta biblioteca proporciona una amplia variedad de familias paramétricas de cópulas que pueden ser utilizadas para capturar diferentes tipos de relaciones de dependencia entre variables aleatorias. A continuación, se muestra una tabla con las familias disponibles:
 
 \begin{table}[H]
     \centering
@@ -480,7 +480,7 @@ Rotated Tawn type 2 (90 and 270 degrees)	& 224, 234	& (-Inf,-1]	& [0, 1]    \\ \
 
 %%%%%%%%%%%%%%%%% D - VINE COPULAS %%%%%%%%%%%%%%%%%%
 
-\section{Cópulas D-Vine}
+\section{Cópulas D-Vine}\label{DVines}
 
 Se va a explorar un enfoque de modelado que emplea cópulas a pares, teniendo en cuenta las dependencias condicionales. La idea central radica en descomponer la distribución conjunta en una sucesión de cópulas a pares, las cuales se aplican tanto a las variables originales como a las distribuciones condicionales. La gran mayoría esta subsección se baso en el artículo \textit{Pair-copula constructions of multiple dependence} \cite{PairCopula}.
 
@@ -552,7 +552,7 @@ Considérese un vector aleatorio $X = (X_1, \dots, X_d)$ con función de densida
 
  y esta descomposición es única salvo una reorganización de las variables.
 
-En el caso de distribuciones de alta dimensionalidad, surgen numerosas posibles descomposiciones a pares de cópulas. Bedford y Cooke  introdujeron un modelo gráfico conocido como \textit{vine regular} \cite{Bedford2001}. En particular, nos interesa una arquitectura específica llamada \textit{vine drawble} o \textit{D-vines}.
+En el caso de distribuciones de alta dimensionalidad, surgen numerosas posibles descomposiciones a pares de cópulas. Bedford y Cooke  introdujeron un modelo gráfico conocido como \textit{vine regular} \cite{Bedford2001}. En particular, resulta de interés una arquitectura específica llamada \textit{vine drawble} o \textit{D-vines}.
 
 \begin{figure}[H]
     \centering
@@ -640,20 +640,20 @@ Recuérdese que función $h$ se definió en \eqref{funH}. Después de haber ilus
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%% G R A F O  I N I C I A L  %%%%%%5%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Descripción de la Implementación Computacional}
+\section{Descripción de la Implementación Computacional de la Regresión Cuantílica D-Vine}
 
 A continuación, se abordarían aspectos como los algoritmos utilizados para el ajuste de cópulas, las técnicas de optimización para la estimación de parámetros y las estrategias para la validación del modelo. 
 
 \subsection{Formación del Grafo Inicial}
 
-El programa ofrece dos opciones para construir el grafo inicial:
+Las D-Vines son estructuras gráficas que permiten modelar dependencias complejas entre múltiples variables a partir de una secuencia de cópulas bivariadas llamada árbol $T_1$ o grafo inicial como se describió en la Sección \ref{DVines}. El programa ofrece dos opciones para construir el grafo inicial:
 
 \begin{enumerate}
-    \item \textbf{Construir el árbol}. Se basa en utilizar la medida de dependencia de $\sigma$ Schweizer y Wolff, en su forma empírica como se mostró en la ecuación \eqref{SWEemp}. Por lo tanto, para iniciar el algoritmo, es necesario calcular la matriz que contenga la dependencia $\sigma$ entre todas las variables a la cual se le llamará $\Sigma$.
+    \item \textbf{Construir el árbol}. Se basa en utilizar la medida dependencia de $\sigma$ Schweizer y Wolff en su forma empírica, como se mostró en la ecuación \eqref{SWEemp}. La idea consiste en iniciar el algoritmo, es necesario calcular la matriz que contenga la dependencia $\sigma$ entre todas las variables a la cual se le llamará $\Sigma$.
 
     En el algoritmo \ref{algT1}, se describe la formación del primer árbol.
 
-    \item \textbf{Especificar el árbol}. La segunda opción consiste en introducir manualmente la secuencia a través del entorno de fórmulas de R, donde se especifica la relación deseada entre las variables. Por ejemplo, $Y \sim x_1 + x_2 + x_3$. Este enfoque se utiliza con el propósito de establecer la relación deseada, especialmente desde un punto de vista médico o  por cuestiones experimentales.
+    \item \textbf{Especificar el árbol}. La segunda opción consiste en introducir manualmente la secuencia a través del entorno de fórmulas de \texttt{R}, donde se especifica la relación deseada entre las variables. Por ejemplo, $Y \sim X_1 + X_2 + X_3$ que corresponde al orden del árbol $Y - X_1 + X_2 + X_3$ $(T_1)$ . Este enfoque se utiliza con el propósito de establecer la relación deseada, especialmente desde un punto de vista médico o  por cuestiones experimentales.
 \end{enumerate}
 
 \begin{algorithm}[H]
@@ -668,9 +668,9 @@ El programa ofrece dos opciones para construir el grafo inicial:
         
         \While{$i < N$ \do}
           \State Buscar en la columna o renglón del nodo actual el nodo con la dependencia más alta, llamesé $Nodo_{nuevo}$.
-          \State Unir $Nodo_actual$ con $Nodo_{nuevo}$.
+          \State Unir $Nodo_{actual}$ con $Nodo_{nuevo}$.
           \State Actualizar $Nodo_{actual}$ con $Nodo_{nuevo}$.     
-          \State{i=i+1}
+          \State{$i=i+1$}
         \EndWhile
        
     \State{\textbf{Output:} Devolver el grafo.}
@@ -683,23 +683,24 @@ El programa ofrece dos opciones para construir el grafo inicial:
 
 \subsection{Forward}
 
-El siguiente paso consiste en estimar las cópulas utilizando la función \textit{BiCopSelect}. En este proyecto, nos centraremos exclusivamente en el ajuste de cópulas perimétricas; las razones de esta elección se explicarán en el próximo capítulo. Además, para calcular las funciones de distribución condicionales, o su equivalente, la derivada de cópula como se muestra en la ecuación \eqref{fact}, se utilizará la función \textit{BiCopHfunc2}, ambas disponibles en la biblioteca de R, \textbf{VineCopula} para más detalles de implementación ver \url{https://cran.r-project.org/web/packages/VineCopula/index.html}. Es necesario calcular las funciones $h$ en cada nivel para completar la etapa de avance (forward). Estas funciones $h$ serán necesarias para la etapa de retroceso (backward) y para realizar predicciones precisas.
+El siguiente paso consiste en estimar las cópulas utilizando la función \textit{BiCopSelect}. En este proyecto, nos centraremos exclusivamente en el ajuste de cópulas paramétricas; las razones de esta elección se explicarán en el próximo capítulo. Además, para calcular las funciones de distribución condicionales, o su equivalente, la derivada de la cópula, como se muestra en la ecuación \eqref{fact}, se utilizará la función \textit{BiCopHfunc2}, disponible en la biblioteca de \texttt{R}, \textbf{VineCopula}. Para más detalles de implementación ver \url{https://cran.r-project.org/web/packages/VineCopula/index.html}. Es necesario calcular las funciones $h$ en cada nivel para completar la etapa de avance (forward). Estas funciones $h$ serán necesarias para la etapa de retroceso (backward) y para realizar predicciones precisas.
 
-La transformación a escala $u$ hace referencia a convertir las variables aleatorias marginales en distribuciones uniformes en el intervalo $[0, 1]$, es necesaria para trabajar con cópulas. Se realiza aplicando la función de distribución acumulativa empírica de cada variable aleatoria como se describe en \eqref{fdaEmp}.
+La transformación a escala $u$ hace referencia a convertir las variables aleatorias marginales en distribuciones uniformes en el intervalo $[0, 1]$, la cual es necesaria para trabajar con cópulas. Dicha transformación se realiza aplicando la función de distribución acumulada empírica de cada variable aleatoria como se describe en \eqref{fdaEmp}.
 
-Adicionalmente, de acuerdo al paquete \textit{VineCopula}, las cópulas son seleccionadas usando \textit{Akaike} y \textit{Bayesian Information Criteria} (AIC y BIC), los cuales están definidos en las ecuaciones \ref{AIC} y \ref{BIC} respectivamente. Inicialmente, todas las cópulas disponibles se ajustan utilizando la estimación de máxima verosimilitud. Luego, se calculan los criterios para todas las familias de cópulas disponibles y se elige la familia con el valor mínimo.
+Adicionalmente, de acuerdo al paquete \textbf{VineCopula}, las cópulas son seleccionadas usando el Criterio de Información Akaike y Criterio de Información Bayesiano \textit{( Akaike Information Criteria, AIC y, Bayesian Information Criteria BIC)}, los cuales están definidos en las ecuaciones \eqref{AIC} y \eqref{BIC} respectivamente.
 
 \begin{equation}\label{AIC}
-    AIC := -2 \sum_{i=1}^N \ln[c(u_{i,1},u_{i,2}|\boldsymbol{\theta})] + 2k,
+    AIC := -2 \sum_{i=1}^N \ln[C(u_{i,1},u_{i,2}|\boldsymbol{\theta})] + 2k,
 \end{equation}
-
-Donde $k$ es igual a $1$ para cópulas de un parámetro y $k$ es igual a $2$ para cópulas de dos parámetros como las cópulas t-, BB1, BB6, BB7 y BB8.
 
 \begin{equation}\label{BIC}
-    BIC := -2 \sum_{i=1}^N \ln[c(u_{i,1},u_{i,2}|\boldsymbol{\theta})] + \ln(N)k.
+    BIC := -2 \sum_{i=1}^N \ln[C(u_{i,1},u_{i,2}|\boldsymbol{\theta})] + \ln(N)k.
 \end{equation}
 
-Notesé que el BIC penaliza más fuerte a las familias de dos parámetros que el AIC.
+Donde $N$ es número de observaciones, $C$ una cópula bivariada, $k$ es igual a $1$ para cópulas de un parámetro y $k$ es igual a $2$ para cópulas de dos parámetros como las cópulas t-, BB1, BB6, BB7 y BB8. Notesé que el BIC penaliza más fuerte a las familias de dos parámetros que el AIC.
+
+Inicialmente, todas las cópulas disponibles se ajustan utilizando la estimación de máxima verosimilitud. Luego, se calculan los criterios para todas las familias de cópulas disponibles y se elige la familia con el valor mínimo.
+
 
 En la Algoritmo \ref{algfordward} se describe detalladamente el proceso de ajuste de cada cópula utilizada en la D-vine y en la Figura \ref{fig:construccion} se muestra un diagrama que representa como se ejecuta este ajuste.
 
@@ -707,21 +708,21 @@ En la Algoritmo \ref{algfordward} se describe detalladamente el proceso de ajust
       \caption{Forward}
       \label{algfordward}
       \begin{algorithmic}[1]  
-        \Require{Data frame con los observaciones en el orden que dictó el algoritmo anterior, $data$: número de variables $n$.}
+        \Require{Data frame con las observaciones en el orden que dictó el algoritmo anterior, $data$: número de variables $n$.}
         \Ensure{Estimación de las cópulas y las funciones $h$.}
 
         \State $copulas =  \left [  \right ]$; $hs =  \left [  \right ]$; $niveles = n-1$
         
-        \State Obtener la función de distribución empírica de cada variable y posteriormente cada una transfórmala a escala $u$, con su respectiva función de distribución. 
+        \State Obtener la función de distribución empírica de cada variable y posteriormente cada una transfórmarla a escala $u$, con su respectiva función de distribución. 
         \State Asignar a $dataU$ los datos en escala $u$.
         
         \State $i = 1$
         \While{$i \leq niveles$ \do}
-          \State Estimar cada cópula con la función $BiCopSelect$ de $R$. Para $i = 1$ los argumentos corresponde la datos de $dataU$, para los otros casos corresponden a funciones $h$.
+          \State Estimar cada cópula con la función $BiCopSelect$ de \texttt{R}. Para $i = 1$, los argumentos corresponde la datos de $dataU$, para los otros casos corresponden a funciones $h$.
           \State Calcular las funciones $h$ de cada cópula para el siguiente nivel.
           \State Añadir las cópulas en $copulas$.
           \State Añadir las funciones $h$ a $hs$.
-          \State{i=i+1}
+          \State{$i=i+1$}
         \EndWhile
        
     \State{\textbf{Output:} Devolver $copulas$ y $hs$.}
@@ -730,16 +731,16 @@ En la Algoritmo \ref{algfordward} se describe detalladamente el proceso de ajust
 
 
 
-Después de realizar el ajuste, como era de esperar, se desea evaluar la existencia de la dependencia modelada. Para determinar si hay independencia entre las variables, es decir, si las cópulas que modelan la dependencia entre ellas pueden simplificarse a la cópula independiente, se emplea la estadística descrita en la ecuación \eqref{T} para realizar el test de independencia implementado en \textbf{VineCopula}.
+Después de realizar el ajuste, como era de esperar, se desea evaluar la existencia de la dependencia modelada. Para determinar si hay independencia entre las variables, es decir, si las cópulas que modelan la dependencia entre ellas pueden simplificarse a la cópula independiente, se emplea el test de independencia implementado en \textbf{VineCopula} basado en el estádistico
     
 \begin{equation}\label{T}
     T = \sqrt{\frac{9N(N - 1)}{2(2N + 5)}} \times |\hat{\tau}|,
 \end{equation}
 
-Donde $N$ es el número de observaciones y $\hat{\tau}$ es el tau de Kendall empírica de los vectores de datos $u_1$ u $u_2$. El valor p de la hipótesis nula de independencia bivariada.
+donde $N$ es el número de observaciones y $\hat{\tau}$ es el tau de Kendall empírica de los vectores de datos $u_1$ y $u_2$. El $p$-valor de la hipótesis nula de independencia bivariada se calcula como
 
 \begin{equation}
-    \texttt{p.value} = 2 \times \left(1 - \Phi\left(T\right)\right),
+    p-\text{valor} = 2 \times \left(1 - \Phi\left(T\right)\right),
 \end{equation}
 
 
@@ -758,14 +759,14 @@ Donde $\Phi$ es la función de distribución normal estándar.
 
 \subsection{Backward}
 
-Una vez estimadas las cópulas y las funciones $h$  en cada nivel del árbol de cópulas, Ahora, se tiene que realizar las predicciones sobre las variables aleatorias originales. No hay que olvidar que, hay que obtener las funciones inversas esto se hará usando la función \textit{BiCopHinv2} que viene implementada en la librería \textbf{VineCopula}. Cabe mencionar que el orden de los argumentos es importante ya que obtiene la inversa con respecto a la segunda entrada. Se da en pseudocódigo en el Algoritmo \ref{algbackward}.
+Una vez estimadas las cópulas y las funciones $h$  en cada nivel del árbol de cópulas, ahora se tiene que realizar las predicciones sobre la escala de las variables aleatorias originales. No hay que olvidar que es necesario que obtener las funciones inversas $h^{-1}$. Esto se hará usando la función \textit{BiCopHinv2} que viene implementada en la librería \textbf{VineCopula}. Cabe mencionar que el orden de los argumentos es importante ya que obtiene la inversa con respecto a la segunda entrada. Se da en pseudocódigo en el Algoritmo \ref{algbackward}.
 
 
 \begin{algorithm}[H]
       \caption{Backward}
       \label{algbackward}
       \begin{algorithmic}[1]  
-        \Require{Data frame con los observaciones obtenidas del forward, $dataU$; lista con las funciones $h$ ajustadas en el backward, $hs$ ; lista que contiene las cópulas ajustadas en el forward,  $copulas$; nivel de confiabilidad; $\alpha$.}
+        \Require{Data frame con los observaciones obtenidas del forward, $dataU$; lista con las funciones $h$ ajustadas en el forkward, $hs$ ; lista que contiene las cópulas ajustadas en el forward,  $copulas$; nivel de confiabilidad; $\alpha$.}
         \Ensure{Regresión Cuantil.}
         \State{$alphas = rep(alpha, nrows(dataU))$}
         
@@ -773,7 +774,7 @@ Una vez estimadas las cópulas y las funciones $h$  en cada nivel del árbol de 
         \While{$i \leq niveles$ \do}
           \State Usar $BiCopHinv2$ para cada cópula creada con usando sus respectivas funciones $h$ en la variable $aux$. En la primera iteración los argumentos corresponden al vector $alphas$ y $dataU$.
           \State Actualizar $alphas = aux$
-          \State{i=i+1}
+          \State{$i=i+1$}
         \EndWhile
        
     \State{\textbf{Output:} Devolver $alphas$.}

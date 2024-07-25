@@ -1,67 +1,13 @@
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Modelos de 4 variables}
 
-El orden ajustado en los tres modelos se presenta en la Ecuación \eqref{ordenVar4}. Las cópulas ajustadas para los datos de mujeres se ilustran en la Figura \ref{fig:copulasTestMu}, mientras que las correspondientes a hombres se muestran en la Figura \ref{fig:copulasTestHo}.
-
-\begin{equation}\label{ordenVar4}
-     FBIGC \sim Glu.120 + Glu.0 + BMI + PA.diast
-\end{equation}
-
-Para ajustar las cópulas a pares de todos los niveles, se utilizó la función \textit{BiCopSelect} de la librería \textbf{VineCopula}. En las Figuras  \ref{fig:copulasTestMu}, \ref{fig:copulasTestHo} y \ref{fig:copulasTestTotal}, se muestran los nombres y parámetros, junto con el test de independencia de las cópulas ajustadas dentro del modelo D-vine de mujeres, hombres y ambos sexos respectivamente. Estos resultados permiten evaluar la idoneidad de las cópulas seleccionadas para modelar las relaciones entre las variables y determinar si existe alguna dependencia significativa entre ellas en cada grupo de datos, en caso de no haber desecharla. 
-
-Para los tests de independencia se tomará un nivel de significancia de $\alpha = 0.5$. Esto significa que cualquier valor de $p-value$ que sea menor o igual a $0.5$ indicará que se rechaza la hipótesis nula de independencia entre las variables, lo que sugiere que hay una dependencia significativa entre ellas.
-
-\begin{figure}[H]
- \centering
-  \subfloat[Parte 1]{
-   \label{ajusteMu1}
-    \includegraphics[width=0.49\textwidth]{4img/testM1.png}}
-  \subfloat[Parte 2]{
-   \label{ajusteMu2}
-    \includegraphics[width=0.49\textwidth]{4img/testM2.png}}
-    \caption{Cópulas ajustadas la base de mujeres.}
-    \label{fig:copulasTestMu}
-\end{figure}
-
-Los tests de independencia de las cópulas ajustadas a los datos de mujeres en los niveles más bajos, como $C_{25|34}$ y $C_{15|234}$, muestran valores altos. Esto sugiere que podría ser beneficioso reducir una variable en estos niveles para mejorar la capacidad del modelo para capturar las relaciones entre las covariables. La alta puntuación en el test de independencia indica que las variables incluidas en estos pares de cópulas podrían no estar contribuyendo significativamente a la relación modelada. Por lo tanto, considerar la eliminación de una variable en estos niveles podría simplificar el modelo sin perder información importante sobre la dependencia entre las variables.
-
-\begin{figure}[H]
- \centering
-  \subfloat[Parte 1]{
-   \label{ajusteHo1}
-    \includegraphics[width=0.49\textwidth]{4img/testH1.png}}
-  \subfloat[Parte 2]{
-   \label{ajusteHo2}
-    \includegraphics[width=0.49\textwidth]{4img/testH2.png}}
-    \caption{Cópulas ajustadas la base de hombres.}
-    \label{fig:copulasTestHo}
-\end{figure}
-
-En cuanto a los tests de independencia de las cópulas ajustadas a los datos provenientes de hombres, ver Figura \ref{fig:copulasTestHo}, se observan valores altos en los tests de independencia para las cópulas $C_{24|3}$ y $C_{15|234}$. Esto sugiere que reducir una variable en estos niveles podría ser beneficioso para mejorar la capacidad del modelo para capturar las relaciones entre las covariables. 
-
-\begin{figure}[H]
- \centering
-  \subfloat[Parte 1]{
-   \label{ajusteTo1}
-    \includegraphics[width=0.49\textwidth]{4img/testT1.png}}
-  \subfloat[Parte 2]{
-   \label{ajusteTo2}
-    \includegraphics[width=0.49\textwidth]{4img/testT2.png}}
-    \caption{Cópulas ajustadas la base de hombre y mujeres.}
-    \label{fig:copulasTestTotal}
-\end{figure}
-
-Por último, en la Figura \ref{fig:copulasTestTotal}
-, se muestran las cópulas ajustadas para todo el conjunto de datos, y la única cópula cuyo valor de test de independencia es alto es la última, $C_{15|234}$. Es posible que esta diferencia, de solo tener una cópula independiente, se deba a que la cantidad de datos en este modelo es mayor. Al tener más datos, el modelo tiene una mayor capacidad para capturar la complejidad de las relaciones entre las variables, lo que puede resultar en una menor dependencia observada entre ellas.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%% RESULTADOS DE VERDAD %%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{landscape}
-\subsection{Visualización del Modelo ajustado para Mujeres y hombres}
 
+\subsection{Visualización del Modelo ajustado para Mujeres y hombres}
 \begin{figure}[H]
     \centering
     \includegraphics[height = 13.5 cm, width = 1.4 \textwidth]{4img/UdiagT.png}
@@ -71,71 +17,73 @@ Por último, en la Figura \ref{fig:copulasTestTotal}
 
 \end{landscape}
 
-Uno de los aspectos más destacados de la Figura \ref{fig:diagTot}, es la posición de la diagonal de la cópula empírica en relación con la diagonal de cópula producto. En su mayor parte, la diagonal de la cópula empírica se sitúa por debajo o por encima de la diagonal, lo que indica que las dependencias entre las variables son mayoritariamente concordantes negativas o positivas, respectivamente. Este patrón de comportamiento es crucial, ya que las cópulas paramétricas pueden modelar estas relaciones de manera efectiva. Por lo tanto, utilizar un modelo R vine con un ajuste paramétrico parece ser una estrategia apropiada.
+Uno de los aspectos más destacados de la Figura \ref{fig:diagTot}, es la posición de la diagonal de la cópula empírica en relación con la diagonal de cópula producto. En su mayor parte, la diagonal de la cópula empírica se sitúa por debajo o por encima de la diagonal, lo que indica que las dependencias entre las variables son mayoritariamente concordantes negativas o positivas, respectivamente. Este patrón de comportamiento es crucial, ya que las cópulas paramétricas pueden modelar estas relaciones de manera efectiva. Por lo tanto, como ya se había mencionado antes utilizar un modelo \texttt{R} vine con un ajuste paramétrico parece ser una estrategia apropiada.
 
-Otro aspecto destacable es la partición que genera la variable presión diastólica. Recuérdese que esta es la presión arterial mínima registrada en las arterias durante el ciclo cardíaco cuando el corazón se encuentra en reposo entre latidos. La creación de estos tres grupos podría deberse a la presencia de tres subpoblaciones, como personas con presión diastólica normal, con hipertensión leve y con hipertensión moderada o grave. Sin embargo, no parece haber una dependencia estable con las otras variables.
+Otro aspecto destacable es la partición que genera la variable presión diastólica. Recuérdese que esta es la presión arterial mínima registrada en las arterias durante el ciclo cardíaco cuando el corazón se encuentra en reposo entre latidos. La creación de estos tres grupos podría deberse a la presencia de tres subpoblaciones, como personas con presión diastólica normal, con hipertensión leve y con hipertensión moderada o grave o también podría provenir de las características de los instrumentos de medición. Sin embargo, no parece haber una dependencia estable con las otras variables.
 
-A continuación se muestran los heatmaps $\mathscr{H}\rho$, $\mathscr{H}\sigma$ y $\mathscr{H}$ de todas las cópulas utilizadas en el modelo D-vine. Esto proporcionan una mejor comprensión del tipo y la fuerza de dependencia de cada cópula, y nos permitirá verificar visualmente la monotonicidad de la función para juzgar si el enfoque paramétrico es correcto. Estos heatmaps ayudan a identificar patrones de dependencia y a evaluar la idoneidad del modelo para capturar las relaciones entre las variables.
 
+Ahora, se muestran los heatmaps $\mathscr{H}\rho$, $\mathscr{H}\sigma$ y $\mathscr{H}$ de todas las cópulas utilizadas en el modelo D-vine para el modelo considerando hombre y mujeres. 
 
 
 \begin{figure}[H]
  \centering
   \subfloat[$\mathscr{H}\rho_{C_{12}}$]{
    \label{C12rhoT}
-    \includegraphics[width=0.33\textwidth]{4img/TotalrhoC12.png}}
+    \includegraphics[width=0.3\textwidth]{4img/TotalrhoC12.png}}
   \subfloat[$\mathscr{H}\sigma_{C_{12}}$]{
    \label{C12sigmaT}
-    \includegraphics[width=0.33\textwidth]{4img/TotalsigmaC12.png}}
+    \includegraphics[width=0.3\textwidth]{4img/TotalsigmaC12.png}}
   \subfloat[$\mathscr{H}_{C_{12}}$]{
    \label{C12HT}
-    \includegraphics[width=0.33\textwidth]{4img/TotalHC12.png}}
+    \includegraphics[width=0.3\textwidth]{4img/TotalHC12.png}}
 \end{figure}
 
 \begin{figure}[H]
  \centering
   \subfloat[$\mathscr{H}\rho_{C_{23}}$]{
    \label{C23rhoT}
-    \includegraphics[width=0.33\textwidth]{4img/TotalrhoC23.png}}
+    \includegraphics[width=0.3\textwidth]{4img/TotalrhoC23.png}}
   \subfloat[$\mathscr{H}\sigma_{C_{23}}$]{
    \label{C23sigmaT}
-    \includegraphics[width=0.33\textwidth]{4img/TotalsigmaC23.png}}
+    \includegraphics[width=0.3\textwidth]{4img/TotalsigmaC23.png}}
   \subfloat[$\mathscr{H}_{C_{23}}$]{
    \label{C23HT}
-    \includegraphics[width=0.33\textwidth]{4img/TotalHC23.png}}
+    \includegraphics[width=0.3\textwidth]{4img/TotalHC23.png}}
 \end{figure}
 
 \begin{figure}[H]
  \centering
   \subfloat[$\mathscr{H}\rho_{C_{34}}$]{
    \label{C34rhoT}
-    \includegraphics[width=0.33\textwidth]{4img/TotalrhoC34.png}}
+    \includegraphics[width=0.3\textwidth]{4img/TotalrhoC34.png}}
   \subfloat[$\mathscr{H}\sigma_{C_{34}}$]{
    \label{C34sigmaT}
-    \includegraphics[width=0.33\textwidth]{4img/TotalsigmaC34.png}}
+    \includegraphics[width=0.3\textwidth]{4img/TotalsigmaC34.png}}
   \subfloat[$\mathscr{H}_{C_{34}}$]{
    \label{C34HT}
-    \includegraphics[width=0.33\textwidth]{4img/TotalHC34.png}}
+    \includegraphics[width=0.3\textwidth]{4img/TotalHC34.png}}
 \end{figure}
 
 \begin{figure}[H]
  \centering
   \subfloat[$\mathscr{H}\rho_{C_{45}}$]{
    \label{C45rhoT}
-    \includegraphics[width=0.33\textwidth]{4img/TotalrhoC45.png}}
+    \includegraphics[width=0.3\textwidth]{4img/TotalrhoC45.png}}
   \subfloat[$\mathscr{H}\sigma_{C_{45}}$]{
    \label{C45sigmaT}
-    \includegraphics[width=0.33\textwidth]{4img/TotalsigmaC45.png}}
+    \includegraphics[width=0.3\textwidth]{4img/TotalsigmaC45.png}}
   \subfloat[$\mathscr{H}_{C_{45}}$]{
    \label{C45HT}
-    \includegraphics[width=0.33\textwidth]{4img/TotalHC45.png}}
+    \includegraphics[width=0.3\textwidth]{4img/TotalHC45.png}}
     \caption{Cópulas ajustadas para mujeres y hombres, nivel $1$.}
     \label{fig:Modelo4TotalNivel1}
 \end{figure}
 
-En la Figura \ref{fig:Modelo4TotalNivel1}, se muestran los heatmaps para cada cópula del nivel $1$. En la cópula $C_{12}$, que modela la relación entre $FBIGC$ y la glucosa al tiempo $120$, no se observa una clara dependencia en la primera parte del dominio, pero posteriormente se evidencia una dependencia de cuadrante negativo. Por otro lado, en la cópula $C_{23}$, que representa la relación entre la glucosa al tiempo $120$ y la glucosa al tiempo $0$, se observa una dependencia de cuadrante positivo que se presenta en todo el dominio. Además, en la cópula $C_{34}$, correspondiente a la glucosa al tiempo $0$ y el Índice de Masa Corporal, se observa una fuerte dependencia de cuadrante positivo.
+Estas gráficas proporcionan una mejor comprensión del tipo y la fuerza de dependencia de cada cópula, y nos permitirá verificar visualmente la monotonicidad de la función para juzgar si el enfoque paramétrico es correcto. Estos heatmaps ayudan a identificar patrones de dependencia y a evaluar la idoneidad del modelo para capturar las relaciones entre las variables.
 
-En cuanto a la cópula $C_45$, se observa una relación singular caracterizada por líneas horizontales, que coinciden con los patrones de dispersión vistos en la Figura \ref{fig:diagTot}. Sin embargo, su dependencia fluctúa de positiva a negativa repentinamente, pero su depedencia en las zonas positivas no parece ser muy relevante, ver Figura \ref{C45sigmaT}. Es posible que sea adecuado intentar modelar esta cópula de manera no paramétrica para obtener un modelo más preciso y capturar mejor la complejidad de la relación entre las variables.
+En la Figura \ref{fig:Modelo4TotalNivel1}, se muestran los heatmaps para cada cópula del nivel $1$. En la cópula $C_{12}$, que modela la relación entre $FBIGC$ y la glucosa al tiempo $120$. No se observa una clara dependencia en la primera parte del dominio, pero posteriormente se evidencia una dependencia de cuadrante negativo. Por otro lado, en la cópula $C_{23}$, que representa la relación entre la glucosa al tiempo $120$ y la glucosa al tiempo $0$, se observa una dependencia de cuadrante positivo que se presenta en todo el dominio. Además, en la cópula $C_{34}$, correspondiente a la glucosa al tiempo $0$ y el Índice de Masa Corporal, se observa una fuerte dependencia de cuadrante positivo.
+
+En cuanto a la cópula $C_{45}$, se observa una relación singular caracterizada por líneas horizontales, que coinciden con los patrones de dispersión vistos en la Figura \ref{fig:diagTot}. Sin embargo, su dependencia fluctúa de positiva a negativa repentinamente, pero su depedencia en las zonas positivas no parece ser muy relevante. Es posible que sea adecuado intentar modelar esta cópula de manera no paramétrica para obtener un modelo más preciso y capturar mejor la complejidad de la relación entre las variables.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -180,11 +128,11 @@ En cuanto a la cópula $C_45$, se observa una relación singular caracterizada p
     \label{fig:Modelo4TotalNivel2}
 \end{figure}
 
-En la Figura \ref{fig:Modelo4TotalNivel2} se muestran las cópulas del nivel $2$. La primera cópula, $_{C13|2}$, corresponde a la variable respuesta y la medición de glucosa al tiempo $0$ condicionada a la glucosa al tiempo $120$. Se observa una relación de dependencia de cuadrante negativo, lo cual tiene sentido porque cuanto más baja es la variable respuesta, es posible que el cuerpo tenga dificultades para procesar el azúcar, lo que puede resultar en niveles altos de glucosa. Esta relación sugiere una posible asociación entre la variable respuesta y los niveles de glucosa al tiempo $0$ condicionados por los niveles de glucosa al tiempo 120, lo cual es coherente con el conocimiento médico sobre la fisiología del metabolismo del azúcar en el cuerpo.
+En la Figura \ref{fig:Modelo4TotalNivel2} se muestran las cópulas del nivel $2$. La primera cópula, $C_{13|2}$, corresponde a la variable respuesta y la medición de glucosa al tiempo $0$ condicionada a la glucosa al tiempo $120$. Se observa una relación de dependencia de cuadrante negativo, lo cual tiene sentido porque cuanto más baja es la variable respuesta, es posible que el cuerpo tenga dificultades para procesar el azúcar, lo que puede resultar en niveles altos de glucosa. Esta relación sugiere una posible asociación entre la variable respuesta y los niveles de glucosa al tiempo $0$ condicionados por los niveles de glucosa al tiempo 120, lo cual es coherente con el conocimiento médico sobre la fisiología del metabolismo del azúcar en el cuerpo.
 
 La cópula $C_{24|3}$, que representa la relación entre la medición de glucosa al tiempo $120$ y el índice de masa corporal condicionado a los niveles de glucosa al tiempo $0$, muestra una relación de dependencia de cuadrante positiva, lo cual tiene sentido desde un punto de vista médico. Esto sugiere que a medida que los niveles de glucosa al tiempo $120$ aumentan, también tiende a aumentar el índice de masa corporal.
 
-La relación entre la glucosa al tiempo $0$ y la presión diastólica, condicionada al índice de masa corporal, corresponde a la cópula $C_{35|4}$. Al observar una dependencia de cuadrante negativa, se esperaría que un aumento en los niveles de glucosa al tiempo $0$ esté asociado con una disminución en los valores de presión diastólica. Sin embargo, es importante ser cauteloso al interpretar esta relación, ya que puede estar influida por la distribución singular que se observó en la cópula $C_{45}$.
+La relación entre la glucosa al tiempo $0$ y la presión diastólica, condicionada al índice de masa corporal, corresponde a la cópula $C_{35|4}$. Al observar una dependencia de cuadrante positiva, se esperaría que un aumento en los niveles de glucosa al tiempo $0$ esté asociado con una disminución en los valores de presión diastólica. Sin embargo, es importante ser cauteloso al interpretar esta relación, ya que puede estar influida por la distribución singular que se observó en la cópula $C_{45}$.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -237,23 +185,26 @@ Las cópula de nivel $3$ se muestran en la Figura \ref{fig:Modelo4TotalNivel3}. 
     \label{fig:Modelo4TotalNivel4}
 \end{figure}
 
-Finalmente, en la Figura \ref{fig:Modelo4TotalNivel4} se muestra la cópula $C_{15|234}$ correspondiente al último nivel. Esta cópula representa la relación entre la variable respuesta y la presión arterial diastólica, condicionada a los niveles de glucosa en el tiempo $120$ y $0$, y el índice de masa corporal.
+Finalmente, en la Figura \ref{fig:Modelo4TotalNivel4} se muestra la cópula $C_{15|234}$ correspondiente al último nivel. Esta cópula representa la relación entre la variable respuesta y la presión arterial diastólica, condicionada a los niveles de glucosa en el tiempo $120$ y $0$, y el índice de masa corporal se observa una dependencia muy baja.
 
-A continuación, se muestra la tabla de probabilidades de tener resistencia a la insulina por clasificación de peso y glucosa para datos mujeres, Figura \ref{fig:tabla4varTotal}.
+A continuación en la Figura \ref{fig:tabla4varTotal}, se muestra la tabla de probabilidades de tener resistencia a la insulina por clasificación de peso y glucosa para datos de hombres y mujeres. Para recordar la especificación de las clasificaciones se puede consultar las subsecciones \ref{ClasificaVar} y \ref{subTabla}.
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Tabla Resumen del Modelo}
+
+La probabilidad de pertenecer a la clase de individuos saludables es muy alta para las personas con niveles de glucosa normales y un peso normal o con sobrepeso. En la categoría de personas con niveles de glucosa normales pero con obesidad, la probabilidad de tener resistencia a la insulina con predisfunción de las células beta aumenta. A partir de esta categoría, la probabilidad de tener resistencia a la insulina con estrés de las células beta aumenta, siendo esta la predominante en todas las clasificaciones con niveles de glucosa prediabéticos. Las categorías cuyos niveles de glucosa son diabéticos ya son clasificadas como pacientes con resistencia a la insulina con disfunción de las células beta.
+
 
 \begin{figure}[H]
 
     \centering
-    \includegraphics[height = 10 cm, width = 0.99 \textwidth]{4img/tablaT.png}
+    \includegraphics[height = 12 cm, width = 0.99 \textwidth]{4img/tablaT.png}
     \caption{Tabla de probabilidades de cada Clase.}
     \label{fig:tabla4varTotal}
 \end{figure}
 
-La probabilidad de pertenecer a la clase de individuos saludables es muy alta para las personas con niveles de glucosa normales y un peso normal o con sobrepeso. En la categoría de personas con niveles de glucosa normales pero con obesidad, la probabilidad de tener resistencia a la insulina con predisfunción de las células beta aumenta. A partir de esta categoría, la probabilidad de tener resistencia a la insulina con estrés de las células beta aumenta, siendo esta la predominante en todas las clasificaciones con niveles de glucosa prediabéticos. Las categorías cuyos niveles de glucosa son diabéticos ya son clasificadas como pacientes con resistencia a la insulina con disfunción de las células beta.
+
 
 Las ventajas de tener este tipo de representaciones, y no solo quedarse con el modelo computacional, son significativas. Estas representaciones pueden llevarse a todo tipo de comunidades, incluidas aquellas con escasos recursos. Al proporcionar una visualización clara y accesible, se facilita la comprensión y el análisis de los datos sin necesidad de equipos o software avanzado. Esto es especialmente importante en áreas donde el acceso a tecnología de punta es limitado, permitiendo a los profesionales de la salud y a los encargados de la toma de decisiones identificar patrones y tomar medidas preventivas de manera más efectiva.
 
@@ -263,71 +214,75 @@ Las ventajas de tener este tipo de representaciones, y no solo quedarse con el m
 
 \subsection{Comparación de Modelos}
 
-Con el objetivo de comparar las diferencias entre los ajustes de cada subconjunto de datos, se utilizará la gráfica de efectos para visualizar el efecto que tiene cada covariable sobre la variable respuesta. Además, se emplearán las curvas de nivel para comparar cómo son las cópulas ajustadas para cada par de variables, tanto no condicionadas como condicionadas. Estas herramientas nos permitirán evaluar de manera detallada cómo se relacionan las variables en diferentes contextos y subgrupos de datos, lo que facilitará la identificación de patrones y relaciones importantes en el modelo.
+Con el objetivo de comparar las diferencias entre los ajustes de cada subconjunto de datos, se utilizará la gráfica de efectos para visualizar el impacto que tiene cada covariable sobre la variable respuesta. Además, se emplearán las curvas de nivel para comparar cómo son las cópulas ajustadas para cada par de variables, tanto no condicionadas como condicionadas. Estas herramientas nos permitirán evaluar de manera detallada cómo se relacionan las variables en diferentes contextos y subgrupos de datos, lo que facilitará la identificación de patrones y relaciones importantes en el modelo.
 
+En las gráficas de efectos de la variable glucosa al tiempo $120$ se muestra en las Figuras \ref{Efec120M4}, \ref{Efec120H4} y \ref{Efec120T4}, se observa que el efecto difiere según el género. En el caso de las mujeres, esta variable influye principalmente en sus valores bajos, teniendo un efecto similar para valores mayores a $120$ $mg/dl$. Por otro lado, en los hombres, parece que la respuesta cambia poco para valores menores a aproximadamente $100$ $mg/dl$. Luego, influye significativamente en el cambio de la respuesta hasta valores menores a $300$ $mg/dl$, y vuelve a cambiar poco para valores mayores a este umbral. Estas diferencias en el efecto de la variable glucosa al tiempo $120$ entre géneros son importantes y pueden tener implicaciones significativas en el análisis y la interpretación de los resultados del modelo.
+
+En el modelo combinado de hombres y mujeres, se observa una combinación de ambas tendencias. La gráfica muestra una tendencia descendente, similar al modelo de las mujeres, pero no tiene una forma sigmoidal tan pronunciada como la de los hombres. Sin embargo, tampoco se estanca, lo que sugiere que hay una influencia continua de la variable en la respuesta a lo largo de su rango de valores. Esta combinación de tendencias refleja la complejidad de la relación entre la variable en cuestión y la respuesta, que puede variar según el género y otros factores.
 
 \begin{figure}[H]
  \centering
   \subfloat[Glu.120, Mujeres]{
    \label{Efec120M4}
-    \includegraphics[width=0.33\textwidth]{4img/MujGlu.120Efec.png}}
+    \includegraphics[width=0.3\textwidth]{4img/MujGlu.120Efec.png}}
   \subfloat[Glu.120, Hombres]{
    \label{Efec120H4}
-    \includegraphics[width=0.33\textwidth]{4img/HomGlu.120Efec.png}}
+    \includegraphics[width=0.3\textwidth]{4img/HomGlu.120Efec.png}}
   \subfloat[Glu.120, Total]{
    \label{Efec120T4}
-    \includegraphics[width=0.33\textwidth]{4img/TotalGlu.120Efec.png}}
+    \includegraphics[width=0.3\textwidth]{4img/TotalGlu.120Efec.png}}
 \end{figure}
 
 \begin{figure}[H]
  \centering
   \subfloat[Glu.0, Mujeres]{
    \label{Efec0M4}
-    \includegraphics[width=0.33\textwidth]{4img/MujGlu.0Efec.png}}
+    \includegraphics[width=0.3\textwidth]{4img/MujGlu.0Efec.png}}
   \subfloat[Glu.0, Hombres]{
    \label{Efec0H4}
-    \includegraphics[width=0.33\textwidth]{4img/HomGlu.0Efec.png}}
+    \includegraphics[width=0.3\textwidth]{4img/HomGlu.0Efec.png}}
   \subfloat[Glu.0, Total]{
    \label{Efec0T4}
-    \includegraphics[width=0.33\textwidth]{4img/TotalGlu.0Efec.png}}
+    \includegraphics[width=0.3\textwidth]{4img/TotalGlu.0Efec.png}}
 \end{figure}
 
 \begin{figure}[H]
  \centering
   \subfloat[BMI, Total]{
    \label{EfecBMIM4}
-    \includegraphics[width=0.33\textwidth]{4img/MujBMIEfec.png}}
+    \includegraphics[width=0.3\textwidth]{4img/MujBMIEfec.png}}
   \subfloat[BMI, Total]{
    \label{EfecBMIH4}
-    \includegraphics[width=0.33\textwidth]{4img/HomBMIEfec.png}}
+    \includegraphics[width=0.3\textwidth]{4img/HomBMIEfec.png}}
   \subfloat[BMI, Total]{
    \label{EfecBMIT4}
-    \includegraphics[width=0.33\textwidth]{4img/TotalBMIEfec.png}}
+    \includegraphics[width=0.3\textwidth]{4img/TotalBMIEfec.png}}
 \end{figure}
 
 \begin{figure}[H]
  \centering
   \subfloat[PA.diast, Mujeres]{
    \label{EfecPAM4}
-    \includegraphics[width=0.33\textwidth]{4img/MujPA.diastEfec.png}}
+    \includegraphics[width=0.3\textwidth]{4img/MujPA.diastEfec.png}}
   \subfloat[PA.diast, Hombres]{
    \label{EfecPAH4}
-    \includegraphics[width=0.33\textwidth]{4img/HomPA.diastEfec.png}}
+    \includegraphics[width=0.3\textwidth]{4img/HomPA.diastEfec.png}}
   \subfloat[PA.diast, Total]{
    \label{EfecPAT4}
-    \includegraphics[width=0.33\textwidth]{4img/TotalPA.diastEfec.png}}
+    \includegraphics[width=0.3\textwidth]{4img/TotalPA.diastEfec.png}}
     \caption{Gráficas de efectos para la regresión de 4 variables.}
     \label{fig:efecto4}
 \end{figure}
 
 
-En las gráficas de efectos de la variable glucosa al tiempo $120$ \ref{Efec120M4}, \ref{Efec120H4} y \ref{Efec120T4}, se observa que el efecto difiere según el género. En el caso de las mujeres, esta variable influye principalmente en los valores bajos de la variable $Glu.120$, teniendo un efecto similar para valores mayores a $120$. Por otro lado, en los hombres, parece que la respuesta cambia poco para valores menores a aproximadamente $100$. Luego, influye significativamente en el cambio de la respuesta hasta valores menores a $300$, y vuelve a cambiar poco para valores mayores a este umbral. Estas diferencias en el efecto de la variable glucosa al tiempo $120$ entre géneros son importantes y pueden tener implicaciones significativas en el análisis y la interpretación de los resultados del modelo.
 
-En el modelo combinado de hombres y mujeres, se observa una combinación de ambas tendencias. La gráfica muestra una tendencia descendente, similar a la de las mujeres, pero no tiene una forma sigmoidal tan pronunciada como la de los hombres. Sin embargo, tampoco se estanca, lo que sugiere que hay una influencia continua de la variable en la respuesta a lo largo de su rango de valores. Esta combinación de tendencias refleja la complejidad de la relación entre la variable en cuestión y la respuesta, que puede variar según el género y otros factores.
-
-En cuanto a los efectos de la glucosa en tiempo $0$, ver Figuras \ref{Efec0M4}, \ref{Efec120H4} y \ref{Efec120T4} . En mujeres se observa que inicialmente influye levemente en la variable respuesta. Luego, este efecto aumenta y posteriormente disminuye, sin embargo, el nivel de aumento o disminución depende en gran medida del nivel con el que se realice la relación. Por otro lado, en hombres, el aumento en la variable respuesta es muy drástico al principio, y luego se vuelve muy leve. Al igual que en mujeres, este nivel de cambio también se ve afectado por el nivel con el que se realice la regresión. Estas diferencias en los efectos de la glucosa en tiempo $0$ entre géneros resaltan la importancia de considerar las características específicas de cada grupo al analizar los datos y desarrollar modelos predictivos.
+Ahora se analizará los efectos de la glucosa en tiempo $0$, Figuras \ref{Efec0M4}, \ref{Efec0H4} y \ref{Efec0T4} . En mujeres se observa que inicialmente influye levemente en la variable respuesta. Luego, este efecto aumenta y posteriormente disminuye. Sin embargo, el nivel de aumento o disminución depende en gran medida del cuantil que se considere. Por otro lado, en hombres, el decrecimento en la variable respuesta es muy drástico al principio, y luego se vuelve muy leve. Al igual que en mujeres, este nivel de cambio también se ve afectado por el nivel del cuantil con el que se realice la regresión. Estas diferencias en los efectos de la glucosa en tiempo $0$ entre géneros resaltan la importancia de considerar las características específicas de cada grupo al analizar los datos y desarrollar modelos predictivos.
 
 
-En el efecto de la variable $Glu.0$ del modelo combinado de hombres y mujeres, parece haber un cambio en todos los valores de la glucosa, y estos cambios varían de acuerdo al nivel de la regresión. Sin embargo, es importante destacar que el rango de la variable respuesta en este modelo combinado es más grande que los rangos individuales de hombres y mujeres. Esto sugiere que la inclusión de ambos géneros puede resultar en una variabilidad más amplia en la variable respuesta, lo que podría reflejar la diversidad de respuestas dentro de la población en general.
+En el efecto de la variable $Glu.0$ del modelo combinado de hombres y mujeres, parece haber un cambio en todos los valores de la glucosa, y estos cambios varían de acuerdo al nivel de la regresión. Sin embargo, es importante destacar que el rango de la variable respuesta en este modelo combinado es más grande que los rangos individuales de hombres y mujeres. Esto sugiere que la inclusión de ambos géneros puede resultar en una variabilidad más amplia en la variable respuesta, lo que podría reflejar la diversidad de respuestas dentro de la población en general. 
+
+En las Figuras \ref{EfecPAM4}, \ref{EfecPAH4} y \ref{EfecPAT4}, se pueden observar los efectos de la variable presión diastólica sobre la variable respuesta. Se puede notar que no hay un cambio significativo en la variable respuesta ante los diferentes valores de la presión diastólica en los $3$ modelos. Esto indica que la presión diastólica no aporta información relevante al modelo, ya que su contribución es prácticamente nula en relación con la variable respuesta. Por lo tanto, se puede concluir que esta variable no tiene un impacto significativo y podría ser excluida del modelo sin perder precisión predictiva.
+
+Los efectos de las variables $BMI$ aparecen en las Figuras \ref{EfecBMIM4}, \ref{EfecBMIH4} y \ref{EfecBMIT4}. Las interpretaciones son similares a los casos de las variables $Glu.0$ y $Glu.120$, por lo que no se describen. 
 
 En el Apéndice \ref{ApendiceA}, se presentan las visualizaciones de los modelos D-vine ajustados específicamente para mujeres y para hombres, junto con sus respectivas tablas de probabilidades. La inclusión de estos modelos en el apéndice permite una evaluación detallada y comparativa de las diferencias y similitudes en la dependencia entre variables según el género, sin interrumpir el flujo principal del análisis en el cuerpo del documento.
