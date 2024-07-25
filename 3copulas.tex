@@ -624,7 +624,7 @@ En general,
 
 Como otro ejemplo, para $3$ variables se tiene que 
 
-\begin{equation}
+\begin{equation}\label{quantileReg}
     \begin{aligned}
     C_{V \mid U_1, U_2, U_3}\left(v \mid u_1, u_2, u_3\right) 
     = & h_{V \mid U_3 ; U_1, U_2}\left(C_{V \mid U_1, U_2}\left(v \mid u_1, u_2\right) \mid C_{U_3 \mid U_1, U_2}\left(u_3 \mid u_1, u_2\right)\right) \\
@@ -640,9 +640,9 @@ Recuérdese que función $h$ se definió en \eqref{funH}. Después de haber ilus
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%% G R A F O  I N I C I A L  %%%%%%5%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Descripción de la Implementación Computacional de la Regresión Cuantílica D-Vine}
+\section{Implementación de la Regresión Cuantílica D-Vine}
 
-A continuación, se abordarían aspectos como los algoritmos utilizados para el ajuste de cópulas, las técnicas de optimización para la estimación de parámetros y las estrategias para la validación del modelo. 
+A continuación, se abordarían aspectos como los algoritmos utilizados para el ajuste de cópulas. El primer paso en la construcción del modelo es la creación del grafo inicial. Este grafo representa las relaciones de dependencia entre las variables y sirve como base para los siguientes pasos del proceso. El siguiente paso, denominado \textit{forward}, consiste en estimar las cópulas utilizando la función \textit{BiCopSelect}. En esta etapa, se construye el modelo de manera incremental. Una vez ajustado el modelo, se procede a la etapa de predicción, llamada como \textit{backward}. En este paso, se toman en cuenta las dependencias condicionales de manera adecuada. Utilizando las funciones inversas de las funciones $h$.
 
 \subsection{Formación del Grafo Inicial}
 
@@ -683,7 +683,10 @@ Las D-Vines son estructuras gráficas que permiten modelar dependencias compleja
 
 \subsection{Forward}
 
-El siguiente paso consiste en estimar las cópulas utilizando la función \textit{BiCopSelect}. En este proyecto, nos centraremos exclusivamente en el ajuste de cópulas paramétricas; las razones de esta elección se explicarán en el próximo capítulo. Además, para calcular las funciones de distribución condicionales, o su equivalente, la derivada de la cópula, como se muestra en la ecuación \eqref{fact}, se utilizará la función \textit{BiCopHfunc2}, disponible en la biblioteca de \texttt{R}, \textbf{VineCopula}. Para más detalles de implementación ver \url{https://cran.r-project.org/web/packages/VineCopula/index.html}. Es necesario calcular las funciones $h$ en cada nivel para completar la etapa de avance (forward). Estas funciones $h$ serán necesarias para la etapa de retroceso (backward) y para realizar predicciones precisas.
+El siguiente paso se denominará \textit{forward}. Este consiste en estimar las cópulas utilizando la función \textit{BiCopSelect}. Se le llama \textit{forward} porque el modelo se construye de manera incremental, comenzando por las relaciones de dependencia más simples (pares de variables) y agregando gradualmente complejidad al modelo a medida que se identifican dependencias condicionales basadas en las dependencias previas. El proceso secuencial ayuda a mantener la modelo interpretabilidad, ya que se puede entender claramente cómo se agregan y contribuyen las dependencias a lo largo de la construcción del D-vine.
+
+
+En este proyecto, nos centraremos exclusivamente en el ajuste de cópulas paramétricas; las razones de esta elección se explicarán en el próximo capítulo. Además, para calcular las funciones de distribución condicionales, o su equivalente, la derivada de la cópula, como se muestra en la ecuación \eqref{fact}, se utilizará la función \textit{BiCopHfunc2}, disponible en la biblioteca de \texttt{R}, \textbf{VineCopula}. Para más detalles de implementación ver \url{https://cran.r-project.org/web/packages/VineCopula/index.html}. Es necesario calcular las funciones $h$ en cada nivel para completar la etapa de avance (forward). Estas funciones $h$ serán necesarias para la etapa de retroceso (backward) y para realizar predicciones precisas.
 
 La transformación a escala $u$ hace referencia a convertir las variables aleatorias marginales en distribuciones uniformes en el intervalo $[0, 1]$, la cual es necesaria para trabajar con cópulas. Dicha transformación se realiza aplicando la función de distribución acumulada empírica de cada variable aleatoria como se describe en \eqref{fdaEmp}.
 
@@ -748,7 +751,7 @@ Donde $\Phi$ es la función de distribución normal estándar.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width = 0.98\textwidth]{Imagenes/Construccion.jpeg}
+    \includegraphics[height = 13 cm, width = 0.98\textwidth]{Imagenes/Construccion.jpeg}
     \caption{Visualización gráfica para la implementación del modelo D-vine.}
     \label{fig:construccion}
 \end{figure}
@@ -759,8 +762,12 @@ Donde $\Phi$ es la función de distribución normal estándar.
 
 \subsection{Backward}
 
-Una vez estimadas las cópulas y las funciones $h$  en cada nivel del árbol de cópulas, ahora se tiene que realizar las predicciones sobre la escala de las variables aleatorias originales. No hay que olvidar que es necesario que obtener las funciones inversas $h^{-1}$. Esto se hará usando la función \textit{BiCopHinv2} que viene implementada en la librería \textbf{VineCopula}. Cabe mencionar que el orden de los argumentos es importante ya que obtiene la inversa con respecto a la segunda entrada. Se da en pseudocódigo en el Algoritmo \ref{algbackward}.
+Una vez estimadas las cópulas y las funciones $h$  en cada nivel del árbol de cópulas, ahora se tiene que realizar las predicciones sobre la escala de las variables aleatorias originales. Para realizar una predicción, se deben tener en cuenta las dependencias condicionales de manera adecuada. A este paso se le denomina \textit{Backward}. El \textit{backward} permite condicionar las predicciones en el contexto y orden correcto, considerando las dependencias entre variables ya conocidas utilizando las funciones inversas de las funciones $h$ para regresar un nivel en la D-vine, como se mostró en ejemplo para $3$ variables de la ecuación \eqref{quantileReg}.
 
+
+Es necesario que obtener las funciones inversas $h^{-1}$. Esto se hará usando la función \textit{BiCopHinv2} que viene implementada en la librería \textbf{VineCopula}. Cabe mencionar que el orden de los argumentos es importante ya que obtiene la inversa con respecto a la segunda entrada. Se da en pseudocódigo en el Algoritmo \ref{algbackward}.
+
+Al finalizar el proceso descrito, se obtienen las cópulas ajustadas, las cuales son fundamentales cuando se pretende que cualquier individuo pueda ingresar sus datos y recibir un pronóstico preciso. Estas cópulas ajustadas capturan la estructura de dependencia entre las variables de la base dada, lo que permite generar predicciones para nuevas observaciones. 
 
 \begin{algorithm}[H]
       \caption{Backward}
@@ -781,4 +788,3 @@ Una vez estimadas las cópulas y las funciones $h$  en cada nivel del árbol de 
       \end{algorithmic}
     \end{algorithm}
 
-Al finalizar el proceso descrito, se obtienen las cópulas ajustadas, las cuales son fundamentales cuando se pretende que cualquier individuo pueda ingresar sus datos y recibir un pronóstico preciso. Estas cópulas ajustadas capturan la estructura de dependencia entre las variables de la base dada, lo que permite generar predicciones para nuevas observaciones. 
