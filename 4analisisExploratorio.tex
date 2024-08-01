@@ -32,7 +32,7 @@ Los tipos de datos con los que se cuenta para enfrentar el problema son del tipo
 
 \subsection{Datos Faltantes}
 
-Durante el análisis de datos es importante tener en cuenta la cantidad de datos faltantes, ya que esto puede influir negativamente durante el desarrollo del modelo, pues al tener una reducción de información esto reduce precisión y el poder de predicción del modelo e incrementar su variabilidad. En la práctica se utiliza la imputación de datos, la cual es una técnica estadística que sustituye loa valores faltantes de una observación por otros que son simulados \cite{Imputacion}. En la Figura \ref{fig:Nas}, se puede ver una representación gráfica de la cantidad y posición de datos faltantes de cada variable.
+Durante el análisis de datos es importante tener en cuenta la cantidad de datos faltantes, ya que esto puede influir negativamente durante el desarrollo del modelo, pues al tener una reducción de información esto reduce precisión y el poder de predicción del modelo e incrementar su variabilidad. En la práctica se utiliza la imputación de datos, la cual es una técnica estadística que sustituye los valores faltantes de una observación por otros que son simulados \cite{Imputacion}. En la Figura \ref{fig:Nas}, se puede ver una representación gráfica de la cantidad y posición de datos faltantes de cada variable.
 
 \begin{figure}[H]
     \centering
@@ -41,7 +41,7 @@ Durante el análisis de datos es importante tener en cuenta la cantidad de datos
     \label{fig:Nas}
 \end{figure}
 
-Para medir el nivel de datos faltantes de cada variable se toma la proporción de número de datos faltantes con respecto al total de datos. En el Cuadro \ref{tab:PorcentajeNA} se muestra el porcentaje de NA's de correspondiente a cada variable. Afortunadamente, esta cantidad no es mayor al $8 \%$; en casi todas las variables con datos faltantes esta cantidad es menos al $3\%$. 
+Para medir el nivel de datos faltantes de cada variable se toma la proporción de número de datos faltantes con respecto al total de datos. En el Cuadro \ref{tab:PorcentajeNA} se muestra el porcentaje de NA's de correspondiente a cada variable. Afortunadamente, esta cantidad no es mayor al $8 \%$; en casi todas las variables con datos faltantes esta cantidad es menor al $3\%$. 
 
 \begin{table}[H]
 \centering
@@ -83,7 +83,7 @@ Después de remover los individuos que contienen alguna covariable con datos fal
 
 \section{Visualización de Dependencias}
 
-Para comenzar a analizar las dependencias entre las covariables, la Figura \ref{fig:corrSWE} presenta un mapa de calor elaborado con la matriz de correlación de Schweizer y Wolff, mientras que la Figura \ref{fig:corSpe} muestra un mapa de calor basado en la matriz de correlación de Spearman. Es importante recordar que el coeficiente de Spearman proporciona información sobre la dirección de la dependencia entre las variables. En la Figura \ref{fig:corSpe}, el mapa de calor revela que todas las dependencias identificadas son crecientes o positivas.
+En algunas de las siguientes subsecciones se incluyen algunos otros estudios exploratorios. Por claridad y para hacer énfasis en su importancia, se decidió poner dichos análisis en subsecciones separadas. Para comenzar a analizar las dependencias entre las covariables, la Figura \ref{fig:corrSWE} presenta un mapa de calor elaborado con la matriz de correlación de Schweizer y Wolff, mientras que la Figura \ref{fig:corSpe} muestra un mapa de calor basado en la matriz de correlación de Spearman. Es importante recordar que el coeficiente de Spearman proporciona información sobre la dirección de la dependencia entre las variables. En la Figura \ref{fig:corSpe}, el mapa de calor revela que todas las dependencias identificadas son crecientes o positivas.
 
 Adicionalmente, en el mapa de calor de la correlación de Schweizer y Wolff, se observa una dependencia significativa entre las mediciones de la curva de glucosa. Sin embargo, en cuanto a las mediciones de insulina, aunque las dependencias no son tan fuertes como las observadas en las variables de glucosa, siguen siendo considerables. Como se mencionó en el Capítulo \ref{insulina}, los niveles de insulina y glucosa en sangre durante la prueba oral de glucosa no son independientes. Sin embargo, las dependencias no son tan marcadas, aunque sí están presentes. 
 
@@ -138,7 +138,7 @@ En la Figura \ref{fig:CorWolfGen}, se presentan los mapas de calor de la matriz 
 \end{table}
 
 A partir de las variables que se tienen se pueden crear otras variables. A continuación, se describe las nuevas variables introducidas.  En función del índice de masa corporal, se introdujeron los grados de obesidad como la Dra. Monroy lo sugirió. En el Cuadro \ref{tab:clasBMI} se marca esta clasificación.
-Como breve resumen, se clasificaron 13 pacientes como insuficiente, 362 como normal, 594 con sobrepeso, 397 con obesidad 1, 158 con obesidad 2 y 71 con obesidad 3. 
+Como breve resumen, se clasificaron $375$ como normal, $594$ con sobrepeso, $397$ con obesidad $1$, $158$ con obesidad $2$ y $71$ con obesidad $3$. 
  
 
 
@@ -182,7 +182,7 @@ Como conclusión de estas observaciones, se espera que las cópulas puedan captu
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width = 0.98 \textwidth]{Imagenes/insCurvasBMI.png}
+    \includegraphics[width = 0.9 \textwidth]{Imagenes/insCurvasBMI.png}
     \caption{Curvas de insulina de acuerdo al índice de masa corporal.}
     \label{fig:CurvasInsIBM}
 \end{figure}
@@ -209,7 +209,7 @@ Según el artículo `\textit{Gender differences in glucose homeostasis and diabe
 
 \subsection{Construcción de un Boxplot Funcional}
 
-Antes del comenzar el análisis gráfico, se presentará una breve descripción de la construcción de los boxplots funcionales para mejorar la interpretación de la gráfica para algo más detallada se sugiera consultar el artículo `\textit{Functional Boxplots}' \cite{boxplotFun}. La construcción de los boxplots funcionales sigue un proceso similar al de los boxplots clásicos, pero utiliza una medida de profundidad como las descritas en el Capítulo \ref{RegCuanDatosFun}.
+Antes del comenzar el análisis gráfico, se presentará una breve descripción de la construcción de los boxplots funcionales para mejorar la interpretación de la gráfica para algo más detallada se sugiera consultar el artículo `\textit{Functional Boxplots}' \cite{boxplotFun}. La construcción de los boxplots funcionales sigue un proceso similar al de los boxplots clásicos, pero utiliza una medida de profundidad como las descritas en el Capítulo \ref{RegCuanDatosFun}:
 
 \begin{figure}[H]
     \centering
@@ -221,13 +221,13 @@ Antes del comenzar el análisis gráfico, se presentará una breve descripción 
 \begin{itemize}
     \item \textbf{Curva más profunda}. Se identifica la curva central o más profunda de las funciones empleando la medida de profundidad, que es la región donde se encuentra la mitad central de las curvas de datos, esta se muestra en negro en la Figura \ref{fig:bfpartes}. La curva mediana es una estadística robusta para medir la centralidad de las funciones.
 
-    \item \textbf{El envolvente o caja}. Esta región es análoga al rango intercuartílico en un boxplot tradicional se constrye utilizado, y proporciona una indicación útil de la dispersión del $50\%$ central de las curvas. Esta esta definida por
+    \item \textbf{El envolvente o caja}. Esta región es análoga al rango intercuartílico en un boxplot tradicional, y proporciona una indicación útil de la dispersión del $50\%$ central de las curvas. Esta esta definida por
 
     \begin{equation}
         C_{0.5} = \left\{(t, x(t)): \min _{r=1, \ldots,\lceil n / 2\rceil} x_{[r]}(t) \leq x(t) \leq \max _{r=1, \ldots,\lceil n / 2\rceil} x_{[r]}(t)\right\},
     \end{equation}
 
-    donde $n$ es total de datos, $ \left \lceil \frac{n}{2}\right \rceil$ es el entero no más grande que $2/n$ y a $C_{0.5}$ se le llama el envolvente del $50 \%$. Esta se muestra en lila en la Figura \ref{fig:bfpartes}.
+    donde $n$ es total de datos, $ \left \lceil \frac{n}{2}\right \rceil$ es el entero no más grande que $n/2$ y a $C_{0.5}$ se le llama el envolvente del $50 \%$. Esta se muestra en lila en la Figura \ref{fig:bfpartes}.
     
     \item \textbf{Bigotes}. Estos son líneas verticales que se extienden desde la caja y representan el máximo envolvente del conjunto de datos, excepto los outliers. Se construyen extendiendo el criterio de $1.5$ veces el rango intercuartílico de un boxplot tradicional. Para ello, se infla el envolvente de $50\%$ multiplicando su rango por $1.5$. En la Figura \ref{fig:bfpartes}, corresponden a las lineas azules.
 
@@ -339,11 +339,18 @@ En la Figura \ref{bfGluDia}, se muestra el boxplot funcional de las curvas de gl
 
 Además, la separación entre las curvas relacionadas con el primer y tercer cuartil con respecto a la curva más profunda es mayor que en los casos anteriores, lo que indica una mayor varianza en los datos, aunque conservan la misma forma que la curva más profunda. Es importante destacar que en este gráfico no se muestran datos atípicos.
 
-El boxplot funcional de las curvas de insulina se puede observar en la gráfica \ref{bfInsDia}. No se aprecia ningún valor atípico, sin embargo, la forma y el rango de estas curvas son muy diferentes a las curvas de insulina de los casos anteriores. Estas curvas presentan rangos muy bajos, lo que indica una disfunción en la producción de insulina por parte de las células beta. Además, las curvas muestran un comportamiento creciente durante todo el periodo de observación, lo que sugiere una mala respuesta de las células beta a la glucosa.  Este patrón se puede observar claramente en las curvas del primer y tercer cuartil, así como en la curva más profunda.
+El boxplot funcional de las curvas para pacientes con prediagnóstico de diabetes se puede observar en la gráfica \ref{bfInsDia}. No se aprecia ningún valor atípico, sin embargo, la forma y el rango de estas curvas son muy diferentes a las curvas de insulina de los casos anteriores. Estas curvas presentan rangos muy bajos, lo que indica una disfunción en la producción de insulina por parte de las células beta. Además, las curvas muestran un comportamiento creciente durante todo el periodo de observación, lo que sugiere una mala respuesta de las células beta a la glucosa.  Este patrón se puede observar claramente en las curvas del primer y tercer cuartil, así como en la curva más profunda.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Interacción de la Glucosa e Insulina}
+
+Previamente se ha descrito cómo, de acuerdo con el avance de la enfermedad, la interacción entre la glucosa e insulina varía significativamente. En pacientes normales, se observaron curvas de insulina que aumentan y decrecen, manteniéndose en niveles bajos, mientras que las curvas de glucosa mostraban una mayor variabilidad. Por otro lado, en pacientes con prediagnóstico de prediabetes, la curva de insulina se encuentra en niveles más altos y, en algunos casos, no desciende, mientras que las curvas de glucosa son también más elevadas. Finalmente, en pacientes con diabetes, las curvas de insulina son variadas, pero en general no descienden, y las curvas de glucosa son consistentemente muy altas. El objetivo de esta subsección es clarificar la relación entre la glucosa e insulina que se quiere modelar.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width = 0.9 \textwidth]{Imagenes/InsulinaGlucosa.png}
+    \includegraphics[width = 0.6 \textwidth]{Imagenes/InsulinaGlucosa.png}
     \caption{Relación de la glucosa e insulina por grado de enfermedad.}
     \label{fig:relGluIns}
 \end{figure}
@@ -364,15 +371,15 @@ Estas observaciones subrayan la importancia de intervenir tempranamente en indiv
 
 \section{Interpretación de las Herramientas Visuales}
 
-Dado el objetivo de crear un modelo simplificado, se va a construir un sistema que requiera un mínimo de variables, utilizando mediciones de fácil obtención. La variable de interés es $FBIGC$, la cual se ha generado mediante el concepto de profundidad de banda con signo a partir de las curvas de glucosa e insulina, descrito en el Capítulo \ref{RegCuanDatosFun}. Las variables predictoras incluidas son los niveles de glucosa en ayunas y a los $120$ minutos durante la prueba de tolerancia a la glucosa oral, junto con el índice de masa corporal. Adicionalmente, se planea crear otro modelo al que se le añadirán mediciones de presión diastólica para explorar su efecto en la predicción de $FBIGC$.
+Dado el objetivo de crear un modelo simplificado, se va a construir un sistema que requiera un mínimo de variables, utilizando mediciones de fácil obtención. La variable de interés es $FBI/GC$, la cual se ha generado mediante el concepto de profundidad de banda con signo a partir de las curvas de glucosa e insulina, descrito en el Capítulo \ref{RegCuanDatosFun}. Las variables predictoras incluidas son los niveles de glucosa en ayunas y a los $120$ minutos durante la prueba de tolerancia a la glucosa oral, junto con el índice de masa corporal. Adicionalmente, se planea crear otro modelo al que se le añadirán mediciones de presión diastólica para explorar su efecto en la predicción de $FBI/GC$.
 
 A continuación, se muestran las matrices de la $\sigma$ de Schweizer y Wolff, de hombres, mujeres y el total de la población, respectivamente. La correlación $\sigma$ de la variable respuesta el grupo de hombres es ligeramente mayor con todas las demás variables que en comparación con el caso de las mujeres.
 
 \[
 \sigma_{Muj} = \begin{blockarray}{cccccc}
-FBIGC      &      BMI      &    Glu.0      &  Glu.120      & PA.diast \\
+FBI/GC      &      BMI      &    Glu.0      &  Glu.120      & PA.diast \\
 \begin{block}{(ccccc)c}
-1.000 & 0.311 & 0.542 &  0.733 & 0.181 & FBIGC \\
+1.000 & 0.311 & 0.542 &  0.733 & 0.181 & FBI/GC \\
 0.311 & 1.000 & 0.304 &  0.308 & 0.261 & BMI \\
 0.542 & 0.304 & 1.000 &  0.570 & 0.184 & Glu.0 \\
 0.733 & 0.308 & 0.570 &  1.000 & 0.181 & Glu.120 \\
@@ -383,9 +390,9 @@ FBIGC      &      BMI      &    Glu.0      &  Glu.120      & PA.diast \\
 
 \[
 \sigma_{Hom} = \begin{blockarray}{cccccc}
-FBIGC      &      BMI      &    Glu.0      &  Glu.120      & PA.diast \\
+FBI/GC      &      BMI      &    Glu.0      &  Glu.120      & PA.diast \\
 \begin{block}{(ccccc)c}
-1.000 & 0.412 & 0.649 & 0.770 & 0.333 & FBIGC \\
+1.000 & 0.412 & 0.649 & 0.770 & 0.333 & FBI/GC \\
 0.412 & 1.000 & 0.336 & 0.261 & 0.353 & BMI \\
 0.649 & 0.336 & 1.000 & 0.591 & 0.312 & Glu.0 \\
 0.770 & 0.261 & 0.591 & 1.000 & 0.282 & Glu.120\\
@@ -397,9 +404,9 @@ FBIGC      &      BMI      &    Glu.0      &  Glu.120      & PA.diast \\
 
 \[
 \sigma_{Total} = \begin{blockarray}{cccccc}
-FBIGC      &      BMI      &    Glu.0      &  Glu.120      & PA.diast \\
+FBI/GC      &      BMI      &    Glu.0      &  Glu.120      & PA.diast \\
 \begin{block}{(ccccc)c}
-1.000 & 0.361 & 0.567 & 0.747 & 0.244 & FBIGC \\
+1.000 & 0.361 & 0.567 & 0.747 & 0.244 & FBI/GC \\
 0.361 & 1.000 & 0.324 & 0.320 & 0.317 & BMI \\
 0.567 & 0.324 & 1.000 & 0.557 & 0.273 & Glu.0 \\
 0.747 & 0.320 & 0.557 & 1.000 & 0.223 & Glu.120 \\
@@ -418,9 +425,9 @@ A continuación, se muestran las matrices de diferencia:
 
 \[
 \sigma_{Muj} - \rho_{Muj} = \begin{blockarray}{cccccc}
-FBIGC      &      BMI      &    Glu.0      &  Glu.120      & PA.diast \\
+FBI/GC      &      BMI      &    Glu.0      &  Glu.120      & PA.diast \\
 \begin{block}{(ccccc)c}
-  0.000 & 0.002 & -0.001 & -0.001  & -0.001 & FBIGC \\
+  0.000 & 0.002 & -0.001 & -0.001  & -0.001 & FBI/GC \\
   0.002 & 0.000 &  0.002 &  0.004  & -0.001 & BMI \\
  -0.001 & 0.002 &  0.000 &  0.023  &  0.025 & Glu.0 \\
  -0.001 & 0.004 &  0.023 &  0.000  &  0.008 & Glu.120 \\
@@ -431,9 +438,9 @@ FBIGC      &      BMI      &    Glu.0      &  Glu.120      & PA.diast \\
 
  \[
 \sigma_{Hom} - \rho_{Hom} = \begin{blockarray}{cccccc}
-FBIGC      &      BMI      &    Glu.0      &  Glu.120      & PA.diast \\
+FBI/GC      &      BMI      &    Glu.0      &  Glu.120      & PA.diast \\
 \begin{block}{(ccccc)c}
-0.000 & 0.004 & 0.002  & 0.000  & -0.003 & FBIGC \\
+0.000 & 0.004 & 0.002  & 0.000  & -0.003 & FBI/GC \\
 0.004 & 0.000 & 0.007  & 0.013  &  0.002 & BMI \\
 0.002 & 0.007 & 0.000  & 0.022  &  0.022 & Glu.0 \\
 0.000 & 0.013 & 0.022  & 0.000  &  0.005 & Glu.120 \\
@@ -444,9 +451,9 @@ FBIGC      &      BMI      &    Glu.0      &  Glu.120      & PA.diast \\
 
  \[
 \sigma_{Total} - \rho_{Total} = \begin{blockarray}{cccccc}
-FBIGC      &      BMI      &    Glu.0      &  Glu.120      & PA.diast \\
+FBI/GC      &      BMI      &    Glu.0      &  Glu.120      & PA.diast \\
 \begin{block}{(ccccc)c}
- 0.000 & 0.002 & 0.002  & 0.000  &  0.008 & FBIGC \\
+ 0.000 & 0.002 & 0.002  & 0.000  &  0.008 & FBI/GC \\
  0.002 & 0.000 & 0.005  & 0.004  &  0.006 & BMI \\
  0.002 & 0.005 & 0.000  & 0.024  &  0.029 & Glu.0 \\
  0.000 & 0.004 & 0.024  & 0.000  &  0.016 & Glu.120 \\
@@ -466,7 +473,7 @@ Las matrices de diferencias de los coeficientes $\rho$ de Spearman y $\sigma$ de
 
 Para obtener una comprensión más profunda de cómo se ajusta cada cópula, se emplearon visualizaciones propuestas por Arturo Erdely y Manuel Rubio-Sanchez en \cite{Erdely2022}. Estas visualizaciones ofrecen una nueva perspectiva al representar la clásica gráfica de puntos de una manera innovadora, y al resaltar las diferencias entre la cópula empírica y la cópula independiente. Estas herramientas visuales ayudan a identificar patrones y estructuras de dependencia en los datos, lo que facilita la evaluación del ajuste de las cópulas y el análisis de la relación entre las variables. 
 
-Recordando que las medidas $\rho_C$ y $\sigma_C$ se obtiene de medir la distancia entre la cópula empírica y la independiente, se proponen los heatmaps $\mathscr{H}_\rho$ y $\mathscr{H}_\sigma$ definidos en las ecuaciones \eqref{Hrho} y \eqref{Hsigma}, respectivamente, que visualizar esta distancia en distintos puntos del dominio de la cópula. Adicionalmente se propone el heatmap $\mathscr{H}$ definido en \eqref{H}, el cual muestra la distancia entre la cópula empírica y la independiente, con respecto a la cercanía con los limites de Frechet -Hoeffding:
+Recordando que las medidas $\rho_C$ y $\sigma_C$ se obtienen de medir la distancia entre la cópula empírica y la independiente, se proponen los heatmaps $\mathscr{H}_\rho$ y $\mathscr{H}_\sigma$ definidos en las ecuaciones \eqref{Hrho} y \eqref{Hsigma}, respectivamente, que visualizar esta distancia en distintos puntos del dominio de la cópula. Adicionalmente se propone el heatmap $\mathscr{H}$ definido en \eqref{H}, el cual muestra la distancia entre la cópula empírica y la independiente, con respecto a la cercanía con los limites de Frechet -Hoeffding:
 
 \begin{equation}\label{Hrho}
     \mathscr{H}_\rho=\left\{12\left[C_n\left(\frac{i}{n}, \frac{j}{n}\right)-\frac{i j}{n^2}\right]: i, j \in\{1, \ldots, n-1\}\right\},
@@ -489,7 +496,7 @@ Recordando que las medidas $\rho_C$ y $\sigma_C$ se obtiene de medir la distanci
 \end{equation}
 
 
-Para iniciar con una visualización clásica, en la Figura \ref{fig:diagE} se muestran los gráficos de dispersión de las covariables dos a dos de los datos proveninetes de mujeres en escala $u$. En la diagonal superior se presentan las dispersión de las variables, mientras que en la diagonal inferior se muestran las diagonales de diferentes cópulas. La curva roja representa la diagonal de la cópula $W$, que corresponde a la cota inferior. En azul, se encuentra la diagonal de la cópula independiente, en verde la diagonal de la curva superior $M$, la cota superior, y por último, en negro se grafica la diagonal de la función empírica. Esta visualización ayuda a comprender las relaciones de concordancia presentes en cada variable, lo que facilita la elección de una estrategia adecuada al modelar con cópulas.
+Para iniciar con una visualización clásica, en la Figura \ref{fig:diagE} se muestran los gráficos de dispersión de las covariables dos a dos de los datos proveninetes de mujeres en escala $u$. En la diagonal superior se presentan las dispersión de las variables, mientras que en la diagonal inferior se muestran las diagonales de diferentes cópulas. La curva roja representa la diagonal de la cópula $W$, que corresponde a la cota inferior; en azul, se encuentra la diagonal de la cópula independiente; en verde la diagonal de la curva superior $M$, la cota superior; y por último, en negro se grafica la diagonal de la función empírica. Esta visualización ayuda a comprender las relaciones de concordancia presentes en cada variable, lo que facilita la elección de una estrategia adecuada al modelar con cópulas.
 
 \begin{figure}[H]
     \centering
@@ -498,29 +505,29 @@ Para iniciar con una visualización clásica, en la Figura \ref{fig:diagE} se mu
     \label{fig:diagE}
 \end{figure}
 
-Sin embargo, es importante tener en cuenta que aún falta explorar las dependencias entre las variables condicionales. Aunque los gráficos de dispersión proporcionan una visión general, también revelan ciertas franjas en los datos, lo cual puede indicar limitaciones potenciales del modelo (ver la diagonal superior de la Figura \ref{fig:diagE}). Esto se debe a que la mayoría de las cópulas paramétricas asumen datos continuos, y la presencia de franjas en los datos discretos podría afectar la capacidad del modelo para capturar la verdadera estructura de dependencia entre las variables. Por lo tanto, es necesario realizar un análisis más detallado para comprender completamente la naturaleza de las dependencias y evaluar la idoneidad del modelo propuesto.
+Es importante tener en cuenta que aún falta explorar las dependencias entre las variables condicionales. Aunque los gráficos de dispersión proporcionan una visión general, también revelan ciertas franjas en los datos, lo cual puede indicar limitaciones potenciales del modelo (ver la diagonal superior de la Figura \ref{fig:diagE}). Esto se debe a que la mayoría de las cópulas paramétricas asumen datos continuos, y la presencia de franjas en los datos podría afectar la capacidad del modelo para capturar la verdadera estructura de dependencia entre las variables. Por lo tanto, es necesario realizar un análisis más detallado para comprender completamente la naturaleza de las dependencias y evaluar la idoneidad del modelo propuesto.
 
-Para simplificar la notación del modelo D-vine, en lugar de escribir todos los árboles, solo se utilizará el árbol del primer nivel ya que este determina todas las estructura subsecuentes, representándolo como un modelo aditivo. Esto se debe a su facilidad de comprensión y a la capacidad de trabajar con él en el entorno de fórmulas de \texttt{R}. Sin embargo, es importante tener en cuenta que esto no significa que en el modelado se asuma que las relaciones son aditivas. En realidad, se modelan las relaciones a pares de cópulas, lo que permite capturar una gama más amplia de estructuras de dependencia entre las variables.
+Ahora se aplicará los heatmaps anteriores a cópulas D-Vine. Para simplificar la notación del modelo D-vine, en lugar de escribir todos los árboles, solo se utilizará el árbol del primer nivel ya que este determina todas las estructuras subsecuentes, representándolo como un modelo aditivo. Esto se debe a su facilidad de comprensión y a la capacidad de trabajar con él en el entorno de fórmulas de \texttt{R}. Sin embargo, es importante tener en cuenta que esto no significa que en el modelado se asuma que las relaciones son aditivas. En realidad, se modelan las relaciones a pares de cópulas, lo que permite capturar una gama más amplia de estructuras de dependencia entre las variables.
 
-En general, se asignará a cada variable que se modela un número, correspondiente al orden en el que el modelo D-vine las ajusta. Por ejemplo, en el modelo $FBIGC \sim GLU.120 + GLU.0 + IBM + PA.diast$, la variable $1$ corresponderá a la variable respuesta $FBIGCI$, la variable $2$ a $Glu.120$, y así sucesivamente. Cuando se modele la dependencia entre dos variables utilizando cópulas, se utilizará el número de variable como subíndice. Por ejemplo, $C_{12}$ representaría la cópula entre $FBIGC$ y $Glu.120$.
+En general, se asignará a cada variable que se modela un número, correspondiente al orden en el que el modelo D-vine las ajusta. Por ejemplo, en el modelo $FBI/GC \sim GLU.120 + GLU.0 + IBM + PA.diast$, la variable $1$ corresponderá a la variable respuesta $FBI/GC$, la variable $2$ a $Glu.120$, y así sucesivamente. Cuando se modele la dependencia entre dos variables utilizando cópulas, se utilizará el número de variable como subíndice. Por ejemplo, $C_{12}$ representaría la cópula entre $FBI/GC$ y $Glu.120$.
 
 
 \begin{figure}[H]
  \centering
   \subfloat[$\mathscr{H}\rho$]{
    \label{rhoT}
-    \includegraphics[width=0.33\textwidth]{4img/TotalrhoC12.png}}
+    \includegraphics[width=0.32\textwidth]{4img/TotalrhoC12.png}}
   \subfloat[$\mathscr{H}\sigma$]{
    \label{sigmaT}
-    \includegraphics[width=0.33\textwidth]{4img/TotalsigmaC12.png}}
+    \includegraphics[width=0.32\textwidth]{4img/TotalsigmaC12.png}}
   \subfloat[$\mathscr{H}$]{
    \label{HT}
-    \includegraphics[width=0.33\textwidth]{4img/TotalHC12.png}}
+    \includegraphics[width=0.32\textwidth]{4img/TotalHC12.png}}
     \caption{Ejemplo de Heatmaps}
     \label{heatEj}
 \end{figure}
 
-Como guía para interpretar los heatmaps, en la primera columna de la Figura \ref{heatEj}, se muestra la medida $\rho_C$ de Spearman en una cuadrícula de $100$ por $100$ en el intervalo $[0, 1]^2$. Las áreas azules indican que la distancia entre la cópula empírica evaluada en el punto $(u, v)$ está por debajo de la cópula independiente. Por otro lado, si los valores son positivos, esto indicará que la cópula empírica está por encima de la cópula independiente y su color será rojo. Este gráfico ayuda a visualizar el comportamiento de la cópula en todo el dominio, proporcionando información sobre la dirección y la magnitud de las diferencias entre la cópula empírica y la independiente.
+La Figura \ref{heatEj} presenta los heatmaps \eqref{Hrho}, \eqref{Hsigma} y \eqref{H} aplicados a la cópula entre $FBI/GC$ y $Glu.120$ para la cópula D-vine discutida arriba; más detalles sobre el ajuste de este modelo se presentan abajo. Como guía para interpretar los heatmaps, en la primera columna de la Figura \ref{heatEj}, se muestra la medida $\rho_C$ de Spearman en una cuadrícula de $100$ por $100$ en el intervalo $[0, 1]^2$. Las áreas azules indican que la distancia entre la cópula empírica evaluada en el punto $(u, v)$ está por debajo de la cópula independiente. Por otro lado, si los valores son positivos, esto indicará que la cópula empírica está por encima de la cópula independiente y su color será rojo. Este gráfico ayuda a visualizar el comportamiento de la cópula en todo el dominio, proporcionando información sobre la dirección y la magnitud de las diferencias entre la cópula empírica y la independiente.
 
 En la segunda columna de la Figura \ref{heatEj}, se encuentra el heatmap con la medida $\sigma_C$. Esta medida solo evalúa la distancia entre la cópula empírica y la independiente sin considerar su signo. Esto nos ayuda a visualizar la magnitud de la dependencia en todo el dominio de la cópula, proporcionando una representación clara de la fuerza de la relación entre las variables.
 
@@ -549,17 +556,17 @@ Para generalizar el modelo, se separan a los individuos según su prediagnóstic
 
 Al categorizar a los individuos de esta manera, se puede analizar la relación entre las variables en diferentes subgrupos, lo que puede ayudar a identificar patrones específicos y a adaptar el modelo a las necesidades particulares de cada grupo.
 
-Dividiendo a los individuos en las clasificaciones mencionadas anteriormente, se puede obtener la mediana de cada covariable para cada grupo y luego ingresar estas medianas al modelo para calcular la probabilidad de pertenecer a cada clase del $FBIGC$, que incluyen las siguientes categorías: completamente sanos, resistencia a la insulina con predisfunción de célula beta, resistencia a la insulina con estrés de célula beta y resistencia a la insulina con disfunción obvia de célula beta. Este enfoque nos permite evaluar cómo varían las probabilidades de pertenecer a cada clase según las características de los individuos, lo que puede proporcionar información valiosa para la detección temprana y la intervención en diferentes estados de salud relacionados con la glucosa y la obesidad.
+Dividiendo a los individuos en las clasificaciones mencionadas anteriormente, se puede obtener la mediana de cada covariable para cada grupo y luego ingresar estas medianas al modelo para calcular la probabilidad de pertenecer a cada clase del $FBI/GC$, que incluyen las siguientes categorías: completamente sanos, resistencia a la insulina con predisfunción de célula beta, resistencia a la insulina con estrés de célula beta y resistencia a la insulina con disfunción obvia de célula beta. Este enfoque nos permite evaluar cómo varían las probabilidades de pertenecer a cada clase según las características de los individuos, lo que puede proporcionar información valiosa para la detección temprana y la intervención en diferentes estados de salud relacionados con la glucosa y la obesidad.
 
 La tabla resultante del trabajo descrito anteriormente es fácilmente manejable y se puede utilizar de la siguiente manera:
 
 \begin{enumerate}
-    \item En la fila correspondiente a cada individuo, se colocan las medidas de glucosa en el tiempo $0$ ($Glu.0$), en el tiempo $120$ ($Glu.120$) y el Índice de Masa Corporal ($BMI$), en las columnas respectivas G0, G120, $BMI$.
+    \item Ubicar la fila que corresponde a cada individuo colocando las medidas de glucosa en el tiempo $0$ ($Glu.0$), en el tiempo $120$ ($Glu.120$) y el Índice de Masa Corporal ($BMI$), de acuerdo a las clasificaciones descritas \ref{ClasificaVar}.
 
-    \item En las columnas $C_1$, $C_2$, $C_3$, $C_4$, se muestran las probabilidades correspondientes a cada clase del $FBIGC$ (completamente sanos, resistencia a la insulina con predisfunción de célula beta, resistencia a la insulina con estrés de célula beta y resistencia a la insulina con completa disfunción de célula beta, respectivamente).
+    \item En las columnas $C_1$, $C_2$, $C_3$, $C_4$, se muestran las probabilidades correspondientes a cada clase del $FBI/GC$ (completamente sanos, resistencia a la insulina con predisfunción de célula beta, resistencia a la insulina con estrés de célula beta y resistencia a la insulina con completa disfunción de célula beta, respectivamente).
 \end{enumerate}
 
-En la Figura \ref{fig:ejemploTabla}, se muestra un ejemplo. Esta tabla facilita la evaluación de las probabilidades de pertenecer a cada clase del $FBIGC$ para diferentes combinaciones de glucosa y $BMI$, lo que permite una rápida identificación de los grupos de riesgo y la toma de decisiones informadas sobre la salud y el tratamiento. Estas predicciones de cada grupo de pacientes se obtuvieron tomando la mediana de cada covariable por cada grupo.
+En la Figura \ref{fig:ejemploTabla}, se muestra un ejemplo. Esta tabla facilita la evaluación de las probabilidades de pertenecer a cada clase del $FBI/GC$ para diferentes combinaciones de glucosa y $BMI$, lo que permite una rápida identificación de los grupos de riesgo y la toma de decisiones informadas sobre la salud y el tratamiento. Estas predicciones de cada grupo de pacientes se obtuvieron tomando la mediana de cada covariable por cada grupo.
 
 \begin{figure}[H]
     \centering
@@ -586,7 +593,7 @@ Para el cálculo de las probabilidades en esta tabla, solo se calcularon las sig
 
 Las gráficas de efectos ofrecen una herramienta valiosa para visualizar el impacto marginal de un predictor en el estimador cuantil. Estas representaciones permiten observar cómo varía el estimador cuantil en respuesta a cambios en un predictor específico, mientras se mantienen los demás predictores constantes a su valor promedio \cite{Tepegjozova2022}.
 
-Para generar estas gráficas, se selecciona la variable $x_i$ de interés cuyo efecto se desea visualizar en la regresión. Luego, se calcula el promedio muestral de todas las otras variables como una estimación de la esperanza de cada una. De esta manera, se fija la variable respuesta $y$ y la variable $x_i$, mientras que todas las demás variables se mantienen constantes en su valor promedio. Posteriormente, se realiza la regresión cuantil utilizando estos valores fijos para las variables control.
+Para generar estas gráficas, se selecciona la variable $x_i$ de interés cuyo efecto se desea visualizar en la regresión. Luego, se calcula el promedio muestral de todas las otras variables como una estimación de la esperanza de cada una. De esta manera, solo es de interés el comportamiento de la variable respuesta $y$ cuando la variable $x_i$ varia, mientras que todas las demás variables se mantienen constantes en su valor promedio. Posteriormente, se realiza la regresión cuantil utilizando estos valores fijos para las variables control.
 
 A continuación, se presenta un ejemplo del rendimiento de la gráfica de efectos. Se llevó a cabo la regresión cuantil para tres cuantiles diferentes: $\alpha = 0.1$, $0.5$ y $0.9$. Luego, se utilizó la función $geom\_smooth()$ para trazar una curva suave utilizando B-splines con 5 puntos internos. 
 
@@ -594,10 +601,10 @@ A continuación, se presenta un ejemplo del rendimiento de la gráfica de efecto
  \centering
   \subfloat[Mujeres]{
    \label{ejEfec1}
-    \includegraphics[width=0.48\textwidth]{4img/HomGlu.0Efec.png}}
+    \includegraphics[width=0.45\textwidth]{4img/HomGlu.0Efec.png}}
   \subfloat[Hombres]{
    \label{ejEfect2}
-    \includegraphics[width=0.48\textwidth]{4img/HomPA.diastEfec.png}}
+    \includegraphics[width=0.45\textwidth]{4img/HomPA.diastEfec.png}}
     \caption{Ejemplos de las gráficas de efectos.}
     \label{fig:Efectos}
 \end{figure}
@@ -613,8 +620,10 @@ Este gráfico es herramienta fundamental en el análisis de resultados debido a 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\vspace{-0.2cm}
 \section{Librería deerVineReg}
 
+\vspace{-0.3cm}
 Todas las herramientas gráficas descritas anteriormente para evaluar y visualizar el desempeño del modelo ajustado fueron implementadas en el paquetería \textbf{deerVineReg}, la cuál se puede encontrar y descargar en github \url{https://github.com/BesitosDeBaba/deerVineReg}, uno de los principales objetivos de esta tesis. Existen otros paquetes, como \textbf{vineReg}, cuya utilidad se centra más en visualizar las dependencias dentro de un conjunto de variables, similar a la función de la PCA. Sin embargo, este proyecto se enfocó en desarrollar una paquetería orientada a un modelo predictivo de Machine Learning, con el objetivo de expandir el uso de modelos basados en cópulas.
 
 El paquete \textbf{deerVineReg} no solo facilita la creación de modelos predictivos robustos utilizando cópulas, sino que también incluye herramientas avanzadas de visualización para interpretar los resultados y evaluar el desempeño del modelo. Esto permite a los usuarios no solo construir modelos precisos, sino también comprender mejor las relaciones subyacentes entre las variables y su impacto en la predicción. \textbf{deerVineReg} representa un avance significativo en el uso de cópulas para la predicción, ofreciendo una alternativa poderosa y accesible para la comunidad científica y médica.
@@ -623,58 +632,62 @@ El paquete \textbf{deerVineReg} no solo facilita la creación de modelos predict
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Modelos de 4 variables}
 
-El orden de los tres modelos modelos construidos es  
+El orden de los tres modelos modelos construidos para el diagnóstico de la resistencia a la insulina en mujeres, hombres y para ambos sexos es
 
+\vspace{-0.5cm}
 \begin{equation}\label{ordenVar4}
-     FBIGC \sim Glu.120 + Glu.0 + BMI + PA.diast,
+     FBI/GC \sim Glu.120 + Glu.0 + BMI + PA.diast.
 \end{equation}
 
 Las cópulas ajustadas para los datos de mujeres se ilustran en la Figura \ref{fig:copulasTestMu}, mientras que las correspondientes a hombres se muestran en la Figura \ref{fig:copulasTestHo}.
 
 
-Para ajustar las cópulas a pares de todos los niveles, se utilizó la función \textit{BiCopSelect} de la librería \textbf{VineCopula}. En las Figuras  \ref{fig:copulasTestMu}, \ref{fig:copulasTestHo} y \ref{fig:copulasTestTotal}, se muestran los nombres y parámetros, junto con el test de independencia ($H_0 =$ no hay depedencia) de las cópulas ajustadas dentro del modelo D-vine de mujeres, hombres y ambos sexos respectivamente. Estos resultados permiten evaluar la idoneidad de las cópulas seleccionadas para modelar las relaciones entre las variables y determinar si existe alguna dependencia significativa entre ellas en cada grupo de datos, en caso de no haber desecharla. 
+Para ajustar las cópulas a pares de todos los niveles, se utilizó la función \textit{BiCopSelect} de la librería \textbf{VineCopula}. En las Figuras  \ref{fig:copulasTestMu}, \ref{fig:copulasTestHo} y \ref{fig:copulasTestTotal}, se muestran los nombres y parámetros, junto con el test de independencia ($H_0 =$ no hay depedencia) de las cópulas ajustadas dentro del modelo D-vine de mujeres, hombres y ambos sexos, respectivamente. Estos resultados permiten evaluar la idoneidad de las cópulas seleccionadas para modelar las relaciones entre las variables y determinar si existe alguna dependencia significativa entre ellas en cada grupo de datos, en caso de no haber desecharla. 
 
-Para los tests de independencia se tomará un nivel de significancia de $\alpha = 0.05$. Esto significa que cualquier valor de $p-valor$ que sea menor o igual a $0.5$ indicará que se rechaza la hipótesis nula de independencia entre las variables, lo que sugiere que hay una dependencia significativa entre ellas.
+Para los tests de independencia se tomará un nivel de significancia de $\alpha = 0.05$. Esto significa que cualquier $p-valor$ que sea menor o igual a $0.05$ indicará que se rechaza la hipótesis nula de independencia entre las variables, lo que sugiere que hay una dependencia significativa entre ellas.
 
 \begin{figure}[H]
  \centering
   \subfloat[Parte 1]{
    \label{ajusteMu1}
-    \includegraphics[width=0.49\textwidth]{4img/testM1.png}}
+    \includegraphics[width=0.46\textwidth]{4img/testM1.png}}
   \subfloat[Parte 2]{
    \label{ajusteMu2}
-    \includegraphics[width=0.49\textwidth]{4img/testM2.png}}
+    \includegraphics[width=0.46\textwidth]{4img/testM2.png}}
     \caption{Cópulas ajustadas la base de mujeres.}
     \label{fig:copulasTestMu}
 \end{figure}
+\vspace{-0.3cm}
 
-Los tests de independencia de las cópulas ajustadas a los datos de mujeres que se muestran en la Figura \ref{fig:copulasTestMu}. Se puede observar en los niveles más bajos, como $C_{25|34}$ y $C_{15|234}$, muestran valores altos. Esto sugiere que podría ser beneficioso reducir una variable en estos niveles para mejorar la capacidad del modelo para capturar las relaciones entre las covariables. La alta puntuación en el test de independencia indica que las variables incluidas en estos pares de cópulas podrían no estar contribuyendo significativamente a la relación modelada. Por lo tanto, considerar la eliminación de una variable en estos niveles podría simplificar el modelo sin perder información importante sobre la dependencia entre las variables.
+Los tests de independencia de las cópulas ajustadas a los datos de mujeres que se muestran en la Figura \ref{fig:copulasTestMu}. Se puede observar en los niveles más bajos, como $C_{25|34}$ y $C_{15|234}$, muestran valores altos. Esto sugiere que podría ser beneficioso reducir una variable en estos niveles para mejorar la capacidad del modelo para capturar las relaciones entre las covariables. Los $p-valores$ relativamente altos para el test de independencia indican que las variables incluidas en estos pares de cópulas podrían no estar contribuyendo significativamente a la relación modelada. Por lo tanto, considerar la eliminación de una variable en estos niveles podría simplificar el modelo sin perder información importante sobre la dependencia entre las variables.
 
 \begin{figure}[H]
  \centering
   \subfloat[Parte 1]{
    \label{ajusteHo1}
-    \includegraphics[width=0.49\textwidth]{4img/testH1.png}}
+    \includegraphics[width=0.46\textwidth]{4img/testH1.png}}
   \subfloat[Parte 2]{
    \label{ajusteHo2}
-    \includegraphics[width=0.49\textwidth]{4img/testH2.png}}
+    \includegraphics[width=0.46\textwidth]{4img/testH2.png}}
     \caption{Cópulas ajustadas la base de hombres.}
     \label{fig:copulasTestHo}
 \end{figure}
+\vspace{-0.3cm}
 
-En cuanto a los tests de independencia de las cópulas ajustadas a los datos provenientes de hombres, ver Figura \ref{fig:copulasTestHo}, se observan valores altos en los tests de independencia para las cópulas $C_{24|3}$ y $C_{15|234}$. Al igual que en el caso de la Figura \ref{fig:copulasTestMu}, esto sugiere que reducir una variable en estos niveles podría ser beneficioso para mejorar la capacidad del modelo para capturar las relaciones entre las covariables. 
+En cuanto a los tests de independencia de las cópulas ajustadas a los datos provenientes de hombres, ver Figura \ref{fig:copulasTestHo}, se observan $p-valores$ relativamente altos en los tests de independencia para las cópulas $C_{24|3}$ y $C_{15|234}$. Al igual que en el caso de la Figura \ref{fig:copulasTestMu}, esto sugiere que reducir una variable en estos niveles podría ser beneficioso para mejorar la capacidad del modelo para capturar las relaciones entre las covariables. 
 
 \begin{figure}[H]
  \centering
   \subfloat[Parte 1]{
    \label{ajusteTo1}
-    \includegraphics[width=0.49\textwidth]{4img/testT1.png}}
+    \includegraphics[width=0.46\textwidth]{4img/testT1.png}}
   \subfloat[Parte 2]{
    \label{ajusteTo2}
-    \includegraphics[width=0.49\textwidth]{4img/testT2.png}}
+    \includegraphics[width=0.46\textwidth]{4img/testT2.png}}
     \caption{Cópulas ajustadas la base de hombre y mujeres.}
     \label{fig:copulasTestTotal}
 \end{figure}
+\vspace{-0.3cm}
 
 Por último, en la Figura \ref{fig:copulasTestTotal}
 , se muestran las cópulas ajustadas para todo el conjunto de datos. La única cópula cuyo $p-valor$ para el test de independencia supera el nivel de confianza de $\alpha = 0.05$ es $C_{15|234}$. Es posible que esta diferencia, de solo tener una cópula independiente, se deba a que la cantidad de datos en este modelo es mayor. Al tener más datos, el modelo tiene una mayor capacidad para capturar la complejidad de las relaciones entre las variables, lo que puede resultar en una menor dependencia observada entre ellas.

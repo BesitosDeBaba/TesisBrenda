@@ -7,7 +7,7 @@
 
 \begin{landscape}
 
-\subsection{Visualización del Modelo ajustado para Mujeres y hombres}
+\subsection{Visualización del Modelo ajustado para Mujeres y Hombres}
 \begin{figure}[H]
     \centering
     \includegraphics[height = 13.5 cm, width = 1.4 \textwidth]{4img/UdiagT.png}
@@ -17,7 +17,7 @@
 
 \end{landscape}
 
-Uno de los aspectos más destacados de la Figura \ref{fig:diagTot}, es la posición de la diagonal de la cópula empírica en relación con la diagonal de cópula producto. En su mayor parte, la diagonal de la cópula empírica se sitúa por debajo o por encima de la diagonal, lo que indica que las dependencias entre las variables son mayoritariamente concordantes negativas o positivas, respectivamente. Este patrón de comportamiento es crucial, ya que las cópulas paramétricas pueden modelar estas relaciones de manera efectiva. Por lo tanto, como ya se había mencionado antes utilizar un modelo \texttt{R} vine con un ajuste paramétrico parece ser una estrategia apropiada.
+La Figura \ref{fig:diagTot} presenta varios aspectos destacables. Uno de ellos es la posición de la diagonal de la cópula empírica en relación con la diagonal de cópula producto. En su mayor parte, la diagonal de la cópula empírica se sitúa por debajo o por encima de la diagonal, lo que indica que las dependencias entre las variables son mayoritariamente concordantes negativas o positivas, respectivamente. Este patrón de comportamiento es crucial, ya que las cópulas paramétricas pueden modelar estas relaciones de manera efectiva. Por lo tanto, como ya se había mencionado antes utilizar un modelo \texttt{R} vine con un ajuste paramétrico parece ser una estrategia apropiada.
 
 Otro aspecto destacable es la partición que genera la variable presión diastólica. Recuérdese que esta es la presión arterial mínima registrada en las arterias durante el ciclo cardíaco cuando el corazón se encuentra en reposo entre latidos. La creación de estos tres grupos podría deberse a la presencia de tres subpoblaciones, como personas con presión diastólica normal, con hipertensión leve y con hipertensión moderada o grave o también podría provenir de las características de los instrumentos de medición. Sin embargo, no parece haber una dependencia estable con las otras variables.
 
@@ -187,11 +187,12 @@ Las cópula de nivel $3$ se muestran en la Figura \ref{fig:Modelo4TotalNivel3}. 
 
 Finalmente, en la Figura \ref{fig:Modelo4TotalNivel4} se muestra la cópula $C_{15|234}$ correspondiente al último nivel. Esta cópula representa la relación entre la variable respuesta y la presión arterial diastólica, condicionada a los niveles de glucosa en el tiempo $120$ y $0$, y el índice de masa corporal se observa una dependencia muy baja.
 
-A continuación en la Figura \ref{fig:tabla4varTotal}, se muestra la tabla de probabilidades de tener resistencia a la insulina por clasificación de peso y glucosa para datos de hombres y mujeres. Para recordar la especificación de las clasificaciones se puede consultar las subsecciones \ref{ClasificaVar} y \ref{subTabla}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Tabla Resumen del Modelo}
+
+A continuación, en la Figura \ref{fig:tabla4varTotal}, se muestra la tabla de probabilidades de tener resistencia a la insulina por clasificación de peso y glucosa para datos de hombres y mujeres. Para recordar la especificación de las clasificaciones se puede consultar las subsecciones \ref{ClasificaVar} y \ref{subTabla}.
 
 La probabilidad de pertenecer a la clase de individuos saludables es muy alta para las personas con niveles de glucosa normales y un peso normal o con sobrepeso. En la categoría de personas con niveles de glucosa normales pero con obesidad, la probabilidad de tener resistencia a la insulina con predisfunción de las células beta aumenta. A partir de esta categoría, la probabilidad de tener resistencia a la insulina con estrés de las células beta aumenta, siendo esta la predominante en todas las clasificaciones con niveles de glucosa prediabéticos. Las categorías cuyos niveles de glucosa son diabéticos ya son clasificadas como pacientes con resistencia a la insulina con disfunción de las células beta.
 
@@ -206,7 +207,7 @@ La probabilidad de pertenecer a la clase de individuos saludables es muy alta pa
 
 
 
-Las ventajas de tener este tipo de representaciones, y no solo quedarse con el modelo computacional, son significativas. Estas representaciones pueden llevarse a todo tipo de comunidades, incluidas aquellas con escasos recursos. Al proporcionar una visualización clara y accesible, se facilita la comprensión y el análisis de los datos sin necesidad de equipos o software avanzado. Esto es especialmente importante en áreas donde el acceso a tecnología de punta es limitado, permitiendo a los profesionales de la salud y a los encargados de la toma de decisiones identificar patrones y tomar medidas preventivas de manera más efectiva.
+Las ventajas de tener este tipo de representaciones, y no solo quedarse con el modelo computacional son significativas. Estas representaciones pueden llevarse a todo tipo de comunidades, incluidas aquellas con escasos recursos. Al proporcionar una visualización clara y accesible, se facilita la comprensión y el análisis de los datos sin necesidad de equipos o software avanzado. Esto es especialmente importante en áreas donde el acceso a tecnología de punta es limitado, permitiendo a los profesionales de la salud y a los encargados de la toma de decisiones identificar patrones y tomar medidas preventivas de manera más efectiva.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%  G R A F I C O S  D E  E F E C T O S  %%%%%%%%%%%
@@ -214,7 +215,7 @@ Las ventajas de tener este tipo de representaciones, y no solo quedarse con el m
 
 \subsection{Comparación de Modelos}
 
-Con el objetivo de comparar las diferencias entre los ajustes de cada subconjunto de datos, se utilizará la gráfica de efectos para visualizar el impacto que tiene cada covariable sobre la variable respuesta. Además, se emplearán las curvas de nivel para comparar cómo son las cópulas ajustadas para cada par de variables, tanto no condicionadas como condicionadas. Estas herramientas nos permitirán evaluar de manera detallada cómo se relacionan las variables en diferentes contextos y subgrupos de datos, lo que facilitará la identificación de patrones y relaciones importantes en el modelo.
+Con el objetivo de comparar las diferencias entre los ajustes de cada subconjunto de datos, se utilizará la gráfica de efectos para visualizar el impacto que tiene cada covariable sobre la variable respuesta. Además, se emplearán las curvas de nivel para comparar cómo son las cópulas ajustadas para cada par de variables, tanto no condicionadas como condicionadas estas se encuentran en el Apéndice \ref{ApendiceA}. Estas herramientas nos permitirán evaluar de manera detallada cómo se relacionan las variables en diferentes contextos y subgrupos de datos, lo que facilitará la identificación de patrones y relaciones importantes en el modelo.
 
 En las gráficas de efectos de la variable glucosa al tiempo $120$ se muestra en las Figuras \ref{Efec120M4}, \ref{Efec120H4} y \ref{Efec120T4}, se observa que el efecto difiere según el género. En el caso de las mujeres, esta variable influye principalmente en sus valores bajos, teniendo un efecto similar para valores mayores a $120$ $mg/dl$. Por otro lado, en los hombres, parece que la respuesta cambia poco para valores menores a aproximadamente $100$ $mg/dl$. Luego, influye significativamente en el cambio de la respuesta hasta valores menores a $300$ $mg/dl$, y vuelve a cambiar poco para valores mayores a este umbral. Estas diferencias en el efecto de la variable glucosa al tiempo $120$ entre géneros son importantes y pueden tener implicaciones significativas en el análisis y la interpretación de los resultados del modelo.
 
